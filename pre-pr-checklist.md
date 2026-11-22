@@ -39,4 +39,6 @@ Each item is a hard rule unless it says "default". If your change fails one, fix
 
 ## 6. Naming (hard)
 
-- The Vulkan driver is **Borealis** (Aurora Silicon's Vulkan driver, in Mesa). Never call our work Honeykrisp or "hk". The code prefix is `brl_`; the rename is tracked in [aurora-silicon/mesa#591](https://github.com/aurora-silicon/mesa/issues/591). Use Aurora paths and names, not Asahi or m1n1.
+- The Vulkan driver is **Borealis** (Aurora Silicon's Vulkan driver, in Mesa). Never call our work Honeykrisp or "hk" in prose: PR and issue text, commit messages, docs, reports and user-facing names.
+- Code keeps the identifiers it has today. Until the rename in [aurora-silicon/mesa#591](https://github.com/aurora-silicon/mesa/pull/591) is merged, Borealis lives in `src/asahi/vulkan/` with `hk_`/`HK_` symbols; after it lands, new code uses its `brl_` prefix.
+- Names shared with upstream or fixed by an interface stay as they are: the Gallium `asahi` driver, `src/asahi/`, the DRM UAPI (`asahi_drm.h`, `DRM_ASAHI_*`) and Asahi or m1n1 names in upstream code. New paths and names of our own use Aurora, not Asahi or m1n1.
