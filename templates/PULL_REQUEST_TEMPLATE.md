@@ -44,5 +44,5 @@ No internal process, reviews or holds.
 - [ ] Commits: human Signed-off-by only; no agent trailers of any kind
 - [ ] Tested on the affected hardware; no regression
 
-<!-- If an agent helped, name the model or tool below (exact wording/punctuation is flexible). Otherwise delete it. -->
+<!-- If an agent helped, keep an Assisted-by line at the end of the body naming the model or tool (exact wording/punctuation is flexible). Otherwise delete it. -->
 Assisted-by: LLM (<Model>)

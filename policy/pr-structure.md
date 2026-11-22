@@ -35,15 +35,15 @@ The problem, the change and any regression are never hidden inside a collapsed b
 
 ## Agent disclosure
 
-**Hard rule (disclosure only; exact formatting is flexible).** When an agent helped, note it in the PR body with a plain `Assisted-by:` line naming the model or tool — for example:
+**Hard rule (disclosure only; exact model/vendor wording is flexible).** When an agent helped, put a plain `Assisted-by:` line at the end of the PR body naming the model or tool — for example:
 
 ```
 Assisted-by: LLM (Claude:Opus 5.5)
 ```
 
-- Any clear plain-text form naming the model or tool is fine (for example `Assisted-by: LLM (Claude Opus 5.5)`, `Assisted-by: LLM (Gemini 4 Neon)`, or `Assisted-by: Codex (GPT-6.2)`). Do not block or nitpick PRs over vendor vs. product naming, colons, parentheses, or line placement.
+- Any clear plain-text form naming the model or tool is fine (for example `Assisted-by: LLM (Claude Opus 5.5)`, `Assisted-by: LLM (Gemini 4 Neon)`, or `Assisted-by: Codex (GPT-6.2)`). Do not block or nitpick PRs over vendor vs. product naming, colons, or parentheses.
 - Several agents can be listed together on the same line.
-- Avoid marketing banners, emoji, or session URLs.
+- No "Generated with ..." footer, no emoji, no links or session URLs.
 - Leave the line out when no agent helped.
 - This line never goes in a commit.
 
