@@ -29,7 +29,7 @@ Each item is a hard rule unless it says "default". If your change fails one, fix
 ## 4. Clean-room and attribution (hard)
 
 - No Apple code, strings, firmware, disassembly output or Apple tuning values in public code, PRs, issues or channels. Our own traces and measurements are fine.
-- Commits carry human identity only, with a human `Signed-off-by`. No agent co-author or sign-off and no `Assisted-by` in commits. When an agent helped, the PR body's last line is `Assisted-by: LLM (<Vendor>:<Model>)`.
+- Commits carry human identity only, with a human `Signed-off-by`. No agent co-author or sign-off and no `Assisted-by` in commits. When an agent helped, disclose it in the PR body with a plain `Assisted-by:` line naming the model or tool (exact wording, vendor prefix, and punctuation are flexible; do not nitpick format).
 - Carry other people's commits unchanged. No force pushes to shared branches.
 
 ## 5. Evidence (default, high bar)
