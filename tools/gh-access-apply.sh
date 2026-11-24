@@ -16,11 +16,18 @@ OMARCHY="linux mesa aura m1n1 u-boot aurora-installer alarm-aurora omarchy-auror
 NO_BRANCH_RULES="aurora-distributions fedora-aurora alarm-aurora .github"
 # Workflows create release tags with GITHUB_TOKEN: no tag ruleset yet.
 NO_TAG_RULES="aurora-installer aurora-distributions fedora-aurora alarm-aurora nixos-aurora omarchy-aurora"
+# The 'mergers only' (restrict updates) ruleset makes every merge a bypass click, so it is kept but
+# DISABLED (2026-11-24 redesign): the merger gate is code-owner review (CODEOWNERS -> core + omarchy-m).
+# Set MERGERS_ENFORCEMENT=active only after the Owners decide to restore it.
+MERGERS_ENFORCEMENT=${MERGERS_ENFORCEMENT:-disabled}
+# No code-owner review, no last-push/stale rules (Owner decision 2026-11-24, merge train).
+NO_CODEOWNER_REVIEW="mesa"
 # linux has its own hand-made rulesets (27977956 etc.); only the mergers ruleset + core bypass are added.
 
 inlist() { local x=$1; shift; for y in $*; do [ "$x" = "$y" ] && return 0; done; return 1; }
 log() { echo "$(date +%H:%M:%S) [$MODE] $*" | tee -a "$LOG"; }
-run() { if [ $MODE = apply ]; then "$@" >/tmp/gh-apply.$$ 2>&1 || { log "ERROR: $* -> $(head -c 400 /tmp/gh-apply.$$)"; return 1; }; fi; return 0; }
+TMP=$(mktemp); trap 'rm -f "$TMP"' EXIT
+run() { if [ $MODE = apply ]; then "$@" >"$TMP" 2>&1 || { log "ERROR: $* -> $(head -c 400 "$TMP")"; return 1; }; fi; return 0; }
 
 team_perm() { # repo team perm
   local cur; cur=$(gh api "orgs/$ORG/teams/$2/repos/$ORG/$1" -H 'Accept: application/vnd.github.v3.repository+json' --jq '.role_name' 2>/dev/null) || cur=none
@@ -47,15 +54,17 @@ ruleset() { # repo name json
 }
 
 BYPASS_PR_CORE='[{"actor_id":null,"actor_type":"OrganizationAdmin","bypass_mode":"pull_request"},{"actor_id":'$CORE_ID',"actor_type":"Team","bypass_mode":"pull_request"}]'
-review_rules() { jq -n --argjson b "$BYPASS_PR_CORE" '{name:"default branch: reviewed PRs",target:"branch",enforcement:"active",
+review_rules() { # $1 = 1: code-owner review + last-push + stale dismiss
+  local s=true; [ "${1:-1}" = 0 ] && s=false
+  jq -n --argjson b "$BYPASS_PR_CORE" --argjson s $s '{name:"default branch: reviewed PRs",target:"branch",enforcement:"active",
   conditions:{ref_name:{include:["~DEFAULT_BRANCH"],exclude:[]}}, bypass_actors:$b,
   rules:[{type:"deletion"},{type:"non_fast_forward"},{type:"pull_request",parameters:{required_approving_review_count:1,
-   dismiss_stale_reviews_on_push:true,require_code_owner_review:true,require_last_push_approval:true,
+   dismiss_stale_reviews_on_push:$s,require_code_owner_review:$s,require_last_push_approval:$s,
    required_review_thread_resolution:false}}]}'; }
 merger_rules() { # $1 = include omarchy
   local b=$BYPASS_PR_CORE
   [ "$1" = 1 ] && b=$(jq -c --argjson id $OMARCHY_ID '.+[{actor_id:$id,actor_type:"Team",bypass_mode:"pull_request"}]' <<<"$b")
-  jq -n --argjson b "$b" '{name:"default branch: mergers only (Core, Omarchy Mac)",target:"branch",enforcement:"active",
+  jq -n --argjson b "$b" --arg en "$MERGERS_ENFORCEMENT" '{name:"default branch: mergers only (Core, Omarchy Mac)",target:"branch",enforcement:$en,
   conditions:{ref_name:{include:["~DEFAULT_BRANCH"],exclude:[]}}, bypass_actors:$b, rules:[{type:"update"}]}'; }
 tag_rules() { jq -n '{name:"release tags: v* aurora-* (owners only)",target:"tag",enforcement:"active",
   conditions:{ref_name:{include:["refs/tags/v*","refs/tags/aurora-*"],exclude:[]}},
@@ -83,7 +92,8 @@ for r in $PRODUCT; do
   fi
   if inlist $r $NO_BRANCH_RULES; then log "$r: branch rulesets DEFERRED (workflow pushes to default branch)"
   else
-    ruleset $ORG/$r "default branch: reviewed PRs" "$(review_rules)"
+    co=1; inlist $r $NO_CODEOWNER_REVIEW && co=0
+    ruleset $ORG/$r "default branch: reviewed PRs" "$(review_rules $co)"
     ruleset $ORG/$r "default branch: mergers only (Core, Omarchy Mac)" "$(merger_rules $om)"
   fi
   if inlist $r $NO_TAG_RULES; then log "$r: tag ruleset DEFERRED (workflow creates release tags)"

@@ -14,7 +14,7 @@ A PR into a repository's default branch (`main`; `aurora-wip` on mesa until its 
 2. **A hardware row at the PR head.** The change ran on the Mac it targets, built from the PR's head commit, with the result written in the PR (see section 3). Code shared between Mac generations also needs a row on one other Mac that has the same block, showing no regression. This is the **minimum to merge**. The [pre-PR checklist](../pre-pr-checklist.md) asks authors to prove the change on every Mac they have with the block; rows on Macs the author does not have are requested (section 3) but do not hold the merge.
 3. **One non-author review with no blocking finding.** Someone other than the author (a Core or Omarchy Mac member, whose GitHub approval the rulesets count; or, for agent-written work, an independent reviewing agent, see 4) has read the whole diff, checked the [pre-PR checklist](../pre-pr-checklist.md), tried to break it, and found nothing blocking.
 
-When all three hold, **merge within the hour**. Do not wait for a second reviewer, for polish or for nits: nits become follow-up PRs. Core and Omarchy Mac members press the button (Aurora Dev cannot merge into default branches, see [`access-tiers.md`](access-tiers.md)); an author who is Core or Omarchy Mac may merge their own PR once 1 to 3 hold.
+When all three hold, **merge within the hour**. Do not wait for a second reviewer, for polish or for nits: nits become follow-up PRs. Core and Omarchy Mac members press the button (Aurora Dev do not merge into default branches; a PR needs a Core or Omarchy Mac approval before GitHub lets anyone merge it, see [`access-tiers.md`](access-tiers.md)); an author who is Core or Omarchy Mac may merge their own PR once 1 to 3 hold.
 
 **Hard rule.** None of the three may be skipped, except the CI waiver above. Nobody merges their own PR without a non-author review, and nobody merges runtime code without a hardware row (section 3 says what counts as one when nobody has the board).
 
@@ -51,8 +51,7 @@ Rules:
 - The review is a **quick blocking-issues pass**, not a gate to wait on. Review requests should be answered within hours.
 - An approving review on GitHub is what the ruleset counts. An approval goes stale when new commits are pushed; re-approve after reading the new commits.
 - **Agent-written PRs.** An agent's PR is reviewed by a human or by a different, independent agent that did not write or plan it. When agents work under one account and cannot approve on GitHub, the reviewing agent posts its review as a PR review comment ("no blocking findings" plus what it checked), and an Owner or Core member merges through the ruleset bypass (pull requests only). The bypass is only for that case and for urgent owner merges; it never skips the three conditions in section 1.
-- **Smaller-model PRs.** A PR whose `Assisted-by:` line names a small or fast model (today: Gemini 4 Neon) needs its non-author review from a human or from Claude Opus. Another small-model review is not enough.
-- **Do not nitpick** the `Assisted-by:` line's wording.
+- **Smaller-model PRs.** A PR written mainly by a smaller, faster model needs its non-author review from a human or from a stronger model; another small-model review is not enough. The author's team routes that request (for example through its review queue or a regression request), never through attribution text in the PR.
 - Each side records its verdict (merge / blocking finding) on the PR, so whoever merges can see it.
 
 ## 5. How to merge

@@ -1,6 +1,6 @@
 # Tracing Guidelines
 
-> **Status: DRAFT. Not in force yet.** The [pre-PR checklist](../pre-pr-checklist.md) is in use today; where this draft and the checklist differ, the checklist wins.
+> **Status: IN FORCE** (since 2026-11-24). Change it by PR here.
 
 Kind: **hard rules**. This page covers two things only: what a trace may contain, and the safety rules for hardware. See the glossary in [`AGENTS.md`](../AGENTS.md). *(Open question: should hardware safety move to its own page?)*
 

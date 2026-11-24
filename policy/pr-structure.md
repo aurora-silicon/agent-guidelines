@@ -1,6 +1,6 @@
 # PR Structure
 
-> **Status: DRAFT. Not in force yet.** The [pre-PR checklist](../pre-pr-checklist.md) is in use today; where this draft and the checklist differ, the checklist wins.
+> **Status: IN FORCE** (since 2026-11-24). Change it by PR here.
 
 Kind: defaults, except lines marked **Hard rule**. See "Two kinds of rule" and the glossary in [`AGENTS.md`](../AGENTS.md). Commit rules are in [`commits-and-performance.md`](commits-and-performance.md).
 
@@ -33,19 +33,9 @@ Use them for long code, full result tables, summarised dmesg excerpts (never raw
 
 The problem, the change and any regression are never hidden inside a collapsed block.
 
-## Agent disclosure
+## No AI attribution
 
-**Hard rule (disclosure only; exact model/vendor wording is flexible).** When an agent helped, put a plain `Assisted-by:` line at the end of the PR body naming the model or tool — for example:
-
-```
-Assisted-by: LLM (Claude:Opus 5.5)
-```
-
-- Any clear plain-text form naming the model or tool is fine (for example `Assisted-by: LLM (Claude Opus 5.5)`, `Assisted-by: LLM (Gemini 4 Neon)`, or `Assisted-by: Codex (GPT-6.2)`). Do not block or nitpick PRs over vendor vs. product naming, colons, or parentheses.
-- Several agents can be listed together on the same line.
-- No "Generated with ..." footer, no emoji, no links or session URLs.
-- Leave the line out when no agent helped.
-- This line never goes in a commit.
+**Hard rule.** PR titles, bodies, comments and reviews name no model or tool: no `Assisted-by:`, `Co-Authored-By` naming a tool, "Generated with" footer, model names or session links. A PR is judged on its content and evidence, whoever or whatever typed it. Commits carry the human author and `Signed-off-by` only ([`commits-and-performance.md`](commits-and-performance.md)). The `pr-text` check flags attribution lines; delete them and it passes.
 
 ## Credit
 

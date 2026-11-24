@@ -6,14 +6,13 @@ Policies for every Aurora Silicon repository, followed by human and agent contri
 
 | Document | Status |
 | --- | --- |
-| [`pre-pr-checklist.md`](pre-pr-checklist.md) | **IN USE** (since 2026-11-21). Aurora's review agents check exactly these items. Anyone may use it before opening a PR. |
-| [`AGENTS.md`](AGENTS.md) | **IN USE** (since 2026-11-24). The rulebook every agent loads, whoever runs it; every repo's `AGENTS.md`/`CLAUDE.md` points here. |
-| [`policy/branching-and-releases.md`](policy/branching-and-releases.md), [`policy/governance-and-roles.md`](policy/governance-and-roles.md), [`policy/access-tiers.md`](policy/access-tiers.md), [`policy/merge-policy.md`](policy/merge-policy.md), [`policy/review-and-merge-handbook.md`](policy/review-and-merge-handbook.md), [`policy/hotfix.md`](policy/hotfix.md) | **IN USE** (since 2026-11-24). Enforced by rulesets on every public product repo ([`policy/access-tiers.md`](policy/access-tiers.md)). |
+| [`pre-pr-checklist.md`](pre-pr-checklist.md) | **IN FORCE** (since 2026-11-21). Aurora's review agents check exactly these items. Anyone may use it before opening a PR. |
+| [`AGENTS.md`](AGENTS.md) | **IN FORCE** (since 2026-11-24). The rulebook every agent loads, whoever runs it; every repo's `AGENTS.md`/`CLAUDE.md` points here. |
+| [`policy/branching-and-releases.md`](policy/branching-and-releases.md), [`policy/governance-and-roles.md`](policy/governance-and-roles.md), [`policy/access-tiers.md`](policy/access-tiers.md), [`policy/merge-policy.md`](policy/merge-policy.md), [`policy/review-and-merge-handbook.md`](policy/review-and-merge-handbook.md), [`policy/hotfix.md`](policy/hotfix.md) | **IN FORCE** (since 2026-11-24). Enforced by rulesets on every public product repo ([`policy/access-tiers.md`](policy/access-tiers.md)). |
 | [`docs/ONBOARDING-MAINTAINERS.md`](docs/ONBOARDING-MAINTAINERS.md) | Day-one guide for Omarchy Mac maintainers and Core. |
-| the rest of [`policy/`](policy/) | DRAFT |
-| [`templates/`](templates/) | DRAFT |
+| the rest of [`policy/`](policy/) and [`templates/`](templates/) | **IN FORCE** (since 2026-11-24). |
 
-Drafts are not in force yet. They are published so contributors can see where the rules are heading and comment. Open an issue or a PR against this repo to propose a change.
+Everything here is in force. Propose a change by issue or PR against this repo; Owner-level changes (roles, access, releases) need a human Owner's sign-off.
 
 ## What this is
 
@@ -38,18 +37,18 @@ The aim is to keep everyone in sync, not to stop innovation.
 
 | File | Kind | Purpose |
 | --- | --- | --- |
-| `pre-pr-checklist.md` | hard + one default | The checks a PR must pass before review. **In use.** |
-| `AGENTS.md` | both | **In use.** The rulebook: hard rules, defaults, how agents join, glossary, index. Every repo points here. |
+| `pre-pr-checklist.md` | hard + one default | The checks a PR must pass before review. **In force.** |
+| `AGENTS.md` | both | **In force.** The rulebook: hard rules, defaults, how agents join, glossary, index. Every repo points here. |
 | `policy/ip-and-tainted-data.md` | hard | Public vs tainted, RE scope, licensing, upstreaming. |
 | `policy/tracing-guidelines.md` | hard | What a trace may contain; hardware safety. macOS-under-HV and self-trace procedures are not covered yet. |
 | `policy/commits-and-performance.md` | defaults + hard commit rules | Proper fixes; improvements on by default, selected by hardware; commit rules. |
-| `policy/pr-structure.md` | defaults + hard disclosure line | PR body, collapsible detail, agent disclosure, credit. |
-| `policy/branching-and-releases.md` | hard + defaults | **In use.** Single trunk `main`, branch prefixes, edge/nightly/stable channels, stable regression gate, upstream updates. |
-| `policy/governance-and-roles.md` | hard | **In use.** Owners, Core, Maintainers: what each may do, and how GitHub enforces it. |
-| `policy/merge-policy.md` | hard + defaults | **In use.** CI green + hardware row at head + one non-author review, then merge the same hour. |
-| `policy/hotfix.md` | hard | **In use.** When and how a stable release gets a hotfix; forward-port to `main`. |
-| `policy/access-tiers.md` | hard | **In use.** Team roles per repository class; the rulesets every public product repo carries. |
-| `policy/review-and-merge-handbook.md` | defaults + hard gate | **In use.** How Core and Omarchy Mac review and merge: hardware rows, regression requests, review format, special cases, rotation. Replaces `policy/pr-review.md`. |
+| `policy/pr-structure.md` | defaults + hard no-attribution rule | PR body, collapsible detail, no AI attribution, credit. |
+| `policy/branching-and-releases.md` | hard + defaults | **In force.** Single trunk `main`, branch prefixes, edge/nightly/stable channels, stable regression gate, upstream updates. |
+| `policy/governance-and-roles.md` | hard | **In force.** Owners, Core, Maintainers: what each may do, and how GitHub enforces it. |
+| `policy/merge-policy.md` | hard + defaults | **In force.** CI green + hardware row at head + one non-author review, then merge the same hour. |
+| `policy/hotfix.md` | hard | **In force.** When and how a stable release gets a hotfix; forward-port to `main`. |
+| `policy/access-tiers.md` | hard | **In force.** Team roles per repository class; the rulesets every public product repo carries. |
+| `policy/review-and-merge-handbook.md` | defaults + hard gate | **In force.** How Core and Omarchy Mac review and merge: hardware rows, regression requests, review format, special cases, rotation. Replaces `policy/pr-review.md`. |
 | `policy/issue-structure.md` | defaults | Filing, diagnosing and writing up an issue. |
 | `policy/device-bringup-ladder.md` | defaults | Order and exit criteria for bringing up a new Mac. |
 | `policy/mesa-performance-claims.md` | defaults | Evidence for GPU performance claims. |
@@ -61,14 +60,14 @@ The aim is to keep everyone in sync, not to stop innovation.
 
 *Entries dated 2026-11-24 are Ryan's rulings; Dj's co-Owner sign-off is requested on the PR that recorded them.*
 
-- **RE scope (2026-11-19):** understanding Apple hardware by reverse engineering is fine, with any tool or model. RE output stays private. Published code is clean-room.
-- **Attribution (2026-11-19):** commits carry human identity only. Agents never co-author, sign off or co-commit, and commits carry no `Assisted-by`. Agent use is one line at the end of the PR body, `Assisted-by: LLM (<Vendor>:<Model>)`. PR bodies are short prose plus collapsible blocks for detail.
-- **Hard vs default (2026-11-21):** "fix the cause, no hacks", "default command line only" and "no chip/board/firmware gates" are hard rules (see the pre-PR checklist). "Prove on hardware before merge" stays a default with a high bar. "Public text describes the code, not internal process" is a default. The PR-body `Assisted-by` line is a hard rule; the rest of the body shape is a default. "Never merge or deploy the website without the designated owners" is hard.
+- **RE scope (2026-11-19, refined 2026-11-24):** reverse engineering Apple hardware is welcome, with any tool or model. Public repos never contain Apple's copyrighted material itself (code, listings, firmware, tuning files); RE-derived drivers and interface layouts written as our own code are welcome. See [`policy/ip-and-tainted-data.md`](policy/ip-and-tainted-data.md).
+- **No AI attribution (2026-11-24, replaces the 2026-11-19 `Assisted-by` rule):** commits carry the human author and `Signed-off-by` only; commits, PR titles and bodies, comments and reviews name no model or tool. PR bodies are short prose plus collapsible blocks for detail.
+- **Hard vs default (2026-11-21):** "fix the cause, no hacks", "default command line only" and "no chip/board/firmware gates" are hard rules (see the pre-PR checklist). "Tested on the affected hardware at the PR head before merge" became a hard rule with the 2026-11-24 merge policy. "Public text describes the code, not internal process" is a default. "No AI attribution" is a hard rule; the body shape is a default. "Never merge or deploy the website without the designated owners" is hard.
 - **Safety values (2026-11-21):** limits that protect hardware come from the machine (ADT/DT, its own firmware or tuning bundle, driver-reported ranges), never from per-model tables or constants in code.
 - **Naming (2026-11-21):** the Vulkan driver is Borealis (`libvulkan_borealis.so`, prefix `brl_`, [aurora-silicon/mesa#591](https://github.com/aurora-silicon/mesa/issues/591)). Asahi and m1n1 names are being retired in favour of Aurora names and paths.
 - **Where the set lives (2026-11-21):** a central `aurora-silicon/agent-guidelines` repo (this one), with the checklist and hard rules inlined into each repo.
 
-- **Single trunk and releases (2026-11-24):** `aurora-silicon/linux` has one long-lived branch, `main` (renamed from `integration/aurora`). Releases: `aurora-edge` (every push), `aurora-nightly` (daily), stable `v*` tags cut from a nightly that passed the regression gate on all seven lab Macs, never held for unfinished work. Hotfixes only for boot failure, data loss, security or hardware risk. See [`policy/branching-and-releases.md`](policy/branching-and-releases.md).
+- **Single trunk and releases (2026-11-24):** `aurora-silicon/linux` has one long-lived branch, `main` (renamed from `integration/aurora`). Releases: `aurora-edge` (every push), `aurora-nightly` (daily), stable `v*` tags cut from a nightly that passed the regression gate on the [gate Macs](policy/branching-and-releases.md#gate-macs), never held for unfinished work. Hotfixes only for boot failure, data loss, security or hardware risk. See [`policy/branching-and-releases.md`](policy/branching-and-releases.md).
 - **Merge policy (2026-11-24):** merge as soon as CI is green, a hardware row ran at the PR head, and one non-author review found nothing blocking. See [`policy/merge-policy.md`](policy/merge-policy.md).
 - **Roles (2026-11-24):** Owners (Ryan, Dj). Core and Omarchy Mac review and merge; Aurora Dev develop on branches and do not merge into default branches. Enforced per repo by rulesets. See [`policy/governance-and-roles.md`](policy/governance-and-roles.md) and [`policy/access-tiers.md`](policy/access-tiers.md).
 - **One rulebook (2026-11-24):** every agent, whoever runs it, loads [`AGENTS.md`](AGENTS.md) here; repos point to it. Owner-level policy changes need a human Owner's sign-off.
@@ -78,7 +77,7 @@ The aim is to keep everyone in sync, not to stop innovation.
 
 1. The `aura` source file has two variants: a short one, and a longer one that adds testing and collaboration items (end-to-end first, isolate agents, delete low-signal unit tests). Which is authoritative? The draft folds the testing items in as defaults.
 2. **Licensing:** licensing is stated as GPL-2.0-only for all Aurora contributions. Is that right for repos whose base licence differs (mesa is MIT, u-boot is GPL-2.0-or-later)?
-3. **Kernel upstreaming:** "the upstream Linux kernel is fine" and "no `Assisted-by` in any commit": which wins when the kernel's own rules ask for an AI-disclosure tag on a submitted patch? If upstream wants a tag, the commit rule needs a kernel-upstream exception.
+3. **Kernel upstreaming:** if a project we submit to requires an AI-disclosure tag, does its rule override ours for that submission?
 4. **Undefined terms:** speaker protection is a hard rule with one line. Does it need detail (what counts as weakening protection)? ("Shared branches" is now defined in [`policy/branching-and-releases.md`](policy/branching-and-releases.md).)
 5. **Dead-man:** the example is macOS-side (`shutdown -r +N`, `caffeinate`, `pmset`). What is the required dead-man for a Linux or bare aura test boot?
 6. **Firmware pin:** the firmware pin (macOS 27.2) has no linked decision document.

@@ -1,6 +1,6 @@
 # Commits and Performance
 
-> **Status: DRAFT. Not in force yet.** The [pre-PR checklist](../pre-pr-checklist.md) is in use today; where this draft and the checklist differ, the checklist wins.
+> **Status: IN FORCE** (since 2026-11-24). Change it by PR here.
 
 Kind: defaults, except lines marked **Hard rule**. Sections 1 and 2 are defaults with a high bar; their core ("no hacks", "default command line", "no chip/board/firmware gates") is a hard rule in the pre-PR checklist. See "Two kinds of rule" and the glossary in [`AGENTS.md`](../AGENTS.md).
 
@@ -39,6 +39,6 @@ To deviate from this section you need a hardware reason, stated in the PR.
 - One logical change per commit. Refactors and behaviour changes are separate commits.
 - Plain, descriptive subject. The message explains the code and its testing, not internal process, reviews or holds.
 - Build hardware values from named, commented fields. No bare hex that only makes sense because it matches an Apple firmware word ([`ip-and-tainted-data.md`](ip-and-tainted-data.md)).
-- **Hard rule: human identity only.** Every commit has a `Signed-off-by` (DCO) from the human responsible. Agents never co-author, sign off or co-commit: no `Co-Authored-By`, no agent `Signed-off-by`, no `Assisted-by`, no session trailers. Agent use is disclosed in the PR body only ([`pr-structure.md`](pr-structure.md)).
+- **Hard rule: human identity only.** Every commit has a `Signed-off-by` (DCO) from the human responsible. Agents never co-author, sign off or co-commit: no `Co-Authored-By`, no agent `Signed-off-by`, no `Assisted-by`, no session trailers. PR text carries no AI attribution either ([`pr-structure.md`](pr-structure.md)).
 - **Hard rule: preserve authorship.** Carry third-party commits unchanged (cherry-pick or merge; never squash, never re-author). Your fixes are separate commits on top.
 - **Hard rule: no force pushes to shared branches.**

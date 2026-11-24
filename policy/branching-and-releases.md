@@ -62,7 +62,7 @@ Stable releases are time-boxed, not feature-boxed.
 1. Take the commit an `aurora-nightly` was built from.
 2. **Regression gate.** The candidate goes through a **release-candidate cross-check**: the exact kernel commit (and the Mesa and bootloader commits it ships with) is cut as an RC, its test kits are published as GitHub release assets, and every team runs the same rows on its **gate Macs**, posting structured results as regression requests. A verdict script compares them with the previous stable release. **PASS** means every gate Mac boots and passes with **no new failures**; on a failure the RC is fixed on `main` and re-cut. The gate looks for regressions only.
 
-   <a id="gate-macs"></a>**Gate Macs** (the one list; other pages link here): M1 Pro (J316s), M2 Air (J413), M2 mini (J473), M3 Air (J713), M4 Air (J615), M4 Pro (J616s), Neo (J700), plus the M5 Pro (J714s) on its owner's train. A Mac joins or leaves the list by PR to this page.
+   <a id="gate-macs"></a>**Gate Macs** (the one list; other pages link here): M1 Pro (J316s), M2 Air (J413), M2 mini (J473), M3 Air (J615), M4 Air (J713), M4 Pro (J616s), Neo (J700), plus the M5 Pro (J714s) on its owner's train. A Mac joins or leaves the list by PR to this page.
 3. An Owner tags it (`git tag -a vX.Y.Z -m 'Aurora vX.Y.Z' <sha>`) and pushes the tag. CI builds and publishes the release.
 
 - **Hard rule. Never hold a `v*` tag for unfinished work.** Unfinished work is simply not on `main` yet; it ships in the next release. A tag waits only for a regression found by the gate.

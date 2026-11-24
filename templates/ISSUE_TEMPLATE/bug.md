@@ -4,7 +4,7 @@ about: Something is wrong or regressed
 labels: bug
 ---
 
-<!-- DRAFT template. See policy/issue-structure.md in https://github.com/aurora-silicon/agent-guidelines. -->
+<!-- See policy/issue-structure.md in https://github.com/aurora-silicon/agent-guidelines. -->
 
 ## Symptom
 

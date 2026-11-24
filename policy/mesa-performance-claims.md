@@ -1,6 +1,6 @@
 # Mesa / GPU Performance Claims
 
-> **Status: DRAFT. Not in force yet.** The [pre-PR checklist](../pre-pr-checklist.md) is in use today; where this draft and the checklist differ, the checklist wins.
+> **Status: IN FORCE** (since 2026-11-24). Change it by PR here.
 
 Kind: defaults. See "Two kinds of rule" and the glossary in [`AGENTS.md`](../AGENTS.md).
 

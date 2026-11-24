@@ -1,8 +1,8 @@
 # IP and Tainted Data
 
-> **Status: DRAFT. Not in force yet.** The [pre-PR checklist](../pre-pr-checklist.md) is in use today; where this draft and the checklist differ, the checklist wins.
+> **Status: IN FORCE** (since 2026-11-24). Change it by PR here.
 
-Kind: **hard rules**. This page keeps the public code clean-room and legally defensible. When in doubt, keep it private and ask. See the glossary in [`AGENTS.md`](../AGENTS.md).
+Kind: **hard rules**. This page keeps Apple's copyrighted material out of our public work while welcoming reverse-engineering contributions. When in doubt, ask in the PR. See the glossary in [`AGENTS.md`](../AGENTS.md).
 
 ## Public
 
@@ -13,34 +13,34 @@ Goes in repos and may be cited in PRs:
 - **Interface facts and hardware truths**: register setup, bus and QoS configuration, and other facts that are the same on every Mac with that chip, written clean-room into the driver or devicetree.
 - **Values aura copies from the ADT into the DT at boot** (for example PMP tunables). They are interface data. Do not extract them or paste the raw values into source.
 
-## Tainted
+## Never in public: Apple's own material
 
-Never in a public repo, PR, issue or channel:
+Public repos, PRs, issues, gists and channels never contain Apple's copyrighted material itself:
 
-- Verbatim Apple code or strings.
-- Firmware blobs and anything extracted from them.
-- Decompiled or disassembled output, including constants, tables or code lifted from it into our source.
-- Apple per-unit tuning and calibration values (for example speaker tuning). These reach a device only through extraction by the installer on that device, never through source.
+- Verbatim Apple code, and decompiled or disassembled listings.
+- Apple strings or symbol dumps copied beyond the names needed to interoperate.
+- Apple files: firmware blobs, tuning sets, calibration bundles. The installer extracts what a Mac needs from the IPSW, on that Mac ([`AGENTS.md`](../AGENTS.md), hard rule 2).
+- Per-unit calibration values and device secrets. They stay on the device.
 
-Tainted material lives only in private storage clearly marked as tainted. Public work may refer to it and never quotes it.
+RE byproducts (raw listings, addresses, symbol tables, dumps) live only in private storage marked as tainted. Public work may refer to them and never quotes them.
 
-## Reverse-engineering
+## Reverse-engineering contributions are welcome
 
-Reverse-engineering (RE) to understand Apple hardware and firmware is a normal part of bring-up. Publishing the Apple-derived result is what is forbidden.
+Reverse-engineering (RE) Apple hardware and firmware is how this project works, with any tool or model. The rule protects us from shipping Apple's copyrighted code; it does not stop RE work from landing.
 
-- RE may use any tool or model. None is mandated.
-- RE output is tainted and stays private.
-- Published code is clean-room: written from named, commented fields and documented hardware facts, not pasted from RE.
+- **Welcome in public:** drivers, firmware-interface layouts (structs, message formats, queues), register and protocol descriptions, and the constants needed to interoperate, written as **our own code** with named, commented fields.
+- **Not welcome:** a pasted listing, a translated function body, or a table copied wholesale from a binary with no explanation of what its fields mean.
 
-**The test:** could a reviewer who sees only our public source, with no Apple binary, understand every hardware value from its named field and comment? If yes, it is clean-room. If a constant only makes sense because it matches an Apple firmware word, it is tainted.
+**The test:** is this our own description of how the hardware or interface works, with named fields a reviewer can follow? Then it belongs in public. Is it Apple's code or data copied across? Then it stays private.
 
 Where a hardware value comes from, in order of preference:
 
 1. The ADT provides it and aura copies it into the DT at boot. No value in source.
 2. It is a fact common to the chip. Write it clean-room.
-3. It is a per-unit Apple tuning value. Only the installer extracts it, on the device.
+3. It is per-model firmware data (tuning sets, DSP tables). The installer extracts it from the matching IPSW, on the user's Mac.
+4. It is per-unit (calibration, keys). It is read from the machine at runtime and never leaves it.
 
-Reviewers check the whole diff for taint before merge ([handbook](review-and-merge-handbook.md)).
+Reviewers check the whole diff for copied Apple material before merge ([handbook](review-and-merge-handbook.md)).
 
 ## Licensing
 
@@ -49,4 +49,4 @@ Reviewers check the whole diff for taint before merge ([handbook](review-and-mer
 
 ## Upstreaming
 
-Never upstream to anti-AI projects: Asahi Linux, NT-for-ASi, upstream Mesa, FEX, or similar. The upstream Linux kernel is fine. *(Open question: how this interacts with an upstream AI-disclosure tag requirement.)*
+Never upstream to anti-AI projects: Asahi Linux, NT-for-ASi, upstream Mesa, FEX, or similar. The upstream Linux kernel is fine.

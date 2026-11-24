@@ -57,8 +57,8 @@ GitHub's `maintain` and `write` roles are broader than policy in places. Ruleset
 
 | Action | `write` (Aurora Dev) | `maintain` (Omarchy Mac) | Policy | Enforced by |
 | --- | --- | --- | --- | --- |
-| Push / force-push / delete `main` | no | no | no | `main: single trunk` + `mergers only` |
-| Merge a PR into `main` | **no** | yes, once approved | Core and Omarchy Mac, when the gate holds | `default branch: mergers only (Core, Omarchy Mac)` (restrict updates; PR-only bypass) |
+| Push / force-push / delete `main` | no | no | no | `main: single trunk` (PR only, no force push, no deletion) |
+| Merge a PR into `main` | only once a Core or Omarchy Mac member approved it; by policy a merger presses the button | yes, once approved | Core and Omarchy Mac, when the gate holds | code-owner review (the approval must come from Core or Omarchy Mac); no bypass click needed |
 | Merge with no approval, or approved before the last push | no | no | no | 1 approval, last-push approval, stale approvals dismissed |
 | Approval that counts | no (advisory) | yes | Core or Omarchy Mac, not the author | code-owner review, `.github/CODEOWNERS` |
 | Approve own PR | no | no | no | GitHub |
@@ -67,8 +67,8 @@ GitHub's `maintain` and `write` roles are broader than policy in places. Ruleset
 | Create / move / delete `v*` or `aurora-*` tags | no | no | no | tag rulesets |
 | Create or push `hotfix/`, `archive/` | no | no | no | `owner-only branches` |
 | Push to `integration/aurora`, `aurora-wip` | no | no | no | `retired` |
-| Merge with CI red or running | no (cannot merge) | **yes** (no required checks yet) | no | policy; required checks follow the release workflow on `main` |
-| Merge without a hardware row | no (cannot merge) | **yes** | no | policy (reviewers check) |
+| Merge with CI red or running | **yes**, once approved (no required checks yet) | **yes** (no required checks yet) | no | policy; required checks follow the release workflow on `main` |
+| Merge without a hardware row | **yes**, once approved | **yes** | no | policy (reviewers check) |
 | Change rulesets, protection, environments, webhooks, deploy keys, collaborators, visibility | no | no | no | admin only |
 | Create, overwrite or delete Actions secrets (values cannot be read back) | **yes** | **yes** | no | policy + audit log; release credentials live only in the admin-managed `release` environment |
 | Edit description and topics, enable wiki or discussions, PR merge settings, Pages source | no | **yes** | no | policy + audit log |
@@ -76,7 +76,7 @@ GitHub's `maintain` and `write` roles are broader than policy in places. Ruleset
 | Delete or rename someone else's unprotected branch | **yes** | **yes** | no | policy + audit log |
 | Add tainted data | **yes** | **yes** | never | policy; reviewers check the whole diff |
 
-Bypass: the Owners and the Core team bypass the branch rulesets **only through a pull request**; even they cannot push straight to `main`. Omarchy Mac bypasses only the restrict-updates ruleset, also only through a pull request, which is what lets them merge. Tag and owner-only branch rulesets are bypassed by Owners (and, for `aurora-*` tags only, by a deploy key in the admin-managed `release` environment). GitHub does not let a workflow token bypass a repository ruleset.
+Bypass: the Owners and the Core team bypass the branch rulesets **only through a pull request**; even they cannot push straight to `main`. Omarchy Mac need no bypass: their approval satisfies code-owner review, and their merges go through the normal button. (A restrict-updates ruleset that made every merge a bypass click was tried and disabled on 2026-11-24.) Tag and owner-only branch rulesets are bypassed by Owners (and, for `aurora-*` tags only, by a deploy key in the admin-managed `release` environment). GitHub does not let a workflow token bypass a repository ruleset.
 
 The rulesets are the source of truth for what is enforced; this table is updated whenever they change.
 

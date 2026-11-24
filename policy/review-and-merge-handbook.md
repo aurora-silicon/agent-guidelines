@@ -30,10 +30,10 @@ Then merge **within the hour**. Nits never hold a merge; they become follow-up P
 
 Read the whole diff. Your job is to try to break it, quickly.
 
-1. **Clean-room (hard).** Nothing derived from Apple binaries, firmware or tuning values anywhere in the diff (source, tools, tests, kits). Bare hex tables that look like firmware words are a stop. ADT/DT values read from a machine are hardware facts and fine. [`ip-and-tainted-data.md`](ip-and-tainted-data.md)
+1. **No copyrighted Apple material (hard).** No verbatim Apple code, decompiled or disassembled listings, copied symbol dumps, firmware or tuning files anywhere in the diff (source, tools, tests, kits). RE-derived drivers and interface layouts written as our own code with named fields are welcome; a pasted listing or unexplained table copied from a binary is a stop. ADT/DT values read from a machine are hardware facts and fine. [`ip-and-tainted-data.md`](ip-and-tainted-data.md)
 2. **No gates, no hacks (hard).** No `if chip == …`, board or firmware-version checks where a DT/ADT property, compatible or capability bit can decide. No new command-line or module parameters, sleeps over races, magic depths or "set X=1 to enable". [Pre-PR checklist](../pre-pr-checklist.md), items 1 and 2.
 3. **Safety (hard).** Limits that protect hardware come from the machine, never from constants. Speaker changes keep protection running and gating. No boot-object (Stage 1) change without the machine's owner.
-4. **Commits (hard).** Human identity and a human `Signed-off-by` on every commit; no agent trailers; third-party commits unchanged. The PR body may end with one `Assisted-by:` line (never nitpick its wording).
+4. **Commits (hard).** Human identity and a human `Signed-off-by` on every commit; no agent trailers; third-party commits unchanged. No AI attribution anywhere in commits or PR text (no `Assisted-by`, tool `Co-Authored-By`, "Generated with"): ask the author to delete it, it is a one-line fix.
 5. **Evidence.** The hardware row is at the PR head (compare the SHA), on the Mac the change targets, plus one other Mac with the same block for shared code. The numbers are in the PR. A rebase with no conflicts in the touched files keeps the row valid; anything else needs a new row.
 6. **Scope.** One topic per PR. No duplicate of someone else's open work: if another PR does the same thing, ask which one carries on.
 
@@ -76,7 +76,7 @@ Comment on the code, not on people or internal process. If you hold a PR for a r
 | **Aurora Dev PR** | Normal gate. Aurora Dev cannot merge; once it meets the gate, a Core or Omarchy Mac member merges it. Don't leave a ready Aurora Dev PR waiting: merging it is the point of your role. |
 | **Your own PR** | You may merge it yourself once someone else (Core or Omarchy Mac) approved it and the gate holds. GitHub never lets you approve your own PR. |
 | **Agent-written PR** | Reviewed by a human or by an independent agent that did not write or plan it. When the agent and the author share one account, the reviewing agent posts its verdict as a PR review comment and an Owner or Core member merges through the PR bypass (`gh pr merge --merge --admin`); the bypass never skips the gate. |
-| **Smaller-model PR** (its `Assisted-by:` names a small or fast model, today Gemini 4 Neon) | Its non-author review comes from a human or from a stronger model (Claude Opus). Another small-model review is not enough. |
+| **Smaller-model PR** (the author's team says it was written mainly by a smaller, faster model; teams route this in their own review queue) | Its non-author review comes from a human or from a stronger model. Another small-model review is not enough. |
 | **Someone else's area or board, or a user-visible default** (default config, boot behaviour, release workflows) | Ask the area's owner to review; if they do not answer within a day, an Owner decides. |
 | **CODEOWNERS paths** (`.github/`, release configuration, policy files) | Need an Owner's review (enforced). |
 | **Stable hotfix** | Into `hotfix/v<X.Y.Z>`, not `main`. Owners create the branch and tag the release; you may review. [`hotfix.md`](hotfix.md) |

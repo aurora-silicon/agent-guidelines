@@ -29,19 +29,19 @@ In `agent-guidelines` itself every PR also needs an Owner's review (CODEOWNERS):
 
 ## 3. Rulesets on every public product repo
 
-The same three repository rulesets, on the repo's **default branch** whatever it is called (`main`, or `aurora-wip` on mesa until its trunk cutover):
+The same repository rulesets, on the repo's **default branch** whatever it is called (`main`, or `aurora-wip` on mesa until its trunk cutover). None of them needs a bypass click for a normal merge:
 
 | Ruleset | Rules | Bypass |
 | --- | --- | --- |
 | `default branch: reviewed PRs` | no deletion, no force push; changes by PR with **1 approving review**, approval after the last push, stale approvals dismissed, **code-owner review** | Owners and Core, **through a pull request only** |
-| `default branch: mergers only (Core, Omarchy Mac)` | restrict updates: only bypass actors may update the branch, which includes merging a PR | Owners, Core, and Omarchy Mac where they hold maintain; **through a pull request only** |
+| `default branch: mergers only (Core, Omarchy Mac)` | **disabled** (kept for reference): restrict updates made every merge a bypass click, which slowed the people it was meant to empower | n/a |
 | `release tags: v* aurora-* (owners only)` | `v*` and `aurora-*` tags cannot be created, moved or deleted | Owners |
 
-Each repo carries `.github/CODEOWNERS` (the website keeps its designated owners instead) with `* @aurora-silicon/core @aurora-silicon/omarchy-m` (Core only where Omarchy Mac has no role). With code-owner review on, the one approval that counts must come from **Core or Omarchy Mac**. An Aurora Dev review is welcome and is read, but it does not satisfy the requirement alone.
+**How merge rights are enforced without a bypass click:** each repo carries `.github/CODEOWNERS` with `* @aurora-silicon/core @aurora-silicon/omarchy-m` (Core only where Omarchy Mac has no role), and code-owner review is required. So the one approval that counts must come from **Core or Omarchy Mac**; after that, the merge button works for everyone who can merge, with no override. An Aurora Dev review is welcome and is read, but it does not satisfy the requirement alone. Exceptions: `aura` (root `CODEOWNERS` routes everything to the Owners until aura#496 lands), the website (designated owners) and `agent-guidelines` (no CODEOWNERS; Owner sign-off by policy).
 
 What that means in practice:
 
-- **Aurora Dev** push `feat/`, `fix/` and `wip/` branches, open PRs, re-run CI and review. GitHub refuses their merge button on a default branch.
+- **Aurora Dev** push `feat/`, `fix/` and `wip/` branches, open PRs, re-run CI and review. A PR cannot merge until a Core or Omarchy Mac member approves it; by policy the merge itself is then done by a merger.
 - **Omarchy Mac** (on their repos) and **Core** merge a PR once the [merge policy](merge-policy.md) holds and a Core or Omarchy Mac member other than the author has approved it.
 - **Nobody** pushes straight to a default branch, force-pushes it or deletes it. Owners and Core bypass the review requirement only by merging a pull request, and only when the merge policy holds (for example: an agent's PR reviewed by an independent agent, which cannot press GitHub's approve button on the same account).
 - The kernel (`linux`) has stricter rulesets on top: merge commits only, owner-only `hotfix/` and `archive/` branches, retired branch names locked. See [`governance-and-roles.md`](governance-and-roles.md), section 3.
@@ -57,7 +57,7 @@ Some repos run workflows that push to the default branch or create release tags 
 | .github | branch rulesets | the Discord sync workflow pushes to `main` |
 | aurora-installer, nixos-aurora, omarchy-aurora | tag ruleset | publish workflows create release tags |
 
-Also not enforced today: mesa's `mergers only` ruleset is disabled (an Owner switched it off on 2026-11-24; it stays off until the Owners decide), so on mesa merge rights are policy only.
+On **mesa** the review ruleset asks for 1 approval only (no code-owner, last-push or stale-dismiss rule): an Owner relaxed it on 2026-11-24 so the merge train keeps moving, and the script keeps it that way (`NO_CODEOWNER_REVIEW`). There, who approves is policy only.
 
 Until then the policy still applies there: Aurora Dev do not merge into the default branch.
 
