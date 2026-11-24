@@ -29,7 +29,7 @@ The aim is to beat macOS on GPU, ANE (neural engine), media engines, CPU, I/O an
 - **A gate needs a documented hardware reason:** a real erratum, a different hardware block, a value that exists only on that chip. Put the reason and the evidence in a code comment and in the PR.
 - **No kernel command-line knobs to make a machine work.** Every supported machine works with the default command line.
 - **One kernel config for every supported machine.**
-- **"Not tested there" is not a reason to gate.** Check the other machines the change plausibly affects before you claim a win. Ask for a regression run on machines you do not have ([`pr-review.md`](pr-review.md)). GPU claims: [`mesa-performance-claims.md`](mesa-performance-claims.md).
+- **"Not tested there" is not a reason to gate.** Check the other machines the change plausibly affects before you claim a win. Ask for a regression run on machines you do not have ([handbook](review-and-merge-handbook.md)). GPU claims: [`mesa-performance-claims.md`](mesa-performance-claims.md).
 - **Root-cause regressions.** If the change costs performance, stability or power anywhere, find out why and fix that. A default must not regress power or stability. If a trade-off is truly unavoidable, a maintainer decides, with the measured numbers written down.
 
 To deviate from this section you need a hardware reason, stated in the PR.

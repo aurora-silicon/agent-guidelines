@@ -4,7 +4,7 @@
 
 Kind: defaults. See "Two kinds of rule" and the glossary in [`AGENTS.md`](../AGENTS.md).
 
-How to back a GPU or Mesa performance claim. Performance claims are easy to get wrong, and the `aurora-silicon/mesa` fork does not gate on GitHub CI. It merges on clean-room review plus hardware proof ([`pr-review.md`](pr-review.md)). Green CI is not evidence of a win or of no regression.
+How to back a GPU or Mesa performance claim. Performance claims are easy to get wrong, and the `aurora-silicon/mesa` fork does not gate on GitHub CI. It merges on clean-room review plus hardware proof ([handbook](review-and-merge-handbook.md)). Green CI is not evidence of a win or of no regression.
 
 ## Every claim is an on-hardware A/B
 

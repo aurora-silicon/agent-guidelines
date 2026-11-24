@@ -40,7 +40,7 @@ Where a hardware value comes from, in order of preference:
 2. It is a fact common to the chip. Write it clean-room.
 3. It is a per-unit Apple tuning value. Only the installer extracts it, on the device.
 
-Reviewers check the whole diff for taint before merge ([`pr-review.md`](pr-review.md)).
+Reviewers check the whole diff for taint before merge ([handbook](review-and-merge-handbook.md)).
 
 ## Licensing
 
