@@ -1,10 +1,10 @@
 # Mesa / GPU Performance Claims
 
-> **Status: DRAFT. Not in force yet.** The [pre-PR checklist](../pre-pr-checklist.md) is in use today; where this draft and the checklist differ, the checklist wins.
+> **Status: IN FORCE** (since 2026-11-24). Change it by PR here.
 
 Kind: defaults. See "Two kinds of rule" and the glossary in [`AGENTS.md`](../AGENTS.md).
 
-How to back a GPU or Mesa performance claim. Performance claims are easy to get wrong, and the `aurora-silicon/mesa` fork does not gate on GitHub CI. It merges on clean-room review plus hardware proof ([`pr-review.md`](pr-review.md)). Green CI is not evidence of a win or of no regression.
+How to back a GPU or Mesa performance claim. Performance claims are easy to get wrong, and the `aurora-silicon/mesa` fork does not gate on GitHub CI. It merges on clean-room review plus hardware proof ([handbook](review-and-merge-handbook.md)). Green CI is not evidence of a win or of no regression.
 
 ## Every claim is an on-hardware A/B
 

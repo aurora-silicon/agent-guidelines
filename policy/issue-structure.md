@@ -1,6 +1,6 @@
 # Issue Structure and Diagnosis
 
-> **Status: DRAFT. Not in force yet.** The [pre-PR checklist](../pre-pr-checklist.md) is in use today; where this draft and the checklist differ, the checklist wins.
+> **Status: IN FORCE** (since 2026-11-24). Change it by PR here.
 
 Kind: defaults. Hardware safety and tainted-data handling are hard rules; they are linked where they apply. See "Two kinds of rule" and the glossary in [`AGENTS.md`](../AGENTS.md).
 

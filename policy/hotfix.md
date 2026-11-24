@@ -18,7 +18,7 @@ A missing feature, a performance regression or a cosmetic bug is never a hotfix.
 ## How
 
 1. **Branch.** An Owner creates `hotfix/v<X.Y.Z>` from the stable tag `v<X.Y.Z>` being fixed. Only Owners can create `hotfix/` branches (enforced).
-2. **Fix.** The fix goes in as a PR into `hotfix/v<X.Y.Z>` and meets the [merge policy](merge-policy.md): CI, a hardware row on the affected Mac **and** the stable regression gate on all seven lab Macs (it becomes a stable release), and a non-author review; an Owner merges it. Prefer cherry-picking a fix that is already on `main` (`git cherry-pick -x`); otherwise write the smallest fix.
+2. **Fix.** The fix goes in as a PR into `hotfix/v<X.Y.Z>` and meets the [merge policy](merge-policy.md): CI, a hardware row on the affected Mac **and** the stable regression gate on the [gate Macs](branching-and-releases.md#gate-macs) (it becomes a stable release), and a non-author review; an Owner merges it. Prefer cherry-picking a fix that is already on `main` (`git cherry-pick -x`); otherwise write the smallest fix.
 3. **Tag.** An Owner tags `v<X.Y.Z+1>` on the hotfix branch and pushes the tag. CI builds and publishes it as the new stable release. CI accepts a stable tag that is not on `main` only from a `hotfix/` branch.
 4. **Forward-port.** The same fix goes to `main` by a normal PR within one working day, unless it was cherry-picked from `main` in step 2. Each forward-ported commit carries a `Forward-port: <sha>` trailer naming the hotfix commit.
 5. **Clean up.** Delete the hotfix branch once the forward-port PR has merged. The tag keeps the history.

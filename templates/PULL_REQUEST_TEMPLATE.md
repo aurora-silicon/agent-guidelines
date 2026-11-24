@@ -1,5 +1,5 @@
 <!--
-DRAFT template (aurora-silicon/agent-guidelines).
+Template source: aurora-silicon/agent-guidelines.
 Aurora Silicon PR. Rules: AGENTS.md, pre-pr-checklist.md and policy/pr-structure.md
 in https://github.com/aurora-silicon/agent-guidelines.
 Short prose a person can read in a minute. Describe the code and its testing.
@@ -41,8 +41,6 @@ No internal process, reviews or holds.
 - [ ] Safety limits come from the machine, not from constants in code
 - [ ] Hardware safety rules followed for every test boot
 - [ ] Third-party commits unchanged; reporters and testers credited
-- [ ] Commits: human Signed-off-by only; no agent trailers of any kind
+- [ ] Commits: human Signed-off-by only; no AI attribution in commits or PR text
 - [ ] Tested on the affected hardware; no regression
 
-<!-- If an agent helped, keep an Assisted-by line at the end of the body naming the model or tool (exact wording/punctuation is flexible). Otherwise delete it. -->
-Assisted-by: LLM (<Model>)

@@ -4,7 +4,7 @@ about: Track bringing a subsystem up on a Mac/chip
 labels: bringup
 ---
 
-<!-- DRAFT template. See policy/device-bringup-ladder.md in https://github.com/aurora-silicon/agent-guidelines. -->
+<!-- See policy/device-bringup-ladder.md in https://github.com/aurora-silicon/agent-guidelines. -->
 
 ## Machine
 
