@@ -13,7 +13,7 @@ You have the **maintain** role on [`aurora-silicon/linux`](https://github.com/au
 
 - **Target `main`**, always, from a short-lived branch: `feat/<topic>` or `fix/<topic>`. Park unfinished work on `wip/<topic>`. Large multi-PR features use a `feat/<area>-<name>` topic branch. Details: [`policy/branching-and-releases.md`](../policy/branching-and-releases.md).
 - **No force pushes** to `main` or to any branch with an open PR or review. Fix review findings with new commits.
-- **Commits:** a human `Signed-off-by` on every commit. No agent trailers in commits (`Co-Authored-By`, `Assisted-by`, agent sign-offs). If an agent helped, end the PR body with one `Assisted-by:` line.
+- **Commits:** a human `Signed-off-by` on every commit. No agent trailers in commits (`Co-Authored-By`, `Assisted-by`, agent sign-offs). No AI attribution in PR text either; PRs follow [`policy/pr-structure.md`](../policy/pr-structure.md) and CI checks it.
 - **No hacks, no gates:** features work on the default kernel command line on every Mac with the hardware, selected by DT/ADT properties, never by chip/board/firmware checks. Safety limits come from the machine.
 - **Clean-room only:** nothing derived from Apple binaries, firmware or tuning values in any public repo, PR or issue.
 

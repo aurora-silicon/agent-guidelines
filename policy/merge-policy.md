@@ -1,6 +1,6 @@
 # Merge Policy
 
-> **Status: IN USE** (since 2026-11-24). Where [`pr-review.md`](pr-review.md) (draft) differs, this page wins.
+> **Status: IN USE** (since 2026-11-24). How reviews are written: [`pr-review.md`](pr-review.md); where it differs, this page wins.
 
 Kind: hard rules where marked, otherwise defaults. Roles: [`governance-and-roles.md`](governance-and-roles.md). Branches: [`branching-and-releases.md`](branching-and-releases.md).
 
@@ -50,8 +50,7 @@ Rules:
 - The review is a **quick blocking-issues pass**, not a gate to wait on. Review requests should be answered within hours.
 - An approving review on GitHub is what the ruleset counts. An approval goes stale when new commits are pushed; re-approve after reading the new commits.
 - **Agent-written PRs.** An agent's PR is reviewed by a human or by a different, independent agent that did not write or plan it. When agents work under one account and cannot approve on GitHub, the reviewing agent posts its review as a PR review comment ("no blocking findings" plus what it checked), and an Owner merges with the ruleset bypass. The bypass is only for that case and for urgent owner merges; it never skips the three conditions in section 1.
-- **Smaller-model PRs.** A PR whose `Assisted-by:` line names a small or fast model (today: Gemini 4 Neon) needs its non-author review from a human or from Claude Opus. Another small-model review is not enough.
-- **Do not nitpick** the `Assisted-by:` line's wording.
+- **Smaller-model work.** A change written mainly by a small or fast model (today: Gemini 4 Neon) gets its non-author review from a human or a stronger model; another small-model review is not enough. The team that ran the model requests that review through its own queue; PR text carries no attribution ([`pr-structure.md`](pr-structure.md)).
 - Each side records its verdict (merge / blocking finding) on the PR, so whoever merges can see it.
 
 ## 5. How to merge

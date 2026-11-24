@@ -1,39 +1,27 @@
-# Maintainer PR Review
+# PR Review Format
 
-> **Status: DRAFT. Not in force yet.** The [pre-PR checklist](../pre-pr-checklist.md) is in use today; where this draft and the checklist differ, the checklist wins.
+> **Status: IN USE** (since 2026-11-25). Every review in every Aurora Silicon repository, from anyone. When a PR may merge: [`merge-policy.md`](merge-policy.md). Template: [`templates/REVIEW_TEMPLATE.md`](../templates/REVIEW_TEMPLATE.md).
 
-The merge gate in force is [`merge-policy.md`](merge-policy.md) (CI green, hardware row at the PR head, one non-author review); this page adds triage and routing. Where they differ, `merge-policy.md` wins.
+Verdict first, short, the rest folded. Whoever merges next should know from the first three lines what was decided, at which commit, and what blocks it.
 
-Kind: defaults, except lines marked **Hard rule**. See "Two kinds of rule" and the glossary in [`AGENTS.md`](../AGENTS.md). Reviewers also check every item of the [pre-PR checklist](../pre-pr-checklist.md).
+```markdown
+**Verdict:** MERGE | FINISH, then merge | HOLD | CLOSE (superseded by #NNN) at `<head sha>`
+**Blockers:** none, or numbered: `path/file.c:123`: what's wrong, and what fixes it
+**Checked:** §1–§6 of the pre-PR checklist, the rows at this head, CI
 
-## Triage
+<details><summary>Evidence</summary> what you ran or read </details>
+```
 
-Sort every open PR into one outcome:
+## Rules
 
-- **MERGE**: meets the gate now.
-- **FINISH-then-MERGE**: correct, but missing evidence or a small fix. Name what it needs.
-- **CLOSE-as-superseded**: replaced by another PR or commit. Say which.
-- **HOLD**: blocked on a dependency, a decision or hardware. Name the blocker and its owner.
+1. **One verdict** (hard rule):
+   - **MERGE**: meets the merge policy now. Approve on GitHub.
+   - **FINISH, then merge**: right approach, needs the listed blockers fixed or a row added; after that it merges without a full re-review. Request changes (or comment if only a row is missing).
+   - **HOLD**: blocked outside the PR (a dependency, a decision, hardware). Name it and who owns it; add the `hold` label.
+   - **CLOSE (superseded by #NNN)**: replaced by another PR or commit.
+2. **At the head SHA** you reviewed (hard rule). A review of an older head does not count for a newer one; after new commits, re-check only what changed and your blockers ("1. fixed in abc1234").
+3. **Blockers are only**: a crash, hang, data loss, boot fallback or security problem; a regression on any Mac; a hard-rule break (tainted data, AI attribution, a chip/board/firmware gate, a parameter a feature needs, a hardcoded safety limit); a missing row or one not at the head. Everything else is a nit: put it in the folded block or a follow-up issue; nits never hold a merge.
+4. **Checked** cites the [pre-PR checklist](../pre-pr-checklist.md) sections (`§1–§4 pass`, `§5 row J616s at head`) in one line.
+5. **Comments** in PRs and issues follow the same conventions: about the code and the evidence, specific (`file:line`, a SHA, a link), one batched review per pass, no internal process, no AI attribution, no serial numbers.
 
-## Merge gate
-
-All must hold.
-
-1. **Clean-room review of the whole diff (Hard rule).** Search the entire diff (source, tools, kits, tests), not one directory, for Apple-derived values or names, tainted data, and bare hex constants that match Apple program or firmware words. A tainted diff is never merged. If one was accepted by mistake, close it, back it up privately and requeue the work. The test for clean-room is in [`ip-and-tainted-data.md`](ip-and-tainted-data.md).
-2. **Authorship and attribution (Hard rule).** Third-party commits are unchanged, commits carry human identity only, reporters and testers are credited ([`commits-and-performance.md`](commits-and-performance.md), [`pr-structure.md`](pr-structure.md)).
-3. **Proper fix.** No workaround, no disabled check, no gate without a hardware reason ([`commits-and-performance.md`](commits-and-performance.md)). A stated deviation from a default is reviewed on its reason.
-4. **CI green where it applies.** The `aurora-silicon/mesa` fork does not gate on GitHub CI; there, hardware proof is the gate.
-5. **Tested on the Mac(s) it touches, at the PR head** ([`merge-policy.md`](merge-policy.md) section 3), where testable, with a regression run (the fleet regression suite or the repo's own tests) showing no regression: 0 AVC (SELinux denials), 0 failed units, 0 new kernel errors. Performance claims meet [`mesa-performance-claims.md`](mesa-performance-claims.md).
-6. **Shared paths.** If the change touches a shared path, the PR states which other generations were verified unaffected.
-7. **One non-author review** with no blocking finding ([`merge-policy.md`](merge-policy.md) section 4).
-
-## Routing
-
-- **Merge proven work yourself, the same hour it meets the gate.** Do not wait on another maintainer, except for that maintainer's own areas or boards and for changes to user-facing defaults ([`merge-policy.md`](merge-policy.md) section 6).
-- **Kernel PRs** target `main`. They may be proven in a batched fleet candidate that contains their head commits unchanged, instead of one boot per PR ([`merge-policy.md`](merge-policy.md) section 3).
-- **Hardware not in the lab:** merge on review plus DT and CI checks plus proof that supported boards are unaffected. Send the hardware confirmation to the machine's owner as a regression request.
-- **Website (Hard rule):** never merge or deploy without the designated owners. `main` is protected with code-owner review.
-
-## Review comments
-
-Comment on the code. No internal process in public PR threads. If a PR is held for an internal reason, record the reason privately and leave a neutral, code-focused note.
+Filled example: [maintainer handbook](../docs/MAINTAINER-HANDBOOK.md#examples).

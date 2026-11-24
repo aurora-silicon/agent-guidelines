@@ -29,10 +29,12 @@ Each item is a hard rule unless it says "default". If your change fails one, fix
 ## 4. Clean-room and attribution (hard)
 
 - No Apple code, strings, firmware, disassembly output or Apple tuning values in public code, PRs, issues or channels. Our own traces and measurements are fine.
-- Commits carry human identity only, with a human `Signed-off-by`. No agent co-author or sign-off and no `Assisted-by` in commits. When an agent helped, disclose it at the end of the PR body with a plain `Assisted-by:` line naming the model or tool (exact wording, vendor prefix, and punctuation are flexible; do not nitpick format).
+- Commits carry human identity only, with a human `Signed-off-by`. No agent co-author or sign-off and no `Assisted-by` in commits. No AI attribution in PR titles, bodies, comments or reviews either: no `Assisted-by:`, `Generated with` footers, model signatures or session links.
 - Carry other people's commits unchanged. No force pushes to shared branches.
 
 ## 5. Evidence (default, high bar)
+
+- The PR body follows [`policy/pr-structure.md`](policy/pr-structure.md): `Tested:` with the Macs at the head SHA, `Risk:` with the door and the Macs (CI checks both).
 
 - A run on the affected hardware with the numbers: what ran, on which Mac, kernel and build, and the result. Include a regression run: 0 SELinux denials, 0 failed units, 0 new kernel errors.
 - Performance claims: a same-machine A/B with conformance unchanged on every GPU generation the change applies to.

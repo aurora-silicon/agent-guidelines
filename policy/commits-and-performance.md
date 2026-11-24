@@ -39,6 +39,6 @@ To deviate from this section you need a hardware reason, stated in the PR.
 - One logical change per commit. Refactors and behaviour changes are separate commits.
 - Plain, descriptive subject. The message explains the code and its testing, not internal process, reviews or holds.
 - Build hardware values from named, commented fields. No bare hex that only makes sense because it matches an Apple firmware word ([`ip-and-tainted-data.md`](ip-and-tainted-data.md)).
-- **Hard rule: human identity only.** Every commit has a `Signed-off-by` (DCO) from the human responsible. Agents never co-author, sign off or co-commit: no `Co-Authored-By`, no agent `Signed-off-by`, no `Assisted-by`, no session trailers. Agent use is disclosed in the PR body only ([`pr-structure.md`](pr-structure.md)).
+- **Hard rule: human identity only.** Every commit has a `Signed-off-by` (DCO) from the human responsible. Agents never co-author, sign off or co-commit: no `Co-Authored-By`, no agent `Signed-off-by`, no `Assisted-by`, no session trailers. PR text carries no AI attribution either ([`pr-structure.md`](pr-structure.md) section 5).
 - **Hard rule: preserve authorship.** Carry third-party commits unchanged (cherry-pick or merge; never squash, never re-author). Your fixes are separate commits on top.
 - **Hard rule: no force pushes to shared branches.**

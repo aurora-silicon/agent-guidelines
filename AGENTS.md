@@ -25,7 +25,7 @@ Each hard rule below is binding as written. The linked policy has the detail. Wo
    - Never weaken or bypass speaker protection. Speakers can be physically destroyed.
    - Safety limits come from the machine (ADT/DT, its own firmware or tuning bundle, driver-reported ranges), never from per-model tables or constants in code. If the machine does not provide a limit, the feature stays off.
 3. **Preserve other people's authorship.** Carry third-party commits unchanged (cherry-pick or merge; never squash or re-author). Your fixes go on top as separate commits. Detail: [`policy/commits-and-performance.md`](policy/commits-and-performance.md).
-4. **Commits carry human identity only.** Agents never co-author, sign off or co-commit: no `Co-Authored-By`, no agent `Signed-off-by`, no `Assisted-by`, no session trailers in any commit. When an agent helped, disclose it at the end of the PR body with a plain `Assisted-by:` line naming the model or tool (exact phrasing, vendor prefix, and punctuation do not matter). Detail: [`policy/pr-structure.md`](policy/pr-structure.md).
+4. **Commits carry human identity only.** Agents never co-author, sign off or co-commit: no `Co-Authored-By`, no agent `Signed-off-by`, no `Assisted-by`, no session trailers in any commit. PR titles, bodies, comments and reviews carry no model or tool attribution either (no `Assisted-by:`, no `Generated with`, no model signatures or session links); CI rejects such lines. Detail: [`policy/pr-structure.md`](policy/pr-structure.md).
 5. **Licensing and sign-off.** Aurora contributions are GPL-2.0-only. Inherited `aura` code is MIT. Mixed files are `MIT AND GPL-2.0-only`. Every commit has a human `Signed-off-by` (DCO). *(Open question: repos whose base licence differs, see the README.)*
 6. **Never upstream to anti-AI projects:** Asahi Linux, NT-for-ASi, upstream Mesa, FEX, or similar. The upstream Linux kernel is fine.
 7. **No force pushes to shared branches.** Work lands on the single trunk `main` by pull request only. Shared branches and the branch model: [`policy/branching-and-releases.md`](policy/branching-and-releases.md).
@@ -47,12 +47,12 @@ Follow these unless you have a better reason, and say so when you deviate.
 | --- | --- |
 | Checks before opening a PR | [`pre-pr-checklist.md`](pre-pr-checklist.md) |
 | Commits, proper fixes, hardware-selected defaults | [`policy/commits-and-performance.md`](policy/commits-and-performance.md) |
-| PR body, agent disclosure, credits | [`policy/pr-structure.md`](policy/pr-structure.md) |
+| PR title and body, no AI attribution, credits | [`policy/pr-structure.md`](policy/pr-structure.md) |
 | Merge gate (in use) | [`policy/merge-policy.md`](policy/merge-policy.md) |
 | Branches, release channels, upstream updates (in use) | [`policy/branching-and-releases.md`](policy/branching-and-releases.md) |
 | Roles and permissions (in use) | [`policy/governance-and-roles.md`](policy/governance-and-roles.md) |
 | Stable hotfixes (in use) | [`policy/hotfix.md`](policy/hotfix.md) |
-| Review triage and routing | [`policy/pr-review.md`](policy/pr-review.md) |
+| Review format (verdict, head SHA, checklist, blockers) and comment conventions | [`policy/pr-review.md`](policy/pr-review.md) |
 | Filing and diagnosing issues | [`policy/issue-structure.md`](policy/issue-structure.md) |
 | Bringing up a new Mac | [`policy/device-bringup-ladder.md`](policy/device-bringup-ladder.md) |
 | GPU performance claims | [`policy/mesa-performance-claims.md`](policy/mesa-performance-claims.md) |
