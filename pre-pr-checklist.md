@@ -1,6 +1,6 @@
 # Pre-PR checklist
 
-**Status: IN USE** (since 2026-11-21). These are the checks Aurora Silicon's review agents apply to every PR. Anyone, human or agent, from any provider, may run them on a change before opening a PR.
+**Status: IN FORCE** (since 2026-11-21; aligned with the policies 2026-11-24). These are the checks Aurora Silicon's review agents apply to every PR. Anyone, human or agent, from any provider, may run them on a change before opening a PR.
 
 Each item is a hard rule unless it says "default". If your change fails one, fix the change, or say in the PR why it can't be done yet and keep the PR a draft.
 
@@ -26,18 +26,17 @@ Each item is a hard rule unless it says "default". If your change fails one, fix
 - No Stage 1, boot-object, LocalPolicy or 1TR change without the machine's owner.
 - Before any USB-C VDM or HPM reset, confirm which Mac is on the far end of the cable.
 
-## 4. Clean-room and attribution (hard)
+## 4. No copyrighted Apple material, no AI attribution (hard)
 
-- No Apple code, strings, firmware, disassembly output or Apple tuning values in public code, PRs, issues or channels. Our own traces and measurements are fine.
-- Commits carry human identity only, with a human `Signed-off-by`. No agent co-author or sign-off and no `Assisted-by` in commits. No AI attribution in PR titles, bodies, comments or reviews either: no `Assisted-by:`, `Generated with` footers, model signatures or session links.
+- No copyrighted Apple material in public code, PRs, issues or channels: no verbatim Apple code, decompiled or disassembled listings, copied strings or symbol dumps beyond the names needed to interoperate, firmware or tuning files. Reverse-engineered understanding written as our own code with named fields is welcome ([`policy/ip-and-tainted-data.md`](policy/ip-and-tainted-data.md)). Our own traces and measurements are fine.
+- **No AI attribution anywhere.** Commits carry the human author and a human `Signed-off-by` (DCO) only. No `Assisted-by`, `Co-Authored-By` naming a tool, agent `Signed-off-by`, "Generated with" lines, model or tool names, or session links in commits, PR titles and bodies, comments or reviews. The upstream kernel does not list tools as authors, and neither do we.
 - Carry other people's commits unchanged. No force pushes to shared branches.
 
-## 5. Evidence (default, high bar)
+## 5. Evidence (hard: tested before merge)
 
-- The PR body follows [`policy/pr-structure.md`](policy/pr-structure.md): `Tested:` with the Macs at the head SHA, `Risk:` with the door and the Macs (CI checks both).
-
-- A run on the affected hardware with the numbers: what ran, on which Mac, kernel and build, and the result. Include a regression run: 0 SELinux denials, 0 failed units, 0 new kernel errors.
+- A run on the affected hardware **at the PR head** with the numbers ([`policy/merge-policy.md`](policy/merge-policy.md)): what ran, on which Mac, kernel and build, and the result. Include a regression run: 0 SELinux denials, 0 failed units, 0 new kernel errors.
 - Performance claims: a same-machine A/B with conformance unchanged on every GPU generation the change applies to.
+- The PR body has `Tested:` (Macs at the head SHA, result) and `Risk:` (one-way or two-way door, which Macs) ([`policy/pr-structure.md`](policy/pr-structure.md)); CI checks both lines are there.
 
 ## 6. Naming (hard)
 

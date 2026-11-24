@@ -26,7 +26,7 @@ Don't wait for a second reviewer or polish; nits become follow-up issues. A merg
 | `hw-row-ok` | You read the row and it is valid for this head (e.g. a clean rebase); the bot drops it on new commits. |
 | `area:*`, `blast:*`, `door:*` | Filter your queue by area, by the Macs you own, by one-way doors. |
 
-A row counts when a line in the PR or a comment has **the head SHA and the Mac**: `J413 M2 Air at 3f2a9c1: boots, 0 failed units`.
+A row counts when one line in the PR or a comment has **the head SHA, the Mac and the result**: `J413 M2 Air at 3f2a9c1: boots, 0 failed units`.
 
 ## Queues (bookmark yours)
 
