@@ -53,15 +53,7 @@ A row is not needed for documentation, comments, CI configuration that does not 
 
 ## 5. Writing the review
 
-Use GitHub's review states, in the format Aurora's review waves use:
-
-- **Approve**: "No blocking findings." plus one line on what you checked (for example "clean-room, gates, row at `abc1234` on J616s + regression on J413").
-- **Request changes**: a numbered list of **blocking** findings, each with the file/line, what is wrong and what would fix it. Then a separate **Non-blocking** list. Say which is which; a reviewer who mixes them holds merges for nits.
-- **Comment**: questions, or a partial review.
-
-A blocking finding is: a crash, hang, data loss, boot fallback or security problem; a regression on any Mac; a hard-rule break (tainted data, an agent trailer, a gate or parameter, a hardcoded safety limit); missing or stale evidence. Everything else is non-blocking.
-
-Comment on the code, not on people or internal process. If you hold a PR for a reason outside the code, keep the public note neutral.
+One format for every review: [`pr-review.md`](pr-review.md) (verdict at the head SHA, numbered blockers, what you checked, evidence folded). Copy-paste text: [`templates/REVIEW_TEMPLATE.md`](../templates/REVIEW_TEMPLATE.md). Map the verdict to GitHub's state: MERGE = Approve; blockers = Request changes; otherwise Comment.
 
 ## 6. Merging
 
@@ -85,12 +77,7 @@ Comment on the code, not on people or internal process. If you hold a PR for a r
 
 ## 8. Triage outcomes
 
-Sort every open PR into one outcome and say it on the PR:
-
-- **MERGE**: meets the gate now.
-- **FINISH-then-MERGE**: correct, but missing evidence or a small fix. Name what it needs.
-- **CLOSE-as-superseded**: replaced by another PR or commit. Say which.
-- **HOLD**: blocked on a dependency, a decision or hardware. Name the blocker and who owns it.
+Every open PR gets one verdict on the PR: **MERGE**, **FINISH, then merge**, **HOLD** or **CLOSE (superseded by #NNN)** ([`pr-review.md`](pr-review.md)). The daily routine and the readiness labels: [maintainer handbook](../docs/MAINTAINER-HANDBOOK.md).
 
 ## 9. Reviewer rotation
 

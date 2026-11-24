@@ -36,6 +36,7 @@ Each item is a hard rule unless it says "default". If your change fails one, fix
 
 - A run on the affected hardware **at the PR head** with the numbers ([`policy/merge-policy.md`](policy/merge-policy.md)): what ran, on which Mac, kernel and build, and the result. Include a regression run: 0 SELinux denials, 0 failed units, 0 new kernel errors.
 - Performance claims: a same-machine A/B with conformance unchanged on every GPU generation the change applies to.
+- The PR body has `Tested:` (Macs at the head SHA, result) and `Risk:` (one-way or two-way door, which Macs) ([`policy/pr-structure.md`](policy/pr-structure.md)); CI checks both lines are there.
 
 ## 6. Naming (hard)
 

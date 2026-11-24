@@ -9,6 +9,9 @@ Policies for every Aurora Silicon repository, followed by human and agent contri
 | [`pre-pr-checklist.md`](pre-pr-checklist.md) | **IN FORCE** (since 2026-11-21). Aurora's review agents check exactly these items. Anyone may use it before opening a PR. |
 | [`AGENTS.md`](AGENTS.md) | **IN FORCE** (since 2026-11-24). The rulebook every agent loads, whoever runs it; every repo's `AGENTS.md`/`CLAUDE.md` points here. |
 | [`policy/branching-and-releases.md`](policy/branching-and-releases.md), [`policy/governance-and-roles.md`](policy/governance-and-roles.md), [`policy/access-tiers.md`](policy/access-tiers.md), [`policy/merge-policy.md`](policy/merge-policy.md), [`policy/review-and-merge-handbook.md`](policy/review-and-merge-handbook.md), [`policy/hotfix.md`](policy/hotfix.md) | **IN FORCE** (since 2026-11-24). Enforced by rulesets on every public product repo ([`policy/access-tiers.md`](policy/access-tiers.md)). |
+| [`policy/pr-structure.md`](policy/pr-structure.md), [`policy/pr-review.md`](policy/pr-review.md) | **IN FORCE** (since 2026-11-25). One short PR and review format for everyone. |
+| [`policy/issue-structure.md`](policy/issue-structure.md) | **IN FORCE** (since 2026-11-24). The issue forms. |
+| [`docs/MAINTAINER-HANDBOOK.md`](docs/MAINTAINER-HANDBOOK.md) | The 15-minute daily routine on top of the readiness labels. |
 | [`docs/ONBOARDING-MAINTAINERS.md`](docs/ONBOARDING-MAINTAINERS.md) | Day-one guide for Omarchy Mac maintainers and Core. |
 | the rest of [`policy/`](policy/) and [`templates/`](templates/) | **IN FORCE** (since 2026-11-24). |
 

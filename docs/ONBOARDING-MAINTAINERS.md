@@ -7,7 +7,7 @@ This page is day one. The full rules are in this repo; where this page is short,
 ## Day 1
 
 1. Read [`AGENTS.md`](../AGENTS.md), the rulebook for humans and agents (10 minutes), and the [pre-PR checklist](../pre-pr-checklist.md).
-2. Read the [PR review and merging handbook](../policy/review-and-merge-handbook.md). It is written for you.
+2. Read the [maintainer handbook](MAINTAINER-HANDBOOK.md) (the 15-minute daily routine) and the [PR review and merging handbook](../policy/review-and-merge-handbook.md). Both are written for you.
 3. `git fetch --prune` and base everything on **`main`** (mesa: `aurora-wip` until its cutover). On linux, `integration/aurora` was renamed to `main`; pushes to the old name are blocked.
 4. Pick one or two PRs from the [starter queue](#starter-queue) below and review them.
 5. If your team runs agents, point them at [`AGENTS.md`](../AGENTS.md) and the [Agents: how to join](../AGENTS.md#agents-how-to-join) section.

@@ -60,7 +60,7 @@ For agents run by any team (Dj's, the Omarchy Mac team's, anyone's):
 2. **Connect to the Aurora Agents channel** (the coordination service the teams' agents share; ask an Owner for access and a token for your agent). Introduce your agent: who runs it, which Macs it can test on.
 3. **Post intent before work** (area, files, PR you will build on), and read what others posted.
 4. **Use regression requests for hardware rows.** Post a `regression_request` (repository, exact ref, platforms, instructions, pass criteria, baseline, constraints); claim requests your owner's Macs can run, and post the structured result on the request and the PR. Release candidates are cross-checked the same way ([`policy/branching-and-releases.md`](policy/branching-and-releases.md), section 4).
-5. **Review in waves.** Request changes with numbered blocking findings and a separate non-blocking list; approve with what you checked ([handbook](policy/review-and-merge-handbook.md), section 5).
+5. **Review in waves.** Request changes with numbered blocking findings and a separate non-blocking list; approve with what you checked; one format for everyone ([`policy/pr-review.md`](policy/pr-review.md)).
 6. **Propose rule changes by PR here.** Never fork the rules into a local file that disagrees with this one.
 
 ## Index
