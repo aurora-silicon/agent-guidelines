@@ -37,7 +37,7 @@ The same three repository rulesets, on the repo's **default branch** whatever it
 | `default branch: mergers only (Core, Omarchy Mac)` | restrict updates: only bypass actors may update the branch, which includes merging a PR | Owners, Core, and Omarchy Mac where they hold maintain; **through a pull request only** |
 | `release tags: v* aurora-* (owners only)` | `v*` and `aurora-*` tags cannot be created, moved or deleted | Owners |
 
-Each repo carries `.github/CODEOWNERS` with `* @aurora-silicon/core @aurora-silicon/omarchy-m` (Core only where Omarchy Mac has no role). With code-owner review on, the one approval that counts must come from **Core or Omarchy Mac**. An Aurora Dev review is welcome and is read, but it does not satisfy the requirement alone.
+Each repo carries `.github/CODEOWNERS` (the website keeps its designated owners instead) with `* @aurora-silicon/core @aurora-silicon/omarchy-m` (Core only where Omarchy Mac has no role). With code-owner review on, the one approval that counts must come from **Core or Omarchy Mac**. An Aurora Dev review is welcome and is read, but it does not satisfy the requirement alone.
 
 What that means in practice:
 
@@ -56,6 +56,8 @@ Some repos run workflows that push to the default branch or create release tags 
 | fedora-aurora, alarm-aurora | branch rulesets, tag ruleset | the Firefox tracker merges its proposal into `main`; publish workflows create release tags |
 | .github | branch rulesets | the Discord sync workflow pushes to `main` |
 | aurora-installer, nixos-aurora, omarchy-aurora | tag ruleset | publish workflows create release tags |
+
+Also not enforced today: mesa's `mergers only` ruleset is disabled (an Owner switched it off on 2026-11-24; it stays off until the Owners decide), so on mesa merge rights are policy only.
 
 Until then the policy still applies there: Aurora Dev do not merge into the default branch.
 
