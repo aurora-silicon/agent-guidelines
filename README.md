@@ -65,7 +65,7 @@ The aim is to keep everyone in sync, not to stop innovation.
 - **Hard vs default (2026-11-21):** "fix the cause, no hacks", "default command line only" and "no chip/board/firmware gates" are hard rules (see the pre-PR checklist). "Tested on the affected hardware at the PR head before merge" became a hard rule with the 2026-11-24 merge policy. "Public text describes the code, not internal process" is a default. "No AI attribution" is a hard rule; the body shape is a default. "Never merge or deploy the website without the designated owners" is hard.
 - **Safety values (2026-11-21):** limits that protect hardware come from the machine (ADT/DT, its own firmware or tuning bundle, driver-reported ranges), never from per-model tables or constants in code.
 - **Naming (2026-11-21):** the Vulkan driver is Borealis (`libvulkan_borealis.so`, prefix `brl_`, [aurora-silicon/mesa#591](https://github.com/aurora-silicon/mesa/issues/591)). Asahi and m1n1 names are being retired in favour of Aurora names and paths.
-- **Where the set lives (2026-11-21):** a central `aurora-silicon/agent-guidelines` repo (this one), with the checklist and hard rules inlined into each repo.
+- **Where the set lives (2026-11-21, changed 2026-11-24):** a central `aurora-silicon/agent-guidelines` repo (this one). Each repo's agent files point here and keep only that repo's own notes; nothing is copied into them, so they cannot go stale.
 
 - **Single trunk and releases (2026-11-24):** `aurora-silicon/linux` has one long-lived branch, `main` (renamed from `integration/aurora`). Releases: `aurora-edge` (every push), `aurora-nightly` (daily), stable `v*` tags cut from a nightly that passed the regression gate on the [gate Macs](policy/branching-and-releases.md#gate-macs), never held for unfinished work. Hotfixes only for boot failure, data loss, security or hardware risk. See [`policy/branching-and-releases.md`](policy/branching-and-releases.md).
 - **Merge policy (2026-11-24):** merge as soon as CI is green, a hardware row ran at the PR head, and one non-author review found nothing blocking. See [`policy/merge-policy.md`](policy/merge-policy.md).
@@ -75,7 +75,7 @@ The aim is to keep everyone in sync, not to stop innovation.
 
 ## Open questions
 
-1. The `aura` source file has two variants: a short one, and a longer one that adds testing and collaboration items (end-to-end first, isolate agents, delete low-signal unit tests). Which is authoritative? `AGENTS.md` folds the testing items in as defaults.
+1. *(Resolved 2026-11-25.)* The `aura` testing and collaboration notes stay in aura as repo specifics; their general points are rulebook defaults ("Test end to end first").
 2. **Licensing:** licensing is stated as GPL-2.0-only for all Aurora contributions. Is that right for repos whose base licence differs (mesa is MIT, u-boot is GPL-2.0-or-later)?
 3. **Kernel upstreaming:** if a project we submit to requires an AI-disclosure tag, does its rule override ours for that submission?
 4. **Undefined terms:** speaker protection is a hard rule with one line. Does it need detail (what counts as weakening protection)? ("Shared branches" is now defined in [`policy/branching-and-releases.md`](policy/branching-and-releases.md).)
