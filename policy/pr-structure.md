@@ -26,4 +26,4 @@ A person reads the visible part in under a minute. Everything an agent or a deep
 
 The `pr-text` check ([reusable workflow](https://github.com/aurora-silicon/.github/blob/main/.github/workflows/pr-text.yml); running on linux and wired into mesa, then every repository as it adds the caller) fails new PRs that break 1 to 3 and says exactly what to add or delete. PRs opened before 2026-11-25 and drafts get warnings only.
 
-Filled example: [maintainer handbook](../docs/MAINTAINER-HANDBOOK.md#examples).
+Filled example: [daily routine](../maintainers/daily-routine.md#examples).

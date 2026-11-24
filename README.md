@@ -11,8 +11,7 @@ Policies for every Aurora Silicon repository, followed by human and agent contri
 | [`policy/branching-and-releases.md`](policy/branching-and-releases.md), [`policy/governance-and-roles.md`](policy/governance-and-roles.md), [`policy/access-tiers.md`](policy/access-tiers.md), [`policy/merge-policy.md`](policy/merge-policy.md), [`policy/review-and-merge-handbook.md`](policy/review-and-merge-handbook.md), [`policy/hotfix.md`](policy/hotfix.md) | **IN FORCE** (since 2026-11-24). Enforced by rulesets on every public product repo ([`policy/access-tiers.md`](policy/access-tiers.md)). |
 | [`policy/pr-structure.md`](policy/pr-structure.md), [`policy/pr-review.md`](policy/pr-review.md) | **IN FORCE** (since 2026-11-25). One short PR and review format for everyone. |
 | [`policy/issue-structure.md`](policy/issue-structure.md) | **IN FORCE** (since 2026-11-24). The issue forms. |
-| [`docs/MAINTAINER-HANDBOOK.md`](docs/MAINTAINER-HANDBOOK.md) | The 15-minute daily routine on top of the readiness labels. |
-| [`docs/ONBOARDING-MAINTAINERS.md`](docs/ONBOARDING-MAINTAINERS.md) | Day-one guide for Omarchy Mac maintainers and Core. |
+| [`maintainers/`](maintainers/README.md) | **IN FORCE** (since 2026-11-24). For maintainers and their agents only: priorities, response times, no ping-pong; the daily routine and onboarding. |
 | the rest of [`policy/`](policy/) and [`templates/`](templates/) | **IN FORCE** (since 2026-11-24). |
 
 Everything here is in force. Propose a change by issue or PR against this repo; Owner-level changes (roles, access, releases) need a human Owner's sign-off.
@@ -56,7 +55,10 @@ The aim is to keep everyone in sync, not to stop innovation.
 | `policy/device-bringup-ladder.md` | defaults | Order and exit criteria for bringing up a new Mac. |
 | `policy/mesa-performance-claims.md` | defaults | Evidence for GPU performance claims. |
 | `templates/` | defaults | PR, bug and bring-up skeletons. The org-wide copies live in [`aurora-silicon/.github`](https://github.com/aurora-silicon/.github). |
-| `docs/ONBOARDING-MAINTAINERS.md` | guide | Day one for maintainers, with a starter review queue. |
+| `maintainers/README.md` | defaults | Maintain first; response times; members and outside contributors; one review round, plain words. |
+| `maintainers/agents.md` | defaults | Agents doing maintainer work: one owner per item, coordinator and machine leads. |
+| `maintainers/daily-routine.md` | guide | The 15-minute daily routine on top of the readiness labels, with examples. |
+| `maintainers/onboarding.md` | guide | Day one for maintainers, with a starter review queue. |
 | `tools/gh-access-apply.sh` | tool | Applies the access tiers and rulesets (Owners only). |
 
 ## Decided
@@ -74,6 +76,7 @@ The aim is to keep everyone in sync, not to stop innovation.
 - **Merge policy (2026-11-24):** merge as soon as CI is green, a hardware row ran at the PR head, and one non-author review found nothing blocking. See [`policy/merge-policy.md`](policy/merge-policy.md).
 - **Roles (2026-11-24):** Owners (Ryan, Dj). Core and Omarchy Mac review and merge; Aurora Dev develop on branches and do not merge into default branches. Enforced per repo by rulesets. See [`policy/governance-and-roles.md`](policy/governance-and-roles.md) and [`policy/access-tiers.md`](policy/access-tiers.md).
 - **One rulebook (2026-11-24):** every agent, whoever runs it, loads [`AGENTS.md`](AGENTS.md) here; repos point to it. Owner-level policy changes need a human Owner's sign-off.
+- **Maintainers (2026-11-24, Dj's ruling; Ryan's co-Owner confirmation requested):** maintenance comes before development. Members (anyone in the organisation) get a first review within 24 hours and outside contributors within 48; every issue is acknowledged within 24 hours. Reviews take one round, block only on problems that can be shown, use plain words instead of rule numbers, and maintainers fix small things themselves. A row stays valid across commits that change nothing that is built. An author may rewrite their own PR branch to fix commit metadata. See [`maintainers/`](maintainers/README.md).
 - **Gate Macs and RC cross-check (2026-11-24):** stable releases pass a release-candidate cross-check on the [gate Macs](policy/branching-and-releases.md#gate-macs), run by every team through regression requests.
 
 ## Open questions

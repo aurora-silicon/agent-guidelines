@@ -31,7 +31,7 @@ Then merge **within the hour**. Nits never hold a merge; they become follow-up P
 Read the whole diff. Your job is to try to break it, quickly.
 
 1. **No copyrighted Apple material (hard).** No verbatim Apple code, decompiled or disassembled listings, copied symbol dumps, firmware or tuning files anywhere in the diff (source, tools, tests, kits). RE-derived drivers and interface layouts written as our own code with named fields are welcome; a pasted listing or unexplained table copied from a binary is a stop. ADT/DT values read from a machine are hardware facts and fine. [`ip-and-tainted-data.md`](ip-and-tainted-data.md)
-2. **No gates, no hacks (hard).** No `if chip == …`, board or firmware-version checks where a DT/ADT property, compatible or capability bit can decide. No new command-line or module parameters, sleeps over races, magic depths or "set X=1 to enable". [Pre-PR checklist](../pre-pr-checklist.md), items 1 and 2.
+2. **No gates, no hacks (hard).** No `if chip == …`, board or firmware-version checks where a DT/ADT property, compatible or capability bit can decide. No new command-line or module parameters, sleeps over races, magic depths or "set X=1 to enable". Pre-PR checklist: [no model gating](../pre-pr-checklist.md#no-model-gating-hard), [no hacks](../pre-pr-checklist.md#no-hacks-hard).
 3. **Safety (hard).** Limits that protect hardware come from the machine, never from constants. Speaker changes keep protection running and gating. No boot-object (Stage 1) change without the machine's owner.
 4. **Commits (hard).** Human identity and a human `Signed-off-by` on every commit; no agent trailers; third-party commits unchanged. No AI attribution anywhere in commits or PR text (no `Assisted-by`, tool `Co-Authored-By`, "Generated with"): ask the author to delete it, it is a one-line fix.
 5. **Evidence.** The hardware row is at the PR head (compare the SHA), on the Mac the change targets, plus one other Mac with the same block for shared code. The numbers are in the PR. A rebase with no conflicts in the touched files keeps the row valid; anything else needs a new row.
@@ -77,12 +77,12 @@ One format for every review: [`pr-review.md`](pr-review.md) (verdict at the head
 
 ## 8. Triage outcomes
 
-Every open PR gets one verdict on the PR: **MERGE**, **FINISH, then merge**, **HOLD** or **CLOSE (superseded by #NNN)** ([`pr-review.md`](pr-review.md)). The daily routine and the readiness labels: [maintainer handbook](../docs/MAINTAINER-HANDBOOK.md).
+Every open PR gets one verdict on the PR: **MERGE**, **FINISH, then merge**, **HOLD** or **CLOSE (superseded by #NNN)** ([`pr-review.md`](pr-review.md)). The daily routine and the readiness labels: [daily routine](../maintainers/daily-routine.md).
 
 ## 9. Reviewer rotation
 
 Code owners are requested automatically (`.github/CODEOWNERS` in each repo routes PRs to Core and Omarchy Mac). To keep the queue moving:
 
-- Each day one Core and one Omarchy Mac member are **first responders**: they sweep open PRs in their repos, review what is ready and merge what meets the gate. The rotation is kept in the [maintainer onboarding page](../docs/ONBOARDING-MAINTAINERS.md#reviewer-rotation).
+- Each day one Core and one Omarchy Mac member are **first responders**: they sweep open PRs in their repos, review what is ready and merge what meets the gate. The rotation is kept in the [maintainer onboarding page](../maintainers/onboarding.md#reviewer-rotation).
 - A review request should be answered within hours. If you cannot, say so on the PR so someone else picks it up.
 - GPU (`drivers/gpu/drm/asahi`, Mesa `src/asahi`): ask Dj for a review when the change is non-trivial.

@@ -5,7 +5,7 @@
 **Blockers:** <!-- none, or numbered: -->
 1. `path/file.c:123`: <!-- what's wrong, and what fixes it -->
 
-**Checked:** <!-- e.g. clean-room, no gates, tested on the touched Macs at this head, CI green -->
+**Checked:** <!-- in words, never rule numbers: e.g. no Apple material, no gates, tested on the touched Macs at this head, CI green -->
 
 <details><summary>Evidence</summary>
 

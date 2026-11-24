@@ -2,7 +2,7 @@ name: pr-readiness
 
 # Merge-readiness comment and labels on every open pull request.
 # The logic lives in aurora-silicon/.github; this file only says when to run.
-# Rules: https://github.com/aurora-silicon/agent-guidelines/blob/main/docs/MAINTAINER-HANDBOOK.md
+# Rules: https://github.com/aurora-silicon/agent-guidelines/blob/main/maintainers/daily-routine.md
 
 on:
   pull_request_target:

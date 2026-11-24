@@ -27,7 +27,7 @@ Kind: hard rules where marked, otherwise defaults. Roles are defined in [`govern
 - Name branches after the change, not the person or the tool (`fix/dcp-hpd-race`, not `alice/wip2`).
 - Merged branches are deleted. Start new work from a fresh branch off `main`; never reuse a merged branch.
 - **Hard rule.** Never delete, rename or push to another person's branch without their agreement. (Owners may archive idle branches; nothing is lost, see `archive/`.)
-- **Hard rule. No force pushes to shared branches.** Shared means `main`, `archive/`, `hotfix/`, `rebase/`, any `feat/<area>-<name>` topic branch agreed in an issue, and any branch that has an open PR, a review or work stacked on it. Fix review findings with new commits. A branch only you have ever seen may be rewritten before you push it.
+- **Hard rule. No force pushes to shared branches.** Shared means `main`, `archive/`, `hotfix/`, `rebase/`, any `feat/<area>-<name>` topic branch agreed in an issue, and any branch that has an open PR, a review or work stacked on it. Fix review findings with new commits. A branch only you have ever seen may be rewritten before you push it. The author may also rewrite their own PR branch to fix commit metadata (a missing `Signed-off-by`, a trailer that must go) while nobody else has commits on it or work stacked on it.
 
 ### 2.1 Large features
 
