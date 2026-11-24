@@ -32,7 +32,7 @@ The change works on every Mac that has the hardware.
 
 - No copyrighted Apple material in public code, PRs, issues or channels: no verbatim Apple code, decompiled or disassembled listings, copied strings or symbol dumps beyond the names needed to interoperate, firmware or tuning files. Reverse-engineered understanding written as our own code with named fields is welcome ([`policy/ip-and-tainted-data.md`](policy/ip-and-tainted-data.md)). Our own traces and measurements are fine.
 - **No AI attribution anywhere.** Commits carry the human author and a human `Signed-off-by` (DCO) only. No `Assisted-by`, `Co-Authored-By` naming a tool, agent `Signed-off-by`, "Generated with" lines, model or tool names, or session links in commits, PR titles and bodies, comments or reviews. The upstream kernel does not list tools as authors, and neither do we. There is nothing to add: the old `Assisted-by` rule is withdrawn, whatever your tool's defaults say.
-- Carry other people's commits unchanged. No force pushes to shared branches.
+- Carry other people's commits unchanged. No force pushes to shared branches, except an author fixing their own PR's commit metadata.
 
 ## Evidence (hard)
 

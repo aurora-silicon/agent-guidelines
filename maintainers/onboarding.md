@@ -59,7 +59,7 @@ Bug reports from your users: an issue in the repo concerned, one issue per Mac, 
 
 ## Reviewer rotation
 
-PRs request Core and Omarchy Mac reviews automatically (CODEOWNERS). Each day one Core and one Omarchy Mac member are first responders: sweep the open PRs in your repos, review what's ready, merge what meets the gate, and say FINISH / HOLD / CLOSE on the rest ([handbook, section 8](../policy/review-and-merge-handbook.md#8-triage-outcomes)). Agree the order in the maintainers' Discord channel; if you can't take a day, swap it there. GPU changes (`drivers/gpu/drm/asahi`, Mesa `src/asahi`): ask Dj for a review when the change is non-trivial.
+PRs request Core and Omarchy Mac reviews automatically (CODEOWNERS). Each day one Core and one Omarchy Mac member are first responders: sweep the open PRs in your repos, review what's ready, merge what meets the gate, and say FINISH / HOLD / CLOSE on the rest ([handbook, section 8](../policy/review-and-merge-handbook.md#8-triage-outcomes)). Agree the order in the maintainers' Discord channel; if you can't take a day, swap it there. GPU changes (`drivers/gpu/drm/asahi`, Mesa `src/asahi`): ask the GPU code owner (CODEOWNERS) for a review when the change is non-trivial.
 
 ## Starter queue
 
@@ -77,14 +77,14 @@ Open PRs in your repos that need a first review (as of 2026-11-24; check the PR'
 | [mesa#877](https://github.com/aurora-silicon/mesa/pull/877) | compiler | Aurora Dev PR: trims unused load channels |
 | [mesa#905](https://github.com/aurora-silicon/mesa/pull/905) | Borealis | per-pipeline robustness fix |
 | [linux#3055](https://github.com/aurora-silicon/linux/pull/3055) | GPU, M2 | firmware progress checks; CI green |
-| [linux#2981](https://github.com/aurora-silicon/linux/pull/2981) | GPU, M5 | CI green; Dj's |
-| [linux#3024](https://github.com/aurora-silicon/linux/pull/3024) | GPU, M5 | CI green; Dj's |
+| [linux#2981](https://github.com/aurora-silicon/linux/pull/2981) | GPU, M5 | CI green |
+| [linux#3024](https://github.com/aurora-silicon/linux/pull/3024) | GPU, M5 | CI green |
 | [gpubench#24](https://github.com/aurora-silicon/gpubench/pull/24) | benchmarks | dashboard data, no runtime change |
 
 ## Who to ask
 
 - Code: comment on the PR or issue.
-- Policy, permissions, releases, anything blocking you: the Owners, Ryan (`@RyanTheTide`) and Dj (`@DjDeveloperr`), on Discord or in an issue here.
+- Policy, permissions, releases, anything blocking you: the Owners ([governance](../policy/governance-and-roles.md#1-roles)), on Discord or in an issue here.
 - Security: privately, never in a public issue ([`SECURITY.md`](https://github.com/aurora-silicon/.github/blob/main/SECURITY.md)).
 
 Welcome aboard. We're glad you're here.

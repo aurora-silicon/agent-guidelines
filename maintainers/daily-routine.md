@@ -1,4 +1,4 @@
-# Maintainer Handbook: 15 minutes a day
+# Daily Routine: 15 minutes a day
 
 For everyone who reviews and merges: Core and Omarchy Mac. Start with the [maintainer guide](README.md) (priorities, response times, no ping-pong). Rules: [merge policy](../policy/merge-policy.md), [PR structure](../policy/pr-structure.md), [review format](../policy/pr-review.md). Same routine whoever you are and whoever wrote the PR.
 
@@ -8,7 +8,7 @@ A bot keeps one comment and a set of labels on every open PR ([what each label m
 
 1. **Merge what's ready (5 min).** Open the ready queue for your area (below). For each PR: the bot comment is all `ok` at the current head; skim the diff once for what a bot can't see (Apple-derived values, a chip/board/firmware gate, a new parameter, a hardcoded safety limit); press **Merge** (merge commit). Owners and Core through the bypass: `gh pr merge <n> --merge --admin`; the bypass skips the button, never the policy.
 2. **Review the queue (10 min).** Oldest first. Paste the [review template](../templates/REVIEW_TEMPLATE.md), read the diff, try to break it, post one verdict at the head SHA. If you approved and it turns `ready-to-merge`, merge it now. Need a row you can't run? Post the regression request yourself, verdict FINISH, move on.
-3. **Hand off what needs an Owner (1 min).** One line on the PR mentioning `@RyanTheTide` or `@DjDeveloperr`, then move on: repository settings, rulesets, secrets, teams; `v*` releases and `aurora-*` tags; policy, CI and release files (CODEOWNERS requests them); private repos and anything tainted; a one-way door that changes a user-visible default.
+3. **Hand off what needs an Owner (1 min).** One line on the PR mentioning an Owner ([governance](../policy/governance-and-roles.md#1-roles)), then move on: repository settings, rulesets, secrets, teams; `v*` releases and `aurora-*` tags; policy, CI and release files (CODEOWNERS requests them); private repos and anything tainted; a one-way door that changes a user-visible default.
 
 Don't wait for a second reviewer or polish; nits become follow-up issues. A merge that breaks something is reverted by PR first, then diagnosed.
 
@@ -18,9 +18,9 @@ Don't wait for a second reviewer or polish; nits become follow-up issues. A merg
 | --- | --- |
 | `ready-to-merge` | Check the comment, merge. |
 | `needs-review` | Review it. |
-| `needs-hw-row` | Run a row at the head, or ask for one. |
+| `needs-hw-row` | Run a row at the head, or post the regression request yourself. |
 | `changes-requested` | Author fixes; reviewer re-checks only the blockers. |
-| `ci-failing`, `merge-conflict` | Author fixes CI, or merges `main` in (never force-push). |
+| `ci-failing`, `merge-conflict` | Author fixes CI, or merges `main` in (no force pushes, except fixing your own commit metadata). |
 | `hold`, `blocked` | Set by a person (verdict HOLD, or held on purpose); the bot never touches them. Remove when the blocker is gone. |
 | `needs-template` | Body lacks `Tested:` / `Risk:`; older PRs adopt it on next edit. |
 | `hw-row-ok` | You read the row and it is valid for this head (e.g. a clean rebase); the bot drops it on new commits. |
@@ -43,7 +43,7 @@ Other repos: swap the repo name; other areas: swap the `area:` label (each repo'
 
 ## Who gets asked
 
-CODEOWNERS requests Core and Omarchy Mac on every PR (either team's approval counts) and adds specialists by area, e.g. Dj on the GPU driver. Both teams load-balance one reviewer per PR; the Owners are left out of the rotation. Omarchy Mac first for M1–M3 platform work and what Omarchy ships, Core for the rest. Picked and can't review within a few hours? Remove yourself so it is reassigned.
+CODEOWNERS requests Core and Omarchy Mac on every PR (either team's approval counts) and adds specialists by area, e.g. a GPU code owner on the GPU driver. Both teams load-balance one reviewer per PR; the Owners are left out of the rotation. Omarchy Mac first for M1–M3 platform work and what Omarchy ships, Core for the rest. Picked and can't review within a few hours? Remove yourself so it is reassigned.
 
 ## Set up once
 
@@ -69,7 +69,7 @@ J700 Neo, M1 Pro: no regression, 25-minute GPU soak clean.
 <details><summary>Evidence</summary> base main a7dd26e6, make W=1, run-host-tests.py ... </details>
 ```
 
-**Review** (Dj on mesa#927):
+**Review** (mesa#927):
 
 ```markdown
 **Verdict:** FINISH, then merge at `05334c8c`

@@ -25,12 +25,9 @@
 
 ## Your own output
 
-- Open a PR only when it is ready for review: built, and tested at its head.
-- Don't open a PR for each small change. Related changes to one repo go in one PR.
-- Close your own superseded PRs at once, with a link to what replaced them.
-- Public text follows the [maintainer guide](README.md#write-for-people): plain words, no rule numbers, no internal process, no AI attribution.
-
-## Humans
-
-- Ask a human only for what only a human can do: physical access, 1TR, credentials, an Owner's sign-off. Decide everything else, and say what you decided.
-- Report in a few lines: what merged, what's blocked and by what, and what comes next.
+- Open a PR only when it is built and tested at its head.
+- Put related changes to one repo in one PR.
+- Close your superseded PRs at once, with a link to what replaced them.
+- Public text follows the [maintainer guide](README.md#write-for-people).
+- Ask a human only for what only a human can do ([`AGENTS.md`](../AGENTS.md#defaults)).
+- Report in a few lines: what merged, what is blocked and on what, and what comes next.

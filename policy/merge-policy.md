@@ -48,7 +48,7 @@ Rules:
 
 ## 4. Reviews
 
-- The review is a **quick blocking-issues pass**, not a gate to wait on, done in **one round**. Review requests are answered within hours; the response times are in the [maintainer guide](../maintainers/README.md#response-times).
+- The review is a **quick blocking-issues pass**, not a gate to wait on, done in **one round**. Review requests are answered within hours, and never later than the [response times](../maintainers/README.md#response-times) in the maintainer guide.
 - An approving review on GitHub is what the ruleset counts. An approval goes stale when new commits are pushed; re-approve after reading the new commits.
 - **Agent-written PRs.** An agent's PR is reviewed by a human or by a different, independent agent that did not write or plan it. When agents work under one account and cannot approve on GitHub, the reviewing agent posts its review as a PR review comment ("no blocking findings" plus what it checked), and an Owner or Core member merges through the ruleset bypass (pull requests only). The bypass is only for that case and for urgent owner merges; it never skips the three conditions in section 1.
 - **Smaller-model PRs.** A PR written mainly by a smaller, faster model needs its non-author review from a human or from a stronger model; another small-model review is not enough. The author's team routes that request (for example through its review queue or a regression request), never through attribution text in the PR.

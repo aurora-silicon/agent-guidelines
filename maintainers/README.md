@@ -16,7 +16,7 @@ Clear the queue before your own development, in this order:
 4. **Outside contributors' PRs.**
 5. Then your own work.
 
-**Members** are everyone in the `aurora-silicon` organisation, whatever their team. **Outside contributors** are everyone else.
+**Members** are everyone in the `aurora-silicon` organisation, whatever their team (Core, Omarchy Mac, Aurora Dev). **Outside contributors** are everyone else.
 
 ## Response times
 
@@ -36,24 +36,24 @@ Being requested on a PR doesn't make it yours. Once the time is up, any maintain
 
 **Members: trust them.**
 
-- Review for blockers only. Take their `Tested:` line as true, and don't ask them to re-run what they reported.
+- Review for blockers only. Take their `Tested:` line as true for the head it names, and don't ask them to re-run what they reported.
 - Don't re-argue a design that works. Suggest the alternative as a follow-up.
 
 **Outside contributors: welcome them, then check more.**
 
 - Thank them, and tell them exactly what happens next.
 - Read the whole diff: CI workflows, scripts, build files, binaries and download URLs too. Approve their CI runs (`action_required`) only after reading it.
-- Check a row yourself before merging anything that sets a hardware-safety value, touches a boot path or writes registers.
-- Credit them: a `Reported-by:` or `Tested-by:` trailer, and a thank-you on merge.
+- Before merging anything that sets a hardware-safety value, touches a boot path or writes registers, run a row yourself or have one run.
+- Credit them with a thank-you on merge, and a `Reported-by:` or `Tested-by:` trailer on the fix commit (leave their own commits unchanged).
 
 ## No ping-pong
 
 Every round trip costs the author a day.
 
-1. **One round.** Put every blocker in your first review. After that, re-check only those blockers and the new commits. You may raise a new blocker later only for a crash, data loss, or a safety or hard-rule problem you missed.
+1. **One round.** Put every blocker in your first review. After that, re-check only those blockers and the new commits. You may raise a new blocker later only for what the new commits or a new row show, or for a crash, data loss, or a safety or hard-rule problem you missed.
 2. **A blocker is a problem you can show:** a failing run, a measured regression, a code path that breaks (`file:line` and the input), a hard-rule break, or a missing row. A risk you suspect but haven't shown is a question or a row request, not a blocker. Style, structure, naming and more tests are nits: never send a PR back for them.
-3. **Fix small things yourself.** This covers the PR body format, a `Tested:` or `Risk:` line the PR already answers, attribution in the body, a typo, and a stale base (`gh pr update-branch`). Maintainers can edit any PR body, and can push to the branch when "allow edits" is on.
-4. **Get rows yourself.** If a row is missing, run it or post the regression request; don't send the author to chase it. The gate needs one row on the targeted Mac. Rows from other Macs are checks after the merge, with a revert ready.
+3. **Fix small things yourself.** This covers the PR body format, a `Tested:` or `Risk:` line the PR already answers, attribution in the body, a typo, and a stale base (`gh pr update-branch`). Maintainers can edit any PR body. "Allow edits by maintainers" counts as agreement to push fix commits to the branch.
+4. **Get rows yourself.** If a row is missing, run it or post the regression request; don't send the author to chase it. The gate needs a row on the targeted Mac, plus one same-block row for shared code ([merge policy](../policy/merge-policy.md#1-the-rule)). Rows beyond that are checks after the merge, with a revert ready.
 5. **Finish stalled work.** If the author is silent for 7 days after your FINISH, finish it on top of their commits (their authorship stays), or close it with thanks and the reason.
 6. **Never close and reopen a PR to re-run CI.** Use `gh run rerun --failed` or `gh pr update-branch`.
 7. **The bot is a helper, not a gate.** A wrong label never blocks a merge. Fix the body, set `hw-row-ok`, or merge on the policy, then report the bug in [`aurora-silicon/.github`](https://github.com/aurora-silicon/.github/issues).
@@ -66,18 +66,19 @@ Every round trip costs the author a day.
 
 ## AI attribution: there is nothing to add
 
-The rule is **no AI attribution anywhere** ([`AGENTS.md`](../AGENTS.md#hard-rules)). The older `Assisted-by` rule is gone, and tool defaults that add a trailer or a "Generated with" line are wrong here.
+The rule is **no AI attribution anywhere** ([`AGENTS.md`](../AGENTS.md#hard-rules)): never ask anyone to add it.
 
-- Never ask anyone to add attribution.
-- In a PR body or a comment, delete it yourself and move on.
-- In commits, list it in the same review as everything else, so it never costs an extra round, and paste the fix. The author may rewrite their own PR branch for this ([branching](../policy/branching-and-releases.md#2-branch-names)). Human co-authors stay. On mesa, use `origin/aurora-wip`.
+- In a PR body or a comment, delete it yourself.
+- In commits, list it in the same review as everything else, and paste the fix below. The author may rewrite their own PR branch for this ([branching](../policy/branching-and-releases.md#2-branch-names)).
+  - Human co-authors and sign-offs stay.
+  - Use the PR's base branch: `main`, or `aurora-wip` on mesa.
+  - Then set `hw-row-ok`: the hashes change, but the tested code does not.
 
-  ```sh
-  git filter-branch -f --msg-filter "grep -viE '^(assisted-by|co-authored-by:.*(claude|copilot|codex|gemini|cursor|openai|anthropic))|generated with' || true" origin/main..HEAD
-  git push --force-with-lease
-  ```
-
-- On a repo that allows squash merges, a single-author PR can be squash-merged with the line left out of the message.
+```sh
+git fetch origin
+FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch -f --msg-filter "grep -viE '^(assisted-by:|(co-authored-by|signed-off-by):.*(claude|copilot|codex|gemini|cursor|openai|anthropic)|[^a-z]*generated with)' | git stripspace" origin/main..HEAD
+git push --force-with-lease
+```
 
 ## Keep the queue small
 

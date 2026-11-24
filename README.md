@@ -63,7 +63,7 @@ The aim is to keep everyone in sync, not to stop innovation.
 
 ## Decided
 
-*Entries dated 2026-11-24 are Ryan's rulings; Dj's co-Owner sign-off is requested on the PR that recorded them.*
+*Entries dated 2026-11-24 are an Owner's rulings; the other Owner's sign-off is requested on the PR that recorded them.*
 
 - **RE scope (2026-11-19, refined 2026-11-24):** reverse engineering Apple hardware is welcome, with any tool or model. Public repos never contain Apple's copyrighted material itself (code, listings, firmware, tuning files); RE-derived drivers and interface layouts written as our own code are welcome. See [`policy/ip-and-tainted-data.md`](policy/ip-and-tainted-data.md).
 - **No AI attribution (2026-11-24, replaces the 2026-11-19 `Assisted-by` rule):** commits carry the human author and `Signed-off-by` only; commits, PR titles and bodies, comments and reviews name no model or tool. PR bodies are short prose plus collapsible blocks for detail.
@@ -76,7 +76,7 @@ The aim is to keep everyone in sync, not to stop innovation.
 - **Merge policy (2026-11-24):** merge as soon as CI is green, a hardware row ran at the PR head, and one non-author review found nothing blocking. See [`policy/merge-policy.md`](policy/merge-policy.md).
 - **Roles (2026-11-24):** Owners (Ryan, Dj). Core and Omarchy Mac review and merge; Aurora Dev develop on branches and do not merge into default branches. Enforced per repo by rulesets. See [`policy/governance-and-roles.md`](policy/governance-and-roles.md) and [`policy/access-tiers.md`](policy/access-tiers.md).
 - **One rulebook (2026-11-24):** every agent, whoever runs it, loads [`AGENTS.md`](AGENTS.md) here; repos point to it. Owner-level policy changes need a human Owner's sign-off.
-- **Maintainers (2026-11-24, Dj's ruling; Ryan's co-Owner confirmation requested):** maintenance comes before development. Members (anyone in the organisation) get a first review within 24 hours and outside contributors within 48; every issue is acknowledged within 24 hours. Reviews take one round, block only on problems that can be shown, use plain words instead of rule numbers, and maintainers fix small things themselves. A row stays valid across commits that change nothing that is built. An author may rewrite their own PR branch to fix commit metadata. See [`maintainers/`](maintainers/README.md).
+- **Maintainers (2026-11-24):** maintenance before development, response times, one review round with shown blockers in plain words; a row survives commits that change nothing built; authors may fix their own PR's commit metadata. See [`maintainers/`](maintainers/README.md).
 - **Gate Macs and RC cross-check (2026-11-24):** stable releases pass a release-candidate cross-check on the [gate Macs](policy/branching-and-releases.md#gate-macs), run by every team through regression requests.
 
 ## Open questions
