@@ -11,7 +11,7 @@ Goes in repos and may be cited in PRs:
 - **Our own traces, captures and measurements**: dtrace, log streams, ioreg, timings, mic and rig recordings of our own tests.
 - **Our own compiled outputs**: compiled shaders, and ANE (neural engine) compiler output (decoded task words, reference JSONs, constant sections, generated `*Templates.inc`) built from our own programs and weights or from our own captures of public models. Review these for code quality, not for taint.
 - **Interface facts and hardware truths**: register setup, bus and QoS configuration, and other facts that are the same on every Mac with that chip, written clean-room into the driver or devicetree.
-- **Values aura copies from the ADT into the DT at boot** (for example PMP tunables). They are interface data. Do not extract them or paste the raw values into source.
+- **ADT values are hardware facts**, from any source (a live machine, an m1n1 dump, an IPSW's device tree): read them, cite them in PRs and rows. Drivers still read them from the DT at runtime rather than copying them into per-board tables ([pre-PR checklist](../pre-pr-checklist.md), item 1).
 
 ## Never in public: Apple's own material
 

@@ -7,7 +7,7 @@ Kind: **hard rules**. This page covers two things only: what a trace may contain
 ## What a trace may contain
 
 - **Public: our own captures.** dtrace, log streams, ioreg, timings, our own macOS and Linux measurements, our own compiled outputs. They may be published and cited in public PRs.
-- **Tainted and private: Apple-derived material.** Reverse-engineering (RE) output from Apple binaries, firmware blobs, Apple tuning values. They stay in private, tainted storage. Refer to them in public work; never quote them. Nothing from a tainted trace reaches a public repo, PR, issue or channel.
+- **Tainted and private: Apple's own material.** Raw RE byproducts from Apple binaries (listings, addresses, symbol tables), firmware blobs, Apple tuning files. They stay in private, tainted storage; public work may refer to them and never quotes them. The understanding you gained (interface layouts, register meanings) is not tainted: write it up as our own code.
 
 The full public/tainted line is in [`ip-and-tainted-data.md`](ip-and-tainted-data.md).
 

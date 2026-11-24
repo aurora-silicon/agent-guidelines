@@ -22,7 +22,7 @@ NO_TAG_RULES="aurora-installer aurora-distributions fedora-aurora alarm-aurora n
 MERGERS_ENFORCEMENT=${MERGERS_ENFORCEMENT:-disabled}
 # No code-owner review, no last-push/stale rules (Owner decision 2026-11-24, merge train).
 NO_CODEOWNER_REVIEW="mesa"
-# linux has its own hand-made rulesets (27977956 etc.); only the mergers ruleset + core bypass are added.
+# linux has its own hand-made rulesets (27977956 etc.); only the (disabled) mergers ruleset + core bypass are added.
 
 inlist() { local x=$1; shift; for y in $*; do [ "$x" = "$y" ] && return 0; done; return 1; }
 log() { echo "$(date +%H:%M:%S) [$MODE] $*" | tee -a "$LOG"; }

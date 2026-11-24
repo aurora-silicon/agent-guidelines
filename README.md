@@ -75,7 +75,7 @@ The aim is to keep everyone in sync, not to stop innovation.
 
 ## Open questions
 
-1. The `aura` source file has two variants: a short one, and a longer one that adds testing and collaboration items (end-to-end first, isolate agents, delete low-signal unit tests). Which is authoritative? The draft folds the testing items in as defaults.
+1. The `aura` source file has two variants: a short one, and a longer one that adds testing and collaboration items (end-to-end first, isolate agents, delete low-signal unit tests). Which is authoritative? `AGENTS.md` folds the testing items in as defaults.
 2. **Licensing:** licensing is stated as GPL-2.0-only for all Aurora contributions. Is that right for repos whose base licence differs (mesa is MIT, u-boot is GPL-2.0-or-later)?
 3. **Kernel upstreaming:** if a project we submit to requires an AI-disclosure tag, does its rule override ours for that submission?
 4. **Undefined terms:** speaker protection is a hard rule with one line. Does it need detail (what counts as weakening protection)? ("Shared branches" is now defined in [`policy/branching-and-releases.md`](policy/branching-and-releases.md).)
