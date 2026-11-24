@@ -49,7 +49,7 @@ Follow these unless you have a better reason, and say so when you deviate.
 - **Finished work goes to the default branch**, not to side, backup or private branches. Lab machines run the merged tips; a local stack is temporary proof only.
 - **Report status plainly.** Results are numbers on disk or in the PR (what ran, where, on which build, the result). Plans and "should work" are not results. When blocked, say what blocked you, with the evidence, and the next thing you would try.
 - **Public text describes the code, not the process.** No internal chat, reviews, holds or orchestration in commits, PRs or issues.
-- **Test end to end first.** Prefer a real run on the affected hardware to unit tests written to pass. Delete low-signal unit tests.
+- **Test end to end first.** Prefer a real run on the affected hardware to unit tests written to pass; end-to-end runs leave a verifiable, repeatable artifact. Before testing a part in isolation, write down how it could fail. Delete low-signal unit tests that would not catch a real bug the end-to-end run misses.
 - **Isolate parallel agents.** Separate worktrees and branches. Do not collide on files or on a hardware lock.
 
 ## Agents: how to join
