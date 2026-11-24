@@ -57,15 +57,17 @@ GitHub's `maintain` role is broader than the Maintainer policy. The gap is close
 | Create / move / delete `v*` or `aurora-*` tags | no (ruleset) | no | tag rulesets |
 | Create or push to `hotfix/`, `archive/` branches; delete them | no (ruleset) | no | ruleset `owner-only branches` |
 | Push to `integration/aurora`, `aurora-wip` | no (ruleset) | no | ruleset `retired` |
-| Change rulesets, branch protection, secrets, webhooks, collaborators, visibility; delete the repo | no (admin only) | no | GitHub role |
-| Edit description/topics, toggle wiki/projects/discussions, merge-button and auto-delete settings, Pages | **yes** | no | policy + audit log |
+| Merge a PR whose CI is red or still running | **yes** (no required status checks yet) | no | policy (reviewers and mergers check); required checks are added to the `main` ruleset once the release workflow is on `main` |
+| Change rulesets, branch protection, environments, webhooks, deploy keys, collaborators, visibility; delete the repo | no (admin only) | no | GitHub role |
+| Create, overwrite or delete repository Actions secrets (values cannot be read back) | **yes** (write and maintain both can) | no | policy + audit log; release credentials live only in the admin-managed `release` environment |
+| Edit description, topics and social card; enable wiki or discussions; configure PR merge settings; set the Pages source; limit interactions | **yes** | no | policy + audit log (the `main` ruleset still allows only merge commits) |
 | Create, edit or delete a release on a non-protected tag; edit or delete the release object of a `v*` tag | **yes** | no | policy + audit log (the `v*` tag itself cannot be moved) |
 | Delete or rename someone else's unprotected branch | **yes** | no | policy + audit log |
 | Merge a PR that has no hardware row | **yes** | no | policy (reviewers check) |
-| Push a branch whose workflow asks for a write token (could move `aurora-edge`/`aurora-nightly`) | **yes** | no | policy + audit log; the next `main` push rebuilds edge |
+| Push a branch whose workflow asks for a write token and publishes a release under some other tag name | **yes** | no | policy + audit log (release tags themselves are protected) |
 | Add tainted data | **yes** | no, never | policy; reviewers check the whole diff |
 
-Owners bypass these rulesets only through a pull request (`bypass_mode: pull_request`): even an Owner cannot push directly to `main`. GitHub Actions may move `aurora-edge`/`aurora-nightly` and nothing else. Core admins who are not organisation owners do not bypass.
+Owners bypass the `main` ruleset only through a pull request (`bypass_mode: pull_request`): even an Owner cannot push directly to `main`. The tag and owner-only branch rulesets are bypassed by Owners and, for `aurora-*` tags only, by deploy keys with write access (only admins add deploy keys; the release workflow's key lives in the admin-managed `release` environment, restricted to `main`). GitHub does not let `GITHUB_TOKEN` bypass a repository ruleset, so a workflow on any other branch cannot move release tags. Core admins who are not organisation owners do not bypass.
 
 The rulesets are the source of truth for what is enforced; this table is updated whenever they change.
 

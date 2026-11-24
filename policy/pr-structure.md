@@ -54,7 +54,7 @@ Credit the people who reported, suggested or tested: `Reported-by:`, `Suggested-
 ## Scope
 
 - One coherent change per PR. For stacked PRs, state the base and the order.
-- Kernel PRs target `main` from a `feat/` or `fix/` branch ([`branching-and-releases.md`](branching-and-releases.md)). They may be proven in a batched fleet candidate that contains their head commits ([`merge-policy.md`](merge-policy.md)).
+- Kernel PRs target `main` from a `feat/` or `fix/` branch ([`branching-and-releases.md`](branching-and-releases.md)). They may be proven in a batched fleet candidate that contains their head commits unchanged ([`merge-policy.md`](merge-policy.md)).
 - If the change touches a shared path, say which machines you verified are unaffected.
 
 ## Evidence

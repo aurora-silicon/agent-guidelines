@@ -10,7 +10,7 @@ Finished work goes into `main` quickly. It does not sit on side, backup or priva
 
 A PR into `main` (or a repo's default branch) is merged **as soon as** all three hold:
 
-1. **CI is green.** Every required check passes and GitHub shows the PR as mergeable (`mergeStateStatus: CLEAN`). Where a repo has no CI for the change (for example the mesa fork today), the hardware row is the gate.
+1. **CI is green.** Every check that ran passes and GitHub shows the PR as mergeable (`mergeStateStatus: CLEAN`; when an Owner merges with the bypass, `BLOCKED` by the review requirement alone is expected). Where a repo has no CI for the change (for example the mesa fork today), the hardware row is the gate.
 2. **A hardware row at the PR head.** The change ran on the Mac it targets, built from the PR's head commit, with the result written in the PR (see section 3). Code shared between Mac generations also needs a row on one other Mac that has the same block, showing no regression.
 3. **One non-author review with no blocking finding.** Someone other than the author (a Maintainer, Core member or Owner, or for agent-written work an independent reviewing agent, see 4) has read the whole diff, checked the [pre-PR checklist](../pre-pr-checklist.md), tried to break it, and found nothing blocking.
 
@@ -50,13 +50,13 @@ Rules:
 - The review is a **quick blocking-issues pass**, not a gate to wait on. Review requests should be answered within hours.
 - An approving review on GitHub is what the ruleset counts. An approval goes stale when new commits are pushed; re-approve after reading the new commits.
 - **Agent-written PRs.** An agent's PR is reviewed by a human or by a different, independent agent that did not write or plan it. When agents work under one account and cannot approve on GitHub, the reviewing agent posts its review as a PR review comment ("no blocking findings" plus what it checked), and an Owner merges with the ruleset bypass. The bypass is only for that case and for urgent owner merges; it never skips the three conditions in section 1.
-- **Smaller-model PRs.** A PR whose `Assisted-by:` line names a small or fast model (today: Gemini 4 Neon) needs its non-author review from a human or a large model (today: Claude Opus). Another small-model review is not enough.
+- **Smaller-model PRs.** A PR whose `Assisted-by:` line names a small or fast model (today: Gemini 4 Neon) needs its non-author review from a human or from Claude Opus. Another small-model review is not enough.
 - **Do not nitpick** the `Assisted-by:` line's wording.
 - Each side records its verdict (merge / blocking finding) on the PR, so whoever merges can see it.
 
 ## 5. How to merge
 
-- **Merge commit only** (`gh pr merge --merge`). Squash and rebase merges are disabled on `main`: they rewrite other people's commits and lose the commit the hardware row tested.
+- **Merge commit only** (`gh pr merge --merge`; Owners merging with the bypass add `--admin`). Squash and rebase merges are disabled on `main`: they rewrite other people's commits and lose the commit the hardware row tested.
 - The merged branch is deleted. Retarget any PR stacked on it to `main` first.
 - Merge with GitHub's default subject; no extra merge comment.
 - A merged change that turns out to break something is reverted by PR (revert first, then diagnose) or fixed forward the same day.
