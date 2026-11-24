@@ -2,6 +2,8 @@
 
 > **Status: DRAFT. Not in force yet.** The [pre-PR checklist](../pre-pr-checklist.md) is in use today; where this draft and the checklist differ, the checklist wins.
 
+The merge gate in force is [`merge-policy.md`](merge-policy.md) (CI green, hardware row at the PR head, one non-author review); this page adds triage and routing. Where they differ, `merge-policy.md` wins.
+
 Kind: defaults, except lines marked **Hard rule**. See "Two kinds of rule" and the glossary in [`AGENTS.md`](../AGENTS.md). Reviewers also check every item of the [pre-PR checklist](../pre-pr-checklist.md).
 
 ## Triage
@@ -21,13 +23,14 @@ All must hold.
 2. **Authorship and attribution (Hard rule).** Third-party commits are unchanged, commits carry human identity only, reporters and testers are credited ([`commits-and-performance.md`](commits-and-performance.md), [`pr-structure.md`](pr-structure.md)).
 3. **Proper fix.** No workaround, no disabled check, no gate without a hardware reason ([`commits-and-performance.md`](commits-and-performance.md)). A stated deviation from a default is reviewed on its reason.
 4. **CI green where it applies.** The `aurora-silicon/mesa` fork does not gate on GitHub CI; there, hardware proof is the gate.
-5. **Tested on the Mac(s) it touches**, where testable, with a regression run (the fleet regression suite or the repo's own tests) showing no regression: 0 AVC (SELinux denials), 0 failed units, 0 new kernel errors. Performance claims meet [`mesa-performance-claims.md`](mesa-performance-claims.md).
+5. **Tested on the Mac(s) it touches, at the PR head** ([`merge-policy.md`](merge-policy.md) section 3), where testable, with a regression run (the fleet regression suite or the repo's own tests) showing no regression: 0 AVC (SELinux denials), 0 failed units, 0 new kernel errors. Performance claims meet [`mesa-performance-claims.md`](mesa-performance-claims.md).
 6. **Shared paths.** If the change touches a shared path, the PR states which other generations were verified unaffected.
+7. **One non-author review** with no blocking finding ([`merge-policy.md`](merge-policy.md) section 4).
 
 ## Routing
 
-- **Merge proven work yourself.** Do not wait on another maintainer, except for that maintainer's own areas or boards and for changes to user-facing defaults.
-- **Kernel PRs** are batched into one fleet candidate, not booted one PR at a time. Route them to the kernel/fleet maintainer.
+- **Merge proven work yourself, the same hour it meets the gate.** Do not wait on another maintainer, except for that maintainer's own areas or boards and for changes to user-facing defaults ([`merge-policy.md`](merge-policy.md) section 6).
+- **Kernel PRs** target `main`. They may be proven in a batched fleet candidate that contains their head commits unchanged, instead of one boot per PR ([`merge-policy.md`](merge-policy.md) section 3).
 - **Hardware not in the lab:** merge on review plus DT and CI checks plus proof that supported boards are unaffected. Send the hardware confirmation to the machine's owner as a regression request.
 - **Website (Hard rule):** never merge or deploy without the designated owners. `main` is protected with code-owner review.
 
