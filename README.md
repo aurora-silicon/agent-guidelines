@@ -7,8 +7,10 @@ Policies for every Aurora Silicon repository, followed by human and agent contri
 | Document | Status |
 | --- | --- |
 | [`pre-pr-checklist.md`](pre-pr-checklist.md) | **IN USE** (since 2026-11-21). Aurora's review agents check exactly these items. Anyone may use it before opening a PR. |
+| [`policy/branching-and-releases.md`](policy/branching-and-releases.md), [`policy/governance-and-roles.md`](policy/governance-and-roles.md), [`policy/merge-policy.md`](policy/merge-policy.md), [`policy/hotfix.md`](policy/hotfix.md) | **IN USE** (since 2026-11-24). Enforced on `aurora-silicon/linux` by rulesets. |
+| [`docs/ONBOARDING-MAINTAINERS.md`](docs/ONBOARDING-MAINTAINERS.md) | Day-one guide for Maintainers. |
 | [`AGENTS.md`](AGENTS.md) | DRAFT |
-| [`policy/`](policy/) | DRAFT |
+| the rest of [`policy/`](policy/) | DRAFT |
 | [`templates/`](templates/) | DRAFT |
 
 Drafts are not in force yet. They are published so contributors can see where the rules are heading and comment. Open an issue or a PR against this repo to propose a change.
@@ -43,11 +45,16 @@ The aim is to keep everyone in sync, not to stop innovation.
 | `policy/tracing-guidelines.md` | hard | What a trace may contain; hardware safety. macOS-under-HV and self-trace procedures are not covered yet. |
 | `policy/commits-and-performance.md` | defaults + hard commit rules | Proper fixes; improvements on by default, selected by hardware; commit rules. |
 | `policy/pr-structure.md` | defaults + hard disclosure line | PR body, collapsible detail, agent disclosure, credit. |
-| `policy/pr-review.md` | defaults | Triage, merge gate, routing. |
+| `policy/branching-and-releases.md` | hard + defaults | **In use.** Single trunk `main`, branch prefixes, edge/nightly/stable channels, stable regression gate, upstream updates. |
+| `policy/governance-and-roles.md` | hard | **In use.** Owners, Core, Maintainers: what each may do, and how GitHub enforces it. |
+| `policy/merge-policy.md` | hard + defaults | **In use.** CI green + hardware row at head + one non-author review, then merge the same hour. |
+| `policy/hotfix.md` | hard | **In use.** When and how a stable release gets a hotfix; forward-port to `main`. |
+| `policy/pr-review.md` | defaults | Triage and routing. |
 | `policy/issue-structure.md` | defaults | Filing, diagnosing and writing up an issue. |
 | `policy/device-bringup-ladder.md` | defaults | Order and exit criteria for bringing up a new Mac. |
 | `policy/mesa-performance-claims.md` | defaults | Evidence for GPU performance claims. |
-| `templates/` | defaults | PR, bug and bring-up skeletons. |
+| `templates/` | defaults | PR, bug and bring-up skeletons. The org-wide copies live in [`aurora-silicon/.github`](https://github.com/aurora-silicon/.github). |
+| `docs/ONBOARDING-MAINTAINERS.md` | guide | Day one for Maintainers. |
 
 ## Decided
 
@@ -58,12 +65,16 @@ The aim is to keep everyone in sync, not to stop innovation.
 - **Naming (2026-11-21):** the Vulkan driver is Borealis (`libvulkan_borealis.so`, prefix `brl_`, [aurora-silicon/mesa#591](https://github.com/aurora-silicon/mesa/issues/591)). Asahi and m1n1 names are being retired in favour of Aurora names and paths.
 - **Where the set lives (2026-11-21):** a central `aurora-silicon/agent-guidelines` repo (this one), with the checklist and hard rules inlined into each repo.
 
+- **Single trunk and releases (2026-11-24):** `aurora-silicon/linux` has one long-lived branch, `main` (renamed from `integration/aurora`). Releases: `aurora-edge` (every push), `aurora-nightly` (daily), stable `v*` tags cut from a nightly that passed the regression gate on all seven lab Macs, never held for unfinished work. Hotfixes only for boot failure, data loss, security or hardware risk. See [`policy/branching-and-releases.md`](policy/branching-and-releases.md).
+- **Merge policy (2026-11-24):** merge as soon as CI is green, a hardware row ran at the PR head, and one non-author review found nothing blocking. See [`policy/merge-policy.md`](policy/merge-policy.md).
+- **Roles (2026-11-24):** Owners (Ryan, Dj), Core, Maintainers (Omarchy Mac maintainers, GitHub `maintain`). See [`policy/governance-and-roles.md`](policy/governance-and-roles.md).
+
 ## Open questions
 
 1. The `aura` source file has two variants: a short one, and a longer one that adds testing and collaboration items (end-to-end first, isolate agents, delete low-signal unit tests). Which is authoritative? The draft folds the testing items in as defaults.
 2. **Licensing:** licensing is stated as GPL-2.0-only for all Aurora contributions. Is that right for repos whose base licence differs (mesa is MIT, u-boot is GPL-2.0-or-later)?
 3. **Kernel upstreaming:** "the upstream Linux kernel is fine" and "no `Assisted-by` in any commit": which wins when the kernel's own rules ask for an AI-disclosure tag on a submitted patch? If upstream wants a tag, the commit rule needs a kernel-upstream exception.
-4. **Undefined terms:** speaker protection and force pushes are hard rules but have one line each. Do they need detail (what counts as weakening protection; which branches are "shared")?
+4. **Undefined terms:** speaker protection is a hard rule with one line. Does it need detail (what counts as weakening protection)? ("Shared branches" is now defined in [`policy/branching-and-releases.md`](policy/branching-and-releases.md).)
 5. **Dead-man:** the example is macOS-side (`shutdown -r +N`, `caffeinate`, `pmset`). What is the required dead-man for a Linux or bare aura test boot?
 6. **Firmware pin:** the firmware pin (macOS 27.2) has no linked decision document.
 7. **Safety's home:** hardware safety lives in `policy/tracing-guidelines.md`, which is an odd place for it. Should it move to its own page?
