@@ -1,6 +1,6 @@
 # Issue Structure and Diagnosis
 
-> **Status: IN USE** (since 2026-11-25). One structure for every issue in every Aurora Silicon repository. The forms live in [`aurora-silicon/.github`](https://github.com/aurora-silicon/.github/tree/main/.github/ISSUE_TEMPLATE) and GitHub serves them to every repository without forms of its own; their required fields are enforced by GitHub.
+> **Status: IN FORCE** (since 2026-11-24). One structure for every issue in every Aurora Silicon repository. The forms live in [`aurora-silicon/.github`](https://github.com/aurora-silicon/.github/tree/main/.github/ISSUE_TEMPLATE) and GitHub serves them to every repository without forms of its own; their required fields are enforced by GitHub.
 
 Kind: the forms and the privacy rules are **hard rules**; the diagnosis guidance is a default. Hardware safety and tainted-data handling are linked where they apply. See "Two kinds of rule" and the glossary in [`AGENTS.md`](../AGENTS.md).
 

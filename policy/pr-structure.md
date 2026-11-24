@@ -1,6 +1,6 @@
 # PR Structure
 
-> **Status: IN USE** (since 2026-11-25). Every PR in every Aurora Silicon repository, from anyone (people and every team's agents). Template: [`aurora-silicon/.github`](https://github.com/aurora-silicon/.github/blob/main/.github/PULL_REQUEST_TEMPLATE.md), served to every repository.
+> **Status: IN FORCE** (since 2026-11-25). Every PR in every Aurora Silicon repository, from anyone (people and every team's agents). Template: [`aurora-silicon/.github`](https://github.com/aurora-silicon/.github/blob/main/.github/PULL_REQUEST_TEMPLATE.md), served to every repository.
 
 A person reads the visible part in under a minute. Everything an agent or a deep reviewer needs goes in the folded blocks below it.
 
@@ -17,7 +17,7 @@ A person reads the visible part in under a minute. Everything an agent or a deep
 ## Rules
 
 1. **Tested** names the Macs, the head commit and the result, so a reader (and the readiness bot) can see the row is current: `J413 M2 Air at 3f2a9c1: boots, 0 failed units`. Docs, comments or CI only: `no runtime change`. **Hard rule:** CI checks the line is there; the readiness bot checks it has the head SHA, a Mac and a result (else `needs-hw-row`).
-2. **Risk** gives the door and the Macs. **Two-way**: a plain revert undoes it. **One-way**: a revert does not (on-disk or firmware state, UAPI or DT binding, a default users see, a release, a migration). Macs: `M1`…`M5`, `Neo`, boards or chips, `all Macs`, or `none`. **Hard rule, checked in CI.**
+2. **Risk** gives the door and the Macs. **Two-way**: a plain revert undoes it. **One-way**: a revert does not (on-disk or firmware state, UAPI or DT binding, a default users see, a release, a migration). Macs: `M1`…`M5`, `Neo`, boards or chips, `all Macs`, or `none`. Shared code: Tested also names the Macs you checked are unaffected. **Hard rule, checked in CI.**
 3. **No AI attribution** in titles, bodies, comments or reviews: no `Assisted-by:`, no `Generated with` footer, no model signatures or session links. Commits carry the human author and `Signed-off-by` only. **Hard rule, checked in CI** (title, body, the author's own commits).
 4. The problem, the change and any regression are never hidden in a folded block.
 5. Public text is about the code and the evidence: no internal chat, schedules or holds, no serial numbers, nothing derived from Apple binaries, firmware or tuning values ([`ip-and-tainted-data.md`](ip-and-tainted-data.md)).

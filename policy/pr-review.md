@@ -1,6 +1,6 @@
 # PR Review Format
 
-> **Status: IN USE** (since 2026-11-25). Every review in every Aurora Silicon repository, from anyone. When a PR may merge: [`merge-policy.md`](merge-policy.md). Template: [`templates/REVIEW_TEMPLATE.md`](../templates/REVIEW_TEMPLATE.md).
+> **Status: IN FORCE** (since 2026-11-25). Every review in every Aurora Silicon repository, from anyone. When a PR may merge: [`merge-policy.md`](merge-policy.md). Template: [`templates/REVIEW_TEMPLATE.md`](../templates/REVIEW_TEMPLATE.md).
 
 Verdict first, short, the rest folded. Whoever merges next should know from the first three lines what was decided, at which commit, and what blocks it.
 
