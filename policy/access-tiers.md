@@ -19,7 +19,7 @@ Everyone, in every team, is bound by the same rules: the [merge policy](merge-po
 | Repository class | Core | Omarchy Mac | Aurora Dev |
 | --- | --- | --- | --- |
 | **Omarchy product repos**: linux, mesa, aura, m1n1, u-boot, aurora-installer, aurora-platform, alarm-aurora, omarchy-aurora, speakerguardd, alsa-ucm-conf-asahi, asahi-audio, gpubench, agent-guidelines | admin | **maintain** (review + merge) | write |
-| **Other public product repos**: aurora-distributions, fedora-aurora, nixos-aurora, aurora-diag, aurora-sep-userspace, camera-denoise, kbd-light, upower, xserver, pipewire, FFmpeg, libva-v4l2_request, fex, macvdmtool, tuxvdmtool, aurora-bless, mil-hwx-compiler, splash, aurora-steam-native, aurora-lily, aurora-xart, aurora-neo-platform-config, avd-fw, capture-ns, .github, aurora-silicon.github.io | admin | (public read; PRs from a fork are welcome) | write |
+| **Other public product repos**: aurora-distributions, fedora-aurora, nixos-aurora, aurora-diag, aurora-sep-userspace, camera-denoise, kbd-light, upower, xserver, pipewire, FFmpeg, libva-v4l2_request, fex, macvdmtool, tuxvdmtool, aurora-bless, mil-hwx-compiler, vane, splash, aurora-steam-native, aurora-lily, aurora-xart, aurora-neo-platform-config, avd-fw, capture-ns, .github, aurora-silicon.github.io | admin | (public read; PRs from a fork are welcome) | write |
 | **Other public repos** (archives, mirrors, stale forks) | admin where an Owner grants it | public read | public read |
 | **Private repos** (tainted or internal) | per repo, decided by an Owner | **never** | none by default; an Owner grants per repo |
 
