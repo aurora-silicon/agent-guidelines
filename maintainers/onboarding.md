@@ -1,6 +1,6 @@
 # Welcome, Maintainers
 
-You're maintainers here. You review and merge pull requests on the repositories Omarchy ships and consumes: linux, mesa, aura, m1n1, u-boot, aurora-installer, aurora-platform, alarm-aurora, omarchy-aurora, speakerguardd, alsa-ucm-conf-asahi, asahi-audio and gpubench ([access tiers](../policy/access-tiers.md)). Your approval counts fully, and once a PR meets the merge policy you press the button. You don't need to ask anyone first.
+You're maintainers here (Omarchy Mac or Aurora Maintainers; both teams hold the same rights). You review and merge pull requests on the repositories Omarchy ships and consumes: linux, mesa, aura, m1n1, u-boot, aurora-installer, aurora-platform, alarm-aurora, omarchy-aurora, speakerguardd, alsa-ucm-conf-asahi, asahi-audio and gpubench ([access tiers](../policy/access-tiers.md)). Your approval counts fully, and once a PR meets the merge policy you press the button. You don't need to ask anyone first.
 
 This page is day one. The full rules are in this repo; where this page is short, they win.
 
@@ -29,7 +29,7 @@ A PR merges as soon as it has:
 
 1. green CI (mesa has no CI gate; there the hardware row is the gate),
 2. a **hardware row at the PR head**: the change ran on the Mac it targets (plus one other Mac with the same block for shared code), with the result written in the PR; or "no runtime change" for docs and CI-only changes,
-3. **one approving review** from a Core or Omarchy Mac member other than the author, with no blocking finding.
+3. **one approving review** from a Core, Omarchy Mac or Aurora Maintainers member other than the author, with no blocking finding.
 
 Merge it that same hour. Nits become follow-up PRs. On linux use a merge commit (squash and rebase are disabled). You may merge your own PR once someone else approved it.
 
@@ -59,7 +59,7 @@ Bug reports from your users: an issue in the repo concerned, one issue per Mac, 
 
 ## Reviewer rotation
 
-PRs request Core and Omarchy Mac reviews automatically (CODEOWNERS). Each day one Core and one Omarchy Mac member are first responders: sweep the open PRs in your repos, review what's ready, merge what meets the gate, and say FINISH / HOLD / CLOSE on the rest ([handbook, section 8](../policy/review-and-merge-handbook.md#8-triage-outcomes)). Agree the order in the maintainers' Discord channel; if you can't take a day, swap it there. GPU changes (`drivers/gpu/drm/asahi`, Mesa `src/asahi`): ask the GPU code owner (CODEOWNERS) for a review when the change is non-trivial.
+PRs request Core, Omarchy Mac and Aurora Maintainers reviews automatically (CODEOWNERS). Each day one Core member and one Omarchy Mac or Aurora Maintainers member are first responders: sweep the open PRs in your repos, review what's ready, merge what meets the gate, and say FINISH / HOLD / CLOSE on the rest ([handbook, section 8](../policy/review-and-merge-handbook.md#8-triage-outcomes)). Agree the order in the maintainers' Discord channel; if you can't take a day, swap it there. GPU changes (`drivers/gpu/drm/asahi`, Mesa `src/asahi`): ask the GPU code owner (CODEOWNERS) for a review when the change is non-trivial.
 
 ## Starter queue
 

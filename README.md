@@ -31,7 +31,7 @@ The aim is to keep everyone in sync, not to stop innovation.
 
 1. The rules live here, in `aurora-silicon/agent-guidelines`: [`AGENTS.md`](AGENTS.md) (the rulebook) and `policy/`.
 2. Every product repo has a root `AGENTS.md` and `CLAUDE.md` whose first lines say: follow `https://github.com/aurora-silicon/agent-guidelines/blob/main/AGENTS.md`, then the repo's own notes. Repos with the `aurora-agent-policy` workflow (aura, mesa, m1n1 and others) carry the same pointer in their source file, `.github/aurora/AGENTS.md`, and the workflow keeps the copies (`AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`) identical.
-3. Every product repo has `.github/CODEOWNERS` routing reviews to Core and Omarchy Mac ([`policy/access-tiers.md`](policy/access-tiers.md)).
+3. Every product repo has `.github/CODEOWNERS` routing reviews to Core, Omarchy Mac and Aurora Maintainers ([`policy/access-tiers.md`](policy/access-tiers.md)).
 4. Org-wide `CONTRIBUTING.md`, `SECURITY.md`, PR and issue templates live in [`aurora-silicon/.github`](https://github.com/aurora-silicon/.github) and apply to every repo that has none of its own; their source is `templates/` here.
 5. [`tools/gh-access-apply.sh`](tools/gh-access-apply.sh) applies team roles and rulesets; Owners run it (dry run by default).
 
@@ -50,7 +50,7 @@ The aim is to keep everyone in sync, not to stop innovation.
 | `policy/merge-policy.md` | hard + defaults | **In force.** CI green + hardware row at head + one non-author review, then merge the same hour. |
 | `policy/hotfix.md` | hard | **In force.** When and how a stable release gets a hotfix; forward-port to `main`. |
 | `policy/access-tiers.md` | hard | **In force.** Team roles per repository class; the rulesets every public product repo carries. |
-| `policy/review-and-merge-handbook.md` | defaults + hard gate | **In force.** How Core and Omarchy Mac review and merge: hardware rows, regression requests, review format, special cases, rotation. Replaces `policy/pr-review.md`. |
+| `policy/review-and-merge-handbook.md` | defaults + hard gate | **In force.** How Core, Omarchy Mac and Aurora Maintainers review and merge: hardware rows, regression requests, review format, special cases, rotation. Replaces `policy/pr-review.md`. |
 | `policy/issue-structure.md` | defaults | Filing, diagnosing and writing up an issue. |
 | `policy/device-bringup-ladder.md` | defaults | Order and exit criteria for bringing up a new Mac. |
 | `policy/mesa-performance-claims.md` | defaults | Evidence for GPU performance claims. |
@@ -74,7 +74,7 @@ The aim is to keep everyone in sync, not to stop innovation.
 
 - **Single trunk and releases (2026-11-24):** `aurora-silicon/linux` has one long-lived branch, `main` (renamed from `integration/aurora`). Releases: `aurora-edge` (every push), `aurora-nightly` (daily), stable `v*` tags cut from a nightly that passed the regression gate on the [gate Macs](policy/branching-and-releases.md#gate-macs), never held for unfinished work. Hotfixes only for boot failure, data loss, security or hardware risk. See [`policy/branching-and-releases.md`](policy/branching-and-releases.md).
 - **Merge policy (2026-11-24):** merge as soon as CI is green, a hardware row ran at the PR head, and one non-author review found nothing blocking. See [`policy/merge-policy.md`](policy/merge-policy.md).
-- **Roles (2026-11-24):** Owners (Ryan, Dj). Core and Omarchy Mac review and merge; Aurora Dev develop on branches and do not merge into default branches. Enforced per repo by rulesets. See [`policy/governance-and-roles.md`](policy/governance-and-roles.md) and [`policy/access-tiers.md`](policy/access-tiers.md).
+- **Roles (2026-11-24):** Owners (Ryan, Dj). Core, Omarchy Mac and Aurora Maintainers review and merge; Aurora Dev develop on branches and do not merge into default branches. Enforced per repo by rulesets. See [`policy/governance-and-roles.md`](policy/governance-and-roles.md) and [`policy/access-tiers.md`](policy/access-tiers.md).
 - **One rulebook (2026-11-24):** every agent, whoever runs it, loads [`AGENTS.md`](AGENTS.md) here; repos point to it. Owner-level policy changes need a human Owner's sign-off.
 - **Maintainers (2026-11-24):** maintenance before development, response times, one review round with shown blockers in plain words; a row survives commits that change nothing built; authors may fix their own PR's commit metadata. See [`maintainers/`](maintainers/README.md).
 - **Gate Macs and RC cross-check (2026-11-24):** stable releases pass a release-candidate cross-check on the [gate Macs](policy/branching-and-releases.md#gate-macs), run by every team through regression requests.

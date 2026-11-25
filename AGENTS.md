@@ -1,6 +1,6 @@
 # Aurora Silicon: the Rulebook for Agents and Contributors
 
-> **Status: IN USE** (since 2026-11-24, Ryan's ruling "one rulebook for all agents"; co-Owner sign-off requested in the PR that made it so). Every agent working on Aurora Silicon loads this file, whoever runs it: the Owners' agents, Core's, the Omarchy Mac team's, Aurora Dev's, anyone's. Humans follow the same rules. Where a linked policy goes into more detail, the policy wins.
+> **Status: IN USE** (since 2026-11-24, Ryan's ruling "one rulebook for all agents"; co-Owner sign-off requested in the PR that made it so). Every agent working on Aurora Silicon loads this file, whoever runs it: the Owners' agents, Core's, the Omarchy Mac and Aurora Maintainers teams', Aurora Dev's, anyone's. Humans follow the same rules. Where a linked policy goes into more detail, the policy wins.
 
 Every repository in the organisation carries a root `AGENTS.md` and `CLAUDE.md` that point here, followed by that repo's own notes. Codex, Gemini, Antigravity and similar tools read `AGENTS.md`; Claude reads `CLAUDE.md`. Repos that carry the `aurora-agent-policy` workflow (aura and others) keep their source in `.github/aurora/AGENTS.md`, which also points here.
 
@@ -31,7 +31,7 @@ No tool or model is mandated. The rules apply to the output.
 9. **Never upstream to anti-AI projects:** Asahi Linux, NT-for-ASi, upstream Mesa, FEX, or similar. The upstream Linux kernel is fine.
 10. **One trunk, no force pushes.** Work lands on the default branch (`main`) by pull request only, from `feat/`, `fix/` or `wip/` branches; `archive/`, `hotfix/` and `rebase/` have their own rules. Never force-push a shared branch (an author fixing their own PR's commit metadata is the one exception). Detail: [`policy/branching-and-releases.md`](policy/branching-and-releases.md).
 11. **Merge gate.** A PR merges when CI is green, a hardware row ran at its head, and someone other than the author reviewed it with no blocking finding; then within the hour. A PR written mainly by a smaller, faster model gets its review from a human or a stronger model; the author's team routes that request internally, never through attribution in the PR. Agent reviews never replace a human Owner's sign-off on Owner-level policy. Detail: [`policy/merge-policy.md`](policy/merge-policy.md), [handbook](policy/review-and-merge-handbook.md).
-12. **Roles.** Core and Omarchy Mac review and merge; Aurora Dev develop and do not merge into default branches; only Owners cut releases, move release tags or change settings and access. Detail: [`policy/governance-and-roles.md`](policy/governance-and-roles.md), [`policy/access-tiers.md`](policy/access-tiers.md).
+12. **Roles.** Core, Omarchy Mac and Aurora Maintainers review and merge; Aurora Dev develop and do not merge into default branches; only Owners cut releases, move release tags or change settings and access. Detail: [`policy/governance-and-roles.md`](policy/governance-and-roles.md), [`policy/access-tiers.md`](policy/access-tiers.md).
 13. **Shared hardware: take a turn, give it back as you found it.** Take the machine's lock (or the owner's agreement) before you use a shared Mac; one user at a time. Before you release it, restore its saved default (default kernel and boot entry, no pending one-shot boot, SELinux enforcing, 0 failed units) and verify it. A Mac running a lab build goes back to the current edge build.
 14. **No device "what works" articles.** Device support status goes only into the website's support data, with evidence, never into hand-written per-device support or install articles.
 15. **Naming.** Our Vulkan driver is **Borealis**; never call our work Honeykrisp or "hk" in prose. New paths and names of our own use Aurora, not Asahi or m1n1 (for example `/Aurora/` on the ESP). Names fixed by upstream code or an interface stay. Detail: [pre-PR checklist: naming](pre-pr-checklist.md#naming-hard).
@@ -54,7 +54,7 @@ Follow these unless you have a better reason, and say so when you deviate.
 
 ## Agents: how to join
 
-For agents run by any team (Dj's, the Omarchy Mac team's, anyone's):
+For agents run by any team (Dj's, the Omarchy Mac or Aurora Maintainers team's, anyone's):
 
 1. **Load this file.** Every repo's `AGENTS.md`/`CLAUDE.md` points here; read it in full, then the [pre-PR checklist](pre-pr-checklist.md).
 2. **Connect to the Aurora Agents channel** (the coordination service the teams' agents share; ask an Owner for access and a token for your agent). Introduce your agent: who runs it, which Macs it can test on.
@@ -69,7 +69,7 @@ For agents run by any team (Dj's, the Omarchy Mac team's, anyone's):
 | --- | --- |
 | Checks before opening a PR | [`pre-pr-checklist.md`](pre-pr-checklist.md) |
 | Maintaining: priorities, response times, no ping-pong | [`maintainers/`](maintainers/README.md) |
-| Reviewing and merging (for Core and Omarchy Mac) | [`policy/review-and-merge-handbook.md`](policy/review-and-merge-handbook.md) |
+| Reviewing and merging (for Core, Omarchy Mac and Aurora Maintainers) | [`policy/review-and-merge-handbook.md`](policy/review-and-merge-handbook.md) |
 | Merge gate | [`policy/merge-policy.md`](policy/merge-policy.md) |
 | Branches, release channels, stable gate, upstream updates | [`policy/branching-and-releases.md`](policy/branching-and-releases.md) |
 | Roles and permissions | [`policy/governance-and-roles.md`](policy/governance-and-roles.md) |
@@ -98,7 +98,7 @@ For agents run by any team (Dj's, the Omarchy Mac team's, anyone's):
 - **Fleet kernel**: the single kernel build the test Macs run, built from the merged tip of `main` (the `aurora-edge` channel). Kernel PRs may also be batched into a numbered fleet candidate and tested together; a row on a candidate counts for a PR whose head commits it contains unchanged.
 - **Hardware row**: one test run on one Mac, built from a PR's head, with its result recorded in the PR. See [`policy/merge-policy.md`](policy/merge-policy.md).
 - **Regression request**: a structured request for hardware rows on the Aurora Agents channel (repository, exact ref, platforms, instructions, pass criteria, baseline, constraints), claimed and answered by any team's agent.
-- **Owner / Core / Omarchy Mac / Aurora Dev**: the roles in [`policy/governance-and-roles.md`](policy/governance-and-roles.md).
+- **Owner / Core / Omarchy Mac / Aurora Maintainers / Aurora Dev**: the roles in [`policy/governance-and-roles.md`](policy/governance-and-roles.md).
 - **main / aurora-edge / aurora-nightly / v\***: the trunk and the three release channels. See [`policy/branching-and-releases.md`](policy/branching-and-releases.md).
 - **A/B run**: the same test on the same machine, arm A (baseline) against arm B (your change). One machine's result is one row of the A/B table.
 - **Machine names**: T-codes name the chip (`T6040` = M4 Pro), J-codes name the board (`J616s`), G-codes name the GPU generation (`G13`, `G14`, `G17P`). One GPU generation can span chips: G17P is in both M4 Pro and A18 Pro. "Neo" is J700, the A18 Pro Mac.

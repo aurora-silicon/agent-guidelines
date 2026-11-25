@@ -1,12 +1,12 @@
 # PR Review and Merging Handbook
 
-> **Status: IN USE** (since 2026-11-24). For **Core** and **Omarchy Mac** members, the people who review and merge. The rule itself is [`merge-policy.md`](merge-policy.md); this page is how to apply it. Where they differ, `merge-policy.md` wins.
+> **Status: IN USE** (since 2026-11-24). For **Core**, **Omarchy Mac** and **Aurora Maintainers** members, the people who review and merge. The rule itself is [`merge-policy.md`](merge-policy.md); this page is how to apply it. Where they differ, `merge-policy.md` wins.
 
 You can merge. This page is here so you can do it confidently and quickly, without asking anyone first.
 
 ## 1. What you can do
 
-On the repos where you hold maintain (Omarchy Mac) or admin (Core), see [`access-tiers.md`](access-tiers.md):
+On the repos where you hold maintain (Omarchy Mac, Aurora Maintainers) or admin (Core), see [`access-tiers.md`](access-tiers.md):
 
 - **review, approve and merge** any PR that meets the merge policy, including Owners', Core's, Aurora Dev's and agents' PRs. Your approval counts fully;
 - **triage**: label, assign, request reviewers, close duplicates and superseded PRs, ask for changes;
@@ -22,7 +22,7 @@ A PR merges as soon as **all three** hold ([`merge-policy.md`](merge-policy.md),
 
 1. **CI green** on the head commit.
 2. **A hardware row at the head**, or "no runtime change" for docs, comments and CI-only changes.
-3. **One approving review** from a Core or Omarchy Mac member who is not the author, with no blocking finding.
+3. **One approving review** from a Core, Omarchy Mac or Aurora Maintainers member who is not the author, with no blocking finding.
 
 Then merge **within the hour**. Nits never hold a merge; they become follow-up PRs.
 
@@ -65,8 +65,8 @@ One format for every review: [`pr-review.md`](pr-review.md) (verdict at the head
 
 | PR | What changes |
 | --- | --- |
-| **Aurora Dev PR** | Normal gate. Aurora Dev cannot merge; once it meets the gate, a Core or Omarchy Mac member merges it. Don't leave a ready Aurora Dev PR waiting: merging it is the point of your role. |
-| **Your own PR** | You may merge it yourself once someone else (Core or Omarchy Mac) approved it and the gate holds. GitHub never lets you approve your own PR. |
+| **Aurora Dev PR** | Normal gate. Aurora Dev cannot merge; once it meets the gate, a Core, Omarchy Mac or Aurora Maintainers member merges it. Don't leave a ready Aurora Dev PR waiting: merging it is the point of your role. |
+| **Your own PR** | You may merge it yourself once someone else (Core, Omarchy Mac or Aurora Maintainers) approved it and the gate holds. GitHub never lets you approve your own PR. |
 | **Agent-written PR** | Reviewed by a human or by an independent agent that did not write or plan it. When the agent and the author share one account, the reviewing agent posts its verdict as a PR review comment and an Owner or Core member merges through the PR bypass (`gh pr merge --merge --admin`); the bypass never skips the gate. |
 | **Smaller-model PR** (the author's team says it was written mainly by a smaller, faster model; teams route this in their own review queue) | Its non-author review comes from a human or from a stronger model. Another small-model review is not enough. |
 | **Someone else's area or board, or a user-visible default** (default config, boot behaviour, release workflows) | Ask the area's owner to review; if they do not answer within a day, an Owner decides. |
@@ -81,8 +81,8 @@ Every open PR gets one verdict on the PR: **MERGE**, **FINISH, then merge**, **H
 
 ## 9. Reviewer rotation
 
-Code owners are requested automatically (`.github/CODEOWNERS` in each repo routes PRs to Core and Omarchy Mac). To keep the queue moving:
+Code owners are requested automatically (`.github/CODEOWNERS` in each repo routes PRs to Core, Omarchy Mac and Aurora Maintainers). To keep the queue moving:
 
-- Each day one Core and one Omarchy Mac member are **first responders**: they sweep open PRs in their repos, review what is ready and merge what meets the gate. The rotation is kept in the [maintainer onboarding page](../maintainers/onboarding.md#reviewer-rotation).
+- Each day one Core member and one Omarchy Mac or Aurora Maintainers member are **first responders**: they sweep open PRs in their repos, review what is ready and merge what meets the gate. The rotation is kept in the [maintainer onboarding page](../maintainers/onboarding.md#reviewer-rotation).
 - A review request should be answered within hours, and never later than the [response times](../maintainers/README.md#response-times). If you cannot, say so on the PR so someone else picks it up.
 - GPU (`drivers/gpu/drm/asahi`, Mesa `src/asahi`): ask the GPU code owner (CODEOWNERS) for a review when the change is non-trivial.

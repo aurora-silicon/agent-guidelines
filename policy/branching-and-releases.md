@@ -20,7 +20,7 @@ Kind: hard rules where marked, otherwise defaults. Roles are defined in [`govern
 | `fix/<topic>` | a fix, opened as a PR into `main` | anyone with write access | until merged, then deleted |
 | `wip/<topic>` | parked work with no PR yet; never merged from directly | anyone with write access | open a `feat/`/`fix/` PR when ready; idle more than 7 days: an Owner moves it to `archive/` |
 | `archive/<name>` | old branches kept for their history | Owners only (ruleset) | permanent, read-only |
-| `rebase/v<version>` | the one branch for an upstream version upgrade (see 2.2) | Owners or Core, or an Omarchy Mac maintainer they ask | until merged, then deleted |
+| `rebase/v<version>` | the one branch for an upstream version upgrade (see 2.2) | Owners or Core, or an Omarchy Mac or Aurora Maintainers member they ask | until merged, then deleted |
 | `hotfix/v<X.Y.Z>` | a stable hotfix (see [`hotfix.md`](hotfix.md)) | Owners only (ruleset) | until the forward-port merges, then deleted |
 
 - Work from a fork is welcome and follows the same rules; the PR targets `main`.

@@ -12,17 +12,18 @@ Aurora Silicon is the only home of this work. Collaborating projects and distrib
 | --- | --- | --- |
 | **Owner** | Ryan Murray (`@RyanTheTide`) and Dj (`@DjDeveloperr`) | organisation owners |
 | **Core** | the `core` team | admin on product repos |
-| **Omarchy Mac maintainer** | the `omarchy-m` team | maintain on the repos Omarchy ships or consumes |
+| **Omarchy Mac maintainer** | the `omarchy-mac` team | maintain on the repos Omarchy ships or consumes |
+| **Aurora Maintainer** | the `aurora-maintainers` team | maintain on the same repos as Omarchy Mac, with the same rights |
 | **Aurora Dev** | the `aurora-dev` team | write on product repos |
 | **Contributor** | anyone else | read; works from a fork |
 
-**Reviewers and mergers** are Core and Omarchy Mac maintainers. **Developers** are Aurora Dev. Owners are the final decision-makers for policy, releases, repository settings and disputes.
+**Reviewers and mergers** are Core, Omarchy Mac maintainers and Aurora Maintainers. **Developers** are Aurora Dev. Owners are the final decision-makers for policy, releases, repository settings and disputes.
 
 ## 2. What each role does
 
 Everyone follows [`AGENTS.md`](../AGENTS.md), the [pre-PR checklist](../pre-pr-checklist.md) and the [merge policy](merge-policy.md), humans and agents alike.
 
-**Omarchy Mac maintainers and Core** review and merge. On their repos they:
+**Omarchy Mac maintainers, Aurora Maintainers and Core** review and merge. On their repos they:
 
 - review, **approve and merge** PRs that meet the merge policy, from anyone (Owners', Core's, Aurora Dev's, agents'); their approval is the one the rulesets count;
 - triage issues and PRs: labels, milestones, assignees, requesting reviews, closing duplicates and superseded PRs;
@@ -36,9 +37,9 @@ Core also runs the stable regression gate and may merge through the ruleset bypa
 **Aurora Dev** develop fast. They:
 
 - push `feat/`, `fix/` and `wip/` branches and open PRs; CI runs on them;
-- review and comment on any PR (their review is read and counts as a non-author check, but the approval that unlocks a merge comes from Core or Omarchy Mac);
+- review and comment on any PR (their review is read and counts as a non-author check, but the approval that unlocks a merge comes from Core, Omarchy Mac or Aurora Maintainers);
 - re-run CI and request lab rows;
-- **do not merge** into default branches (enforced). Once their PR meets the gate, a Core or Omarchy Mac member merges it. Graduating to merge rights: see [`access-tiers.md`](access-tiers.md), section 6.
+- **do not merge** into default branches (enforced). Once their PR meets the gate, a Core, Omarchy Mac or Aurora Maintainers member merges it. Graduating to merge rights: see [`access-tiers.md`](access-tiers.md), section 6.
 
 **Owners** may do everything, and alone: cut `v*` tags and hotfixes, create `archive/` and `hotfix/` branches, change settings, rulesets, secrets and access. Owners follow the merge policy too; their bypass exists to merge reviewed work quickly, not to skip review.
 
@@ -55,12 +56,12 @@ Core also runs the stable regression gate and may merge through the ruleset bypa
 
 GitHub's `maintain` and `write` roles are broader than policy in places. Rulesets close the gap where GitHub can enforce it; policy plus the audit log cover the rest. State on `aurora-silicon/linux` (other product repos: [`access-tiers.md`](access-tiers.md), section 3):
 
-| Action | `write` (Aurora Dev) | `maintain` (Omarchy Mac) | Policy | Enforced by |
+| Action | `write` (Aurora Dev) | `maintain` (Omarchy Mac, Aurora Maintainers) | Policy | Enforced by |
 | --- | --- | --- | --- | --- |
 | Push / force-push / delete `main` | no | no | no | `main: single trunk` (PR only, no force push, no deletion) |
-| Merge a PR into `main` | only once a Core or Omarchy Mac member approved it; by policy a merger presses the button | yes, once approved | Core and Omarchy Mac, when the gate holds | code-owner review (the approval must come from Core or Omarchy Mac); no bypass click needed |
+| Merge a PR into `main` | only once a Core, Omarchy Mac or Aurora Maintainers member approved it; by policy a merger presses the button | yes, once approved | Core, Omarchy Mac and Aurora Maintainers, when the gate holds | code-owner review (the approval must come from Core, Omarchy Mac or Aurora Maintainers); no bypass click needed |
 | Merge with no approval, or approved before the last push | no | no | no | 1 approval, last-push approval, stale approvals dismissed |
-| Approval that counts | no (advisory) | yes | Core or Omarchy Mac, not the author | code-owner review, `.github/CODEOWNERS` |
+| Approval that counts | no (advisory) | yes | Core, Omarchy Mac or Aurora Maintainers, not the author | code-owner review, `.github/CODEOWNERS` |
 | Approve own PR | no | no | no | GitHub |
 | Squash- or rebase-merge into `main` | no | no | no (preserves authorship) | merge commits only |
 | Change `.github/`, `aurora_defconfig`, `RELEASES.md`, `CONTRIBUTING.md` without an Owner's review | no | no | no | code-owner review |
@@ -76,7 +77,7 @@ GitHub's `maintain` and `write` roles are broader than policy in places. Ruleset
 | Delete or rename someone else's unprotected branch | **yes** | **yes** | no | policy + audit log |
 | Add tainted data | **yes** | **yes** | never | policy; reviewers check the whole diff |
 
-Bypass: the Owners and the Core team bypass the branch rulesets **only through a pull request**; even they cannot push straight to `main`. Omarchy Mac need no bypass: their approval satisfies code-owner review, and their merges go through the normal button. (A restrict-updates ruleset that made every merge a bypass click was tried and disabled on 2026-11-24.) Tag and owner-only branch rulesets are bypassed by Owners (and, for `aurora-*` tags only, by a deploy key in the admin-managed `release` environment). GitHub does not let a workflow token bypass a repository ruleset.
+Bypass: the Owners and the Core team bypass the branch rulesets **only through a pull request**; even they cannot push straight to `main`. Omarchy Mac and Aurora Maintainers need no bypass: their approval satisfies code-owner review, and their merges go through the normal button. (A restrict-updates ruleset that made every merge a bypass click was tried and disabled on 2026-11-24.) Tag and owner-only branch rulesets are bypassed by Owners (and, for `aurora-*` tags only, by a deploy key in the admin-managed `release` environment). GitHub does not let a workflow token bypass a repository ruleset.
 
 The rulesets are the source of truth for what is enforced; this table is updated whenever they change.
 

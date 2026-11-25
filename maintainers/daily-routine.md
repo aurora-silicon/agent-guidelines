@@ -1,6 +1,6 @@
 # Daily Routine: 15 minutes a day
 
-For everyone who reviews and merges: Core and Omarchy Mac. Start with the [maintainer guide](README.md) (priorities, response times, no ping-pong). Rules: [merge policy](../policy/merge-policy.md), [PR structure](../policy/pr-structure.md), [review format](../policy/pr-review.md). Same routine whoever you are and whoever wrote the PR.
+For everyone who reviews and merges: Core, Omarchy Mac and Aurora Maintainers. Start with the [maintainer guide](README.md) (priorities, response times, no ping-pong). Rules: [merge policy](../policy/merge-policy.md), [PR structure](../policy/pr-structure.md), [review format](../policy/pr-review.md). Same routine whoever you are and whoever wrote the PR.
 
 A bot keeps one comment and a set of labels on every open PR ([what each label means](https://github.com/aurora-silicon/.github/blob/main/docs/pr-readiness.md)). When CI, review, hardware row, change requests and conflicts all pass, the PR gets **`ready-to-merge`**.
 
@@ -32,7 +32,8 @@ A row counts when one line in the PR or a comment has **the head SHA, the Mac an
 
 - All repos, ready: https://github.com/pulls?q=is%3Aopen+is%3Apr+org%3Aaurora-silicon+label%3Aready-to-merge
 - All repos, needs review: https://github.com/pulls?q=is%3Aopen+is%3Apr+org%3Aaurora-silicon+label%3Aneeds-review+-is%3Adraft+sort%3Acreated-asc
-- Requested from Omarchy Mac: https://github.com/pulls?q=is%3Aopen+is%3Apr+org%3Aaurora-silicon+team-review-requested%3Aaurora-silicon%2Fomarchy-m
+- Requested from Omarchy Mac: https://github.com/pulls?q=is%3Aopen+is%3Apr+org%3Aaurora-silicon+team-review-requested%3Aaurora-silicon%2Fomarchy-mac
+- Requested from Aurora Maintainers: https://github.com/pulls?q=is%3Aopen+is%3Apr+org%3Aaurora-silicon+team-review-requested%3Aaurora-silicon%2Faurora-maintainers
 - Requested from Core: https://github.com/pulls?q=is%3Aopen+is%3Apr+org%3Aaurora-silicon+team-review-requested%3Aaurora-silicon%2Fcore
 - linux, M1–M3 platform, ready: https://github.com/aurora-silicon/linux/pulls?q=is%3Aopen+is%3Apr+label%3Aarea%3Aplatform+label%3Aready-to-merge
 - linux, M1–M3 platform, needs review: https://github.com/aurora-silicon/linux/pulls?q=is%3Aopen+is%3Apr+label%3Aarea%3Aplatform+label%3Aneeds-review+-is%3Adraft
@@ -43,7 +44,7 @@ Other repos: swap the repo name; other areas: swap the `area:` label (each repo'
 
 ## Who gets asked
 
-CODEOWNERS requests Core and Omarchy Mac on every PR (either team's approval counts) and adds specialists by area, e.g. a GPU code owner on the GPU driver. Both teams load-balance one reviewer per PR; the Owners are left out of the rotation. Omarchy Mac first for M1–M3 platform work and what Omarchy ships, Core for the rest. Picked and can't review within a few hours? Remove yourself so it is reassigned.
+CODEOWNERS requests Core, Omarchy Mac and Aurora Maintainers on every PR (any of these teams' approval counts) and adds specialists by area, e.g. a GPU code owner on the GPU driver. The teams load-balance one reviewer per PR; the Owners are left out of the rotation. Omarchy Mac or Aurora Maintainers first for M1–M3 platform work and what Omarchy ships, Core for the rest. Picked and can't review within a few hours? Remove yourself so it is reassigned.
 
 ## Set up once
 
