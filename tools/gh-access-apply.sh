@@ -10,7 +10,7 @@ LOG=${LOG:-./gh-access-apply-$(date +%Y%m%d-%H%M%S)-$MODE.log}
 CORE_ID=20734456; OMARCHY_ID=20734502
 
 # Tiers (verify a repo is live before adding it; see access-tiers.md)
-PRODUCT="linux mesa aura m1n1 u-boot aurora-installer aurora-platform aurora-distributions fedora-aurora alarm-aurora nixos-aurora omarchy-aurora speakerguardd alsa-ucm-conf-asahi asahi-audio gpubench agent-guidelines aurora-diag aurora-sep-userspace camera-denoise kbd-light upower xserver pipewire FFmpeg libva-v4l2_request fex macvdmtool tuxvdmtool aurora-bless mil-hwx-compiler splash aurora-steam-native aurora-lily aurora-xart aurora-neo-platform-config avd-fw capture-ns .github aurora-silicon.github.io"
+PRODUCT="linux mesa aura m1n1 u-boot aurora-installer aurora-platform aurora-distributions fedora-aurora alarm-aurora nixos-aurora omarchy-aurora speakerguardd alsa-ucm-conf-asahi asahi-audio gpubench agent-guidelines aurora-diag aurora-sep-userspace camera-denoise kbd-light upower xserver pipewire FFmpeg libva-v4l2_request fex macvdmtool tuxvdmtool aurora-bless mil-hwx-compiler vane splash aurora-steam-native aurora-lily aurora-xart aurora-neo-platform-config avd-fw capture-ns .github aurora-silicon.github.io"
 OMARCHY="linux mesa aura m1n1 u-boot aurora-installer alarm-aurora omarchy-aurora aurora-platform speakerguardd alsa-ucm-conf-asahi asahi-audio agent-guidelines gpubench"
 # Workflows push to the default branch with GITHUB_TOKEN (cannot bypass rulesets): no branch rulesets yet.
 NO_BRANCH_RULES="aurora-distributions fedora-aurora alarm-aurora .github"
