@@ -4,6 +4,21 @@
 
 Each item is a hard rule unless it says "default". If your change fails one, fix the change, or say in the PR why it can't be done yet and keep the PR a draft.
 
+## Before you request review
+
+- [ ] Search open PRs and recent branches for overlapping work. Coordinate with the owner and link companion PRs, their required merge order and any stacked base.
+- [ ] Build and test locally, then check that required CI is green at the current head and the PR integrates cleanly with its intended base. For DT changes run affected DTB builds and binding/schema checks. For bootloader changes check build and Stage 1 size limits as applicable.
+- [ ] Test the feature on the target Mac at the PR head with the production defaults. For kernel, DT, Mesa, aura and installer runtime changes, add boot and smoke rows on at least two affected Mac families. Exercise display, input, networking, a permitted audio sink and GPU rendering. Cover the shared block and state which families remain untested. For distro and installer transitions test the built package or payload on an existing install, including upgrade, preserved user choices, interrupted or failed transactions and recovery as applicable.
+- [ ] Coordinate compatible rows into one test boot per machine window. Use one owner for the window and publish a shared receipt each PR can cite. Identify the combined build and prove that it contains the PR's changed files byte-for-byte. If a later head changes built content, rerun the affected rows.
+- [ ] Fill in What, Tested, Risk and Not yet. Give the reason for the change and the revert procedure. Under Evidence paste each row's Mac family and board, PR SHA, booted kernel and Stage 2 hashes, exact command and result, and a short relevant dmesg excerpt. Give baseline numbers for performance claims and identify unrelated failures. Redact private identifiers. For docs or CI-only changes that leave the built artifact unchanged, write “no runtime change.”
+- [ ] Read the full diff as a reviewer would. Reproduce the original failure where possible, show the regression test fails before the fix, and check missing capabilities, unsupported inputs, old configurations and partial failures. Confirm the proposed revert and leave any missing evidence visible while the PR is a draft.
+
+## What reviewers will reject
+
+- Red or unfinished required checks, unresolved conflicts or blocking findings, stale or unverifiable rows, and missing feature or required regression coverage.
+- Crashes, hangs, boot fallback, data loss, security problems or measured regressions. Tests must exercise the claimed path. A fixture pass cannot prove hardware behaviour, and a fresh install cannot prove an upgrade works.
+- Model gates, guessed hardware values, lab-only fixes, required boot flags, unsafe fallbacks, public Apple material (including copied tuning values in fixtures), private identifiers, broken authorship or attribution rules. See the checks below.
+
 ## No model gating (hard)
 
 The change works on every Mac that has the hardware.
@@ -24,6 +39,7 @@ The change works on every Mac that has the hardware.
 ## Safety (hard)
 
 - **Safety values come from the machine, never from hardcoding.** Limits, caps, thresholds, timings and filters that protect hardware (speaker excursion and thermal limits, gain caps, high-pass corners, power and thermal limits, voltage and current ceilings) are read from what the Mac hands over: its ADT/DT, its own firmware or tuning bundle on the ESP, or control ranges the driver reports. No per-model safety tables or magic numbers in code. If the machine doesn't provide a value, the feature stays off or muted; it never falls back to a guessed constant.
+- Extract per-model firmware and tuning data from the prescribed IPSW on the user’s Mac. Read per-unit calibration from the machine. See [the rulebook](AGENTS.md#hard-rules).
 - Speakers: **speakerguardd v2 only**. Never weaken or bypass protection. If a capability or limit can't be established from the machine, stay muted.
 - Every test boot has a dead-man. Read registers before writing them.
 - No Stage 1, boot-object, LocalPolicy or 1TR change without the machine's owner.

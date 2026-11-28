@@ -34,7 +34,7 @@ Read the whole diff. Your job is to try to break it, quickly.
 2. **No gates, no hacks (hard).** No `if chip == …`, board or firmware-version checks where a DT/ADT property, compatible or capability bit can decide. No new command-line or module parameters, sleeps over races, magic depths or "set X=1 to enable". Pre-PR checklist: [no model gating](../pre-pr-checklist.md#no-model-gating-hard), [no hacks](../pre-pr-checklist.md#no-hacks-hard).
 3. **Safety (hard).** Limits that protect hardware come from the machine, never from constants. Speaker changes keep protection running and gating. No boot-object (Stage 1) change without the machine's owner.
 4. **Commits (hard).** Human identity and a human `Signed-off-by` on every commit; no agent trailers; third-party commits unchanged. No AI attribution anywhere in commits or PR text (no `Assisted-by`, tool `Co-Authored-By`, "Generated with"): delete it from the PR text yourself; for commits, give the author the fix in the [maintainer guide](../maintainers/README.md#ai-attribution-there-is-nothing-to-add), in the same review.
-5. **Evidence.** The hardware row is at the PR head (compare the SHA), on the Mac the change targets, plus one other Mac with the same block for shared code. The numbers are in the PR. A rebase with no conflicts in the touched files, or later commits that change nothing that is built, keep the row valid; anything else needs a new row.
+5. **Evidence.** The hardware row is at the PR head (compare the SHA), on the Mac the change targets, plus one other Mac with the same block for shared code. The numbers are in the PR. Check the [hardware row and regression requirements](merge-policy.md#3-hardware-rows), including two-family smoke coverage where required and proof that a combined build carries the PR unchanged.
 6. **Scope.** One topic per PR. No duplicate of someone else's open work: if another PR does the same thing, ask which one carries on.
 
 Then post the verdict.
@@ -59,7 +59,7 @@ One format for every review: [`pr-review.md`](pr-review.md) (verdict at the head
 
 - Press **Merge** (merge commit). On `linux` only merge commits are allowed; elsewhere use the repo's usual method, but never squash or rebase someone else's multi-commit PR (it rewrites their authorship and loses the commit the row tested).
 - After merging: the branch is deleted. **Retarget** any PR stacked on it to the default branch **first**: deleting a base branch closes the PRs stacked on it.
-- A merge that turns out to break something is **reverted by PR first**, then diagnosed, or fixed forward the same day.
+- Merge one PR at a time per repository and record how to revert. Revert a regression first, then fix it.
 
 ## 7. Special cases
 
@@ -67,7 +67,7 @@ One format for every review: [`pr-review.md`](pr-review.md) (verdict at the head
 | --- | --- |
 | **Aurora Dev PR** | Normal gate. Aurora Dev cannot merge; once it meets the gate, a Core, Omarchy Mac or Aurora Maintainers member merges it. Don't leave a ready Aurora Dev PR waiting: merging it is the point of your role. |
 | **Your own PR** | You may merge it yourself once someone else (Core, Omarchy Mac or Aurora Maintainers) approved it and the gate holds. GitHub never lets you approve your own PR. |
-| **Agent-written PR** | Reviewed by a human or by an independent agent that did not write or plan it. When the agent and the author share one account, the reviewing agent posts its verdict as a PR review comment and an Owner or Core member merges through the PR bypass (`gh pr merge --merge --admin`); the bypass never skips the gate. |
+| **Agent-written PR** | Require independent adversarial review. If App approval cannot satisfy the code-owner requirement, follow the [six conditions for admin merge](merge-policy.md#admin-merge). |
 | **Smaller-model PR** (the author's team says it was written mainly by a smaller, faster model; teams route this in their own review queue) | Its non-author review comes from a human or from a stronger model. Another small-model review is not enough. |
 | **Someone else's area or board, or a user-visible default** (default config, boot behaviour, release workflows) | Ask the area's owner to review; if they do not answer within a day, an Owner decides. |
 | **CODEOWNERS paths** (`.github/`, release configuration, policy files) | Need an Owner's review (enforced). |

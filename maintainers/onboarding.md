@@ -28,7 +28,7 @@ Owners keep a short list: repository settings, rulesets and secrets; cutting `v*
 A PR merges as soon as it has:
 
 1. green CI (mesa has no CI gate; there the hardware row is the gate),
-2. a **hardware row at the PR head**: the change ran on the Mac it targets (plus one other Mac with the same block for shared code), with the result written in the PR; or "no runtime change" for docs and CI-only changes,
+2. a **hardware row at the PR head**: the change ran on the Mac it targets (plus required coverage for shared blocks and two-family smoke where applicable, per the [merge policy](../policy/merge-policy.md)), with the result written in the PR; or "no runtime change" for docs and CI-only changes,
 3. **one approving review** from a Core, Omarchy Mac or Aurora Maintainers member other than the author, with no blocking finding.
 
 Merge it that same hour. Nits become follow-up PRs. On linux use a merge commit (squash and rebase are disabled). You may merge your own PR once someone else approved it.

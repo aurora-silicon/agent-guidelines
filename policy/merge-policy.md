@@ -11,7 +11,7 @@ Finished work goes into `main` quickly. It does not sit on side, backup or priva
 A PR into a repository's default branch (`main`; `aurora-wip` on mesa until its cutover) is merged **as soon as** all three hold:
 
 1. **CI is green.** Every check that ran passes and GitHub shows the PR as mergeable (`mergeStateStatus: CLEAN`; when an Owner merges with the bypass, `BLOCKED` by the review requirement alone is expected). Exception: where a repo has no CI for the change (the mesa fork today does not gate on GitHub CI), condition 1 is waived and the hardware row is the gate.
-2. **A hardware row at the PR head.** The change ran on the Mac it targets, built from the PR's head commit, with the result written in the PR (see section 3). Code shared between Mac generations also needs a row on one other Mac that has the same block, showing no regression. This is the **minimum to merge**. The [pre-PR checklist](../pre-pr-checklist.md) asks authors to prove the change on every Mac they have with the block; rows on Macs the author does not have are requested (section 3) but do not hold the merge.
+2. **A hardware row at the PR head.** The change ran on the Mac it targets, built from the PR's head commit, with the result written in the PR (see section 3). Shared code also needs a non-regression row on another Mac with the same block. Kernel, DT, Mesa, aura and installer runtime changes require boot and smoke coverage on at least two affected Mac families in addition to feature evidence (display, input, networking, an allowed audio sink and GPU rendering). This is the **minimum to merge**. The [pre-PR checklist](../pre-pr-checklist.md) asks authors to prove the change on every Mac they have with the block; rows on Macs the author does not have are requested (section 3) but do not hold the merge.
 3. **One non-author review with no blocking finding.** Someone other than the author (a Core, Omarchy Mac or Aurora Maintainers member, whose GitHub approval the rulesets count; or, for agent-written work, an independent reviewing agent, see 4) has read the whole diff, checked the [pre-PR checklist](../pre-pr-checklist.md), tried to break it, and found nothing blocking.
 
 When all three hold, **merge within the hour**. Do not wait for a second reviewer, for polish or for nits: nits become follow-up PRs. Core, Omarchy Mac and Aurora Maintainers members press the button (Aurora Dev do not merge into default branches; a PR needs a Core, Omarchy Mac or Aurora Maintainers approval before GitHub lets anyone merge it, see [`access-tiers.md`](access-tiers.md)); an author who is Core, Omarchy Mac or Aurora Maintainers may merge their own PR once 1 to 3 hold.
@@ -39,8 +39,8 @@ A **row** is one test run on one Mac, recorded in the PR (in the Testing section
 
 Rules:
 
-- The row must be **at the head**. If commits are pushed after the row, run it again. Two exceptions, said in the PR (or with the `hw-row-ok` label): a rebase onto a newer `main` with no conflicts in the touched files, and later commits that change nothing that is built (comments, docs, commit messages).
-- A kernel PR may be proven inside a batched fleet candidate, if the candidate contains the PR's head commits unchanged. Name the candidate in the row.
+- The row must be **at the head**. If commits are pushed after the row, run it again. If a forward merge, rebase or metadata-only update changes the head, cite the tested build and show that the changed files are byte-identical and the relevant test dependencies are unchanged.
+- A batched boot may prove several PRs. Name the candidate, give the running kernel and Stage 2 hashes, and show that each PR’s changed files are present byte-for-byte. Include the command, result and relevant dmesg excerpt.
 - **No row needed** for changes with no runtime effect: documentation, comments, CI configuration that does not change the built artifact, and tests that run only in CI. Say "no runtime change" in the Testing section.
 - **Regression requests.** A row may come from any team: post a structured regression request (repository, exact ref, platforms, instructions, pass criteria, baseline, constraints) on the Aurora Agents coordination service; the agent that claims it posts the structured result on the PR. Lab rows use the same fields.
 - **Hardware nobody in the lab has:** a row on the closest Mac with the same block and code path (same SoC family), stating plainly what it stands in for, plus a regression request to the board's owner. Do not block on volunteers who have not agreed to run it.
@@ -50,16 +50,29 @@ Rules:
 
 - The review is a **quick blocking-issues pass**, not a gate to wait on, done in **one round**. Review requests are answered within hours, and never later than the [response times](../maintainers/README.md#response-times) in the maintainer guide.
 - An approving review on GitHub is what the ruleset counts. An approval goes stale when new commits are pushed; re-approve after reading the new commits.
-- **Agent-written PRs.** An agent's PR is reviewed by a human or by a different, independent agent that did not write or plan it. When agents work under one account and cannot approve on GitHub, the reviewing agent posts its review as a PR review comment ("no blocking findings" plus what it checked), and an Owner or Core member merges through the ruleset bypass (pull requests only). The bypass is only for that case and for urgent owner merges; it never skips the three conditions in section 1.
+- **Adversarial review.** An independent reviewer from a different lane reads the whole diff, reproduces the claim at head, checks CI, bindings/schema where applicable, hard rules and affected boards, then records what they checked. Prefer a different model family or account where practical. Use the review App for same-team approval when GitHub would otherwise see self-approval.
 - **Smaller-model PRs.** A PR written mainly by a smaller, faster model needs its non-author review from a human or from a stronger model; another small-model review is not enough. The author's team routes that request (for example through its review queue or a regression request), never through attribution text in the PR.
 - Each side records its verdict (merge / blocking finding) on the PR, so whoever merges can see it.
+
+### Admin merge
+
+When the ruleset requires code-owner approval and the review App's approval cannot satisfy it, an authorized maintainer may run `gh pr merge --merge --admin` only when all six conditions hold for the current head:
+
+1. The `aurora-silicon-review` App approved after adversarial review by a different lane and model from the author.
+2. Required CI is green.
+3. The feature hardware row covers the head.
+4. Kernel, DT, Mesa, aura and installer runtime changes have regression rows on at least two affected families.
+5. There is no open blocking review from anyone.
+6. The responsible code-owner team was pinged on the PR at least one hour earlier.
+
+Post the rationale and revert procedure on the PR before merging. Owner-level policy changes still require human Owner sign-off.
 
 ## 5. How to merge
 
 - **On linux: merge commit only** (`gh pr merge --merge`; Owners and Core merging through the bypass add `--admin`). Squash and rebase merges are disabled on linux `main`: they rewrite other people's commits and lose the commit the hardware row tested. **Other repos** still allow squash; never squash or rebase a PR that carries someone else's commits.
 - The merged branch is deleted. Retarget any PR stacked on it to `main` first.
 - Merge with GitHub's default subject; no extra merge comment.
-- A merged change that turns out to break something is reverted by PR (revert first, then diagnose) or fixed forward the same day.
+- Merge one PR at a time per repository. Record how to revert each merge. If a regression appears after merge, revert first, then fix.
 
 ## 6. Who merges what
 

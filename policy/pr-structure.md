@@ -9,10 +9,13 @@ A person reads the visible part in under a minute. Everything an agent or a deep
 **Tested:** Macs at the head SHA + result.
 **Risk:** one-way | two-way door · which Macs it can affect
 **Not yet:** what is still untested, or "nothing"
+**Revert:** procedure and any state it cannot undo
 
 <details><summary>Details</summary> how it works, design choices </details>
 <details><summary>Evidence</summary> commands, result tables, logs, CI runs, exact SHAs </details>
 ```
+
+Use the folded [implementer checklist](../pre-pr-checklist.md#before-you-request-review) before requesting review. Include the exact command, result, running kernel and Stage 2 hashes, and a relevant redacted dmesg excerpt for each hardware row.
 
 ## Rules
 
