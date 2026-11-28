@@ -10,6 +10,7 @@ The change works on every Mac that has the hardware.
 
 - **No chip, SoC, board or firmware-version gates** unless truly unavoidable. Decide from what the machine reports: ADT/DT properties of the block, its compatible, capability or feature bits, probed registers, firmware capability fields, ALSA control ranges. Never `if chip == …`, `if board == …`, `if fw == 27.2`, or a per-chip table where a property can carry the value.
 - If a gate really is unavoidable, the commit message says why, and the gate uses the narrowest hardware property.
+- **No hardware fact as a literal.** Read it from the machine and cite the source at the point of use. For public changes, cite only public-clean provenance, such as ALSA control info, TLV metadata or ADT/DT properties. Keep private source details, Apple tuning values and firmware artifacts in private evidence storage under the [IP policy](policy/ip-and-tainted-data.md). Name and document intentional policy constants.
 - Prove the change on every Mac you have that contains the block, not only the one you wrote it for. Ask for test runs on the ones you don't have.
 - **Chicken and egg:** if the property must first come from the boot loader or DT, land that side first. The consumer reads it with today's behaviour as the fallback when it is absent, and the fallback is removed after a release has carried the property.
 
