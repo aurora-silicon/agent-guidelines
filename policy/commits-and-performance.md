@@ -42,3 +42,7 @@ To deviate from this section you need a hardware reason, stated in the PR.
 - **Hard rule: human identity only.** Every commit has a `Signed-off-by` (DCO) from the human responsible. Agents never co-author, sign off or co-commit: no `Co-Authored-By`, no agent `Signed-off-by`, no `Assisted-by`, no session trailers. PR text carries no AI attribution either ([`pr-structure.md`](pr-structure.md)).
 - **Hard rule: preserve authorship.** Carry third-party commits unchanged (cherry-pick or merge; never squash, never re-author). Your fixes are separate commits on top.
 - **Hard rule: no force pushes to shared branches** (an author fixing their own PR's commit metadata is the one exception, see [`branching-and-releases.md`](branching-and-releases.md#2-branch-names)).
+
+## 4. Upstream patches
+
+Submit working code and verifiable facts. Explain the failure, why the hardware or interface behaves that way, and which build and hardware tests passed. Follow the destination maintainer’s submission rules. Leave prepared patches unsigned for the responsible human to review and personally sign. Agents never add a Signed-off-by or attribution tag.
