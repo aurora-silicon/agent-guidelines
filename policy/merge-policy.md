@@ -67,3 +67,14 @@ Rules:
 - **Someone else's area or board, or a user-visible default** (default kernel config, default boot behaviour, release workflows): ask the area's owner to review; if they do not answer within a day, an Owner decides.
 - **Policy, CI and release files** (`CODEOWNERS` paths: on linux `.github/`, `aurora_defconfig`, `RELEASES.md`, `CONTRIBUTING.md`; everything in `agent-guidelines`): need an Owner's review (enforced by code-owner review).
 - **Releases and tags** are cut by Owners only ([`branching-and-releases.md`](branching-and-releases.md)).
+
+## 7. Keeping the open queue short
+
+Since 2026-11-26 (Ryan's fast-track order). Open PRs that nobody finishes hide the work that is ready. These are defaults. The bot only flags; none of them blocks a merge.
+
+- **At most 5 open PRs per author or agent lane.** If you have more, finish or close yours before you open a new one. To go over the limit, give a one-line reason in the new PR (for example a stack that has to be reviewed in parts).
+- **One PR per feature.** Put related drafts into one PR, or one stack based on `main`, and list what is missing under **Not yet**. A diagnostic, an A/B arm or a disproven fix goes under the lab's traces, not into a PR.
+- **Fix change requests the same day.** Push once, re-request the review and reply to each item.
+- **Drafts close only with proof:** the change is already in `main`, or another PR replaced it (show it with `git cherry`, a patch-id match or `git merge-tree` against `main`, and link the PR that landed it), or a linked review killed it. Never close a draft only because it is old. The branch stays so the PR can be reopened. A draft idle for more than 48 hours gets a flag from the readiness sweep, so its author can finish it, fold it into another PR or close it with proof.
+- **Outside contributors' PRs are reviewed first, oldest first.** If one conflicts with `main`, ask the author once and give them 24 hours. After that a maintainer merges `main` into the branch, says so on the PR, and merges it once the gate in section 1 holds.
+- **Batched rows count.** One boot or fleet candidate that contains several PRs unchanged (section 3) is a row for each of them. A forward merge or rebase that leaves the changed files byte-identical keeps the row. Pushes that change only text or trailers don't need a new row.
