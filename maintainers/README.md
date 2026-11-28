@@ -1,6 +1,6 @@
 # Maintainers
 
-> **Status: IN FORCE** (since 2026-11-24). For the people who review, merge and triage (Owners, Core, Omarchy Mac) and the agents that do it for them. Contributors don't need this folder.
+> **Status: IN FORCE** (since 2026-11-24). For the people who review, merge and triage (Owners, Core, Omarchy Mac, Aurora Maintainers) and the agents that do it for them. Contributors don't need this folder.
 
 What may merge is set by the [merge policy](../policy/merge-policy.md). This page sets how fast we answer and how we work with contributors. Mechanics: [daily routine](daily-routine.md) (labels, queues, examples), [review handbook](../policy/review-and-merge-handbook.md). Agents doing this work: [agents.md](agents.md). New maintainers: [onboarding](onboarding.md).
 
@@ -16,7 +16,7 @@ Clear the queue before your own development, in this order:
 4. **Outside contributors' PRs.**
 5. Then your own work.
 
-**Members** are everyone in the `aurora-silicon` organisation, whatever their team (Core, Omarchy Mac, Aurora Dev). **Outside contributors** are everyone else.
+**Members** are everyone in the `aurora-silicon` organisation, whatever their team (Core, Omarchy Mac, Aurora Maintainers, Aurora Dev). **Outside contributors** are everyone else.
 
 ## Response times
 

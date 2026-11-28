@@ -4,19 +4,20 @@
 
 Kind: hard rules. Which GitHub team gets which role on which repository, and which rulesets every public product repository carries. What each role may do under policy is [`governance-and-roles.md`](governance-and-roles.md); how to review and merge is the [review and merging handbook](review-and-merge-handbook.md).
 
-## 1. The three teams
+## 1. The teams
 
 | Team | Who they are | What they do here |
 | --- | --- | --- |
 | **Core** (`@aurora-silicon/core`) | the Owners plus the core developers | review and merge everywhere; the only ruleset bypass actor (through pull requests only) |
-| **Omarchy Mac** (`@aurora-silicon/omarchy-m`) | the Omarchy Mac maintainers | review and merge on the repositories Omarchy ships or consumes |
+| **Omarchy Mac** (`@aurora-silicon/omarchy-mac`) | the Omarchy Mac maintainers | review and merge on the repositories Omarchy ships or consumes |
+| **Aurora Maintainers** (`@aurora-silicon/aurora-maintainers`) | Aurora maintainers (since 2026-11-25) | the same as Omarchy Mac: review and merge on the same repositories, with the same role |
 | **Aurora Dev** (`@aurora-silicon/aurora-dev`) | Aurora developers | develop fast: branches, PRs, CI, lab rows, reviews; they do not merge into default branches |
 
 Everyone, in every team, is bound by the same rules: the [merge policy](merge-policy.md), the [pre-PR checklist](../pre-pr-checklist.md) and the [IP and tainted-data policy](ip-and-tainted-data.md). Owners and agents included.
 
 ## 2. Roles per repository class
 
-| Repository class | Core | Omarchy Mac | Aurora Dev |
+| Repository class | Core | Omarchy Mac, Aurora Maintainers | Aurora Dev |
 | --- | --- | --- | --- |
 | **Omarchy product repos**: linux, mesa, aura, m1n1, u-boot, aurora-installer, aurora-platform, alarm-aurora, omarchy-aurora, speakerguardd, alsa-ucm-conf-asahi, asahi-audio, gpubench, agent-guidelines | admin | **maintain** (review + merge) | write |
 | **Other public product repos**: aurora-distributions, fedora-aurora, nixos-aurora, aurora-diag, aurora-sep-userspace, camera-denoise, kbd-light, upower, xserver, pipewire, FFmpeg, libva-v4l2_request, fex, macvdmtool, tuxvdmtool, aurora-bless, mil-hwx-compiler, vane, splash, aurora-steam-native, aurora-lily, aurora-xart, aurora-neo-platform-config, avd-fw, capture-ns, .github, aurora-silicon.github.io | admin | (public read; PRs from a fork are welcome) | write |
@@ -34,15 +35,15 @@ The same repository rulesets, on the repo's **default branch** whatever it is ca
 | Ruleset | Rules | Bypass |
 | --- | --- | --- |
 | `default branch: reviewed PRs` | no deletion, no force push; changes by PR with **1 approving review**, approval after the last push, stale approvals dismissed, **code-owner review** | Owners and Core, **through a pull request only** |
-| `default branch: mergers only (Core, Omarchy Mac)` | **disabled** (kept for reference): restrict updates made every merge a bypass click, which slowed the people it was meant to empower | n/a |
+| `default branch: mergers only (Core, Omarchy Mac)` | **disabled** (kept for reference): restrict updates made every merge a bypass click, which slowed the people it was meant to empower | n/a (its list names Core, Omarchy Mac and Aurora Maintainers, for when it is redesigned) |
 | `release tags: v* aurora-* (owners only)` | `v*` and `aurora-*` tags cannot be created, moved or deleted | Owners |
 
-**How merge rights are enforced without a bypass click:** each repo carries `.github/CODEOWNERS` with `* @aurora-silicon/core @aurora-silicon/omarchy-m` (Core only where Omarchy Mac has no role), and code-owner review is required. So the one approval that counts must come from **Core or Omarchy Mac**; after that, the merge button works for everyone who can merge, with no override. An Aurora Dev review is welcome and is read, but it does not satisfy the requirement alone. Owner-only lines on top (for example `/.github/` in mesa and m1n1) still need an Owner for those paths. Older `Protect main` rulesets on aura, aurora-installer and nixos-aurora (no deletion, no force push) stay; they add nothing the reviewed-PRs ruleset lacks. Exceptions: `aura` (root `CODEOWNERS` routes everything to the Owners until aura#496 lands), the website (designated owners) and `agent-guidelines` (routes to the Owners: policy changes need an Owner's sign-off).
+**How merge rights are enforced without a bypass click:** each repo carries `.github/CODEOWNERS` with `* @aurora-silicon/core @aurora-silicon/omarchy-mac @aurora-silicon/aurora-maintainers` (Core only where Omarchy Mac and Aurora Maintainers have no role), and code-owner review is required. So the one approval that counts must come from **Core, Omarchy Mac or Aurora Maintainers**; after that, the merge button works for everyone who can merge, with no override. An Aurora Dev review is welcome and is read, but it does not satisfy the requirement alone. Owner-only lines on top (for example `/.github/` in mesa and m1n1) still need an Owner for those paths. Older `Protect main` rulesets on aura, aurora-installer and nixos-aurora (no deletion, no force push) stay; they add nothing the reviewed-PRs ruleset lacks. Exceptions: `aura` (root `CODEOWNERS` routes everything to the Owners until aura#496 lands), the website (designated owners) and `agent-guidelines` (routes to the Owners: policy changes need an Owner's sign-off).
 
 What that means in practice:
 
-- **Aurora Dev** push `feat/`, `fix/` and `wip/` branches, open PRs, re-run CI and review. A PR cannot merge until a Core or Omarchy Mac member approves it; by policy the merge itself is then done by a merger.
-- **Omarchy Mac** (on their repos) and **Core** merge a PR once the [merge policy](merge-policy.md) holds and a Core or Omarchy Mac member other than the author has approved it.
+- **Aurora Dev** push `feat/`, `fix/` and `wip/` branches, open PRs, re-run CI and review. A PR cannot merge until a Core, Omarchy Mac or Aurora Maintainers member approves it; by policy the merge itself is then done by a merger.
+- **Omarchy Mac** and **Aurora Maintainers** (on their repos) and **Core** merge a PR once the [merge policy](merge-policy.md) holds and a Core, Omarchy Mac or Aurora Maintainers member other than the author has approved it.
 - **Nobody** pushes straight to a default branch, force-pushes it or deletes it. Owners and Core bypass the review requirement only by merging a pull request, and only when the merge policy holds (for example: an agent's PR reviewed by an independent agent, which cannot press GitHub's approve button on the same account).
 - The kernel (`linux`) has stricter rulesets on top: merge commits only, owner-only `hotfix/` and `archive/` branches, retired branch names locked. See [`governance-and-roles.md`](governance-and-roles.md), section 3.
 

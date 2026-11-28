@@ -7,7 +7,7 @@ ORG=aurora-silicon
 MODE=dry; [ "${1:-}" = "--apply" ] && MODE=apply
 ONLY="${2:-}"
 LOG=${LOG:-./gh-access-apply-$(date +%Y%m%d-%H%M%S)-$MODE.log}
-CORE_ID=20734456; OMARCHY_ID=20734502
+CORE_ID=20734456; OMARCHY_ID=20734502; MAINT_ID=20872846
 
 # Tiers (verify a repo is live before adding it; see access-tiers.md)
 PRODUCT="linux mesa aura m1n1 u-boot aurora-installer aurora-platform aurora-distributions fedora-aurora alarm-aurora nixos-aurora omarchy-aurora speakerguardd alsa-ucm-conf-asahi asahi-audio gpubench agent-guidelines aurora-diag aurora-sep-userspace camera-denoise kbd-light upower xserver pipewire FFmpeg libva-v4l2_request fex macvdmtool tuxvdmtool aurora-bless mil-hwx-compiler vane splash aurora-steam-native aurora-lily aurora-xart aurora-neo-platform-config avd-fw capture-ns .github aurora-silicon.github.io"
@@ -17,7 +17,8 @@ NO_BRANCH_RULES="aurora-distributions fedora-aurora alarm-aurora .github"
 # Workflows create release tags with GITHUB_TOKEN: no tag ruleset yet.
 NO_TAG_RULES="aurora-installer aurora-distributions fedora-aurora alarm-aurora nixos-aurora omarchy-aurora"
 # The 'mergers only' (restrict updates) ruleset makes every merge a bypass click, so it is kept but
-# DISABLED (2026-11-24 redesign): the merger gate is code-owner review (CODEOWNERS -> core + omarchy-m).
+# DISABLED (2026-11-24 redesign): the merger gate is code-owner review (CODEOWNERS -> core + omarchy-mac
+# + aurora-maintainers).
 # Set MERGERS_ENFORCEMENT=active only after the Owners decide to restore it.
 MERGERS_ENFORCEMENT=${MERGERS_ENFORCEMENT:-disabled}
 # No code-owner review, no last-push/stale rules (Owner decision 2026-11-24, merge train).
@@ -61,9 +62,9 @@ review_rules() { # $1 = 1: code-owner review + last-push + stale dismiss
   rules:[{type:"deletion"},{type:"non_fast_forward"},{type:"pull_request",parameters:{required_approving_review_count:1,
    dismiss_stale_reviews_on_push:$s,require_code_owner_review:$s,require_last_push_approval:$s,
    required_review_thread_resolution:false}}]}'; }
-merger_rules() { # $1 = include omarchy
+merger_rules() { # $1 = include omarchy-mac + aurora-maintainers (same rights)
   local b=$BYPASS_PR_CORE
-  [ "$1" = 1 ] && b=$(jq -c --argjson id $OMARCHY_ID '.+[{actor_id:$id,actor_type:"Team",bypass_mode:"pull_request"}]' <<<"$b")
+  [ "$1" = 1 ] && b=$(jq -c --argjson id $OMARCHY_ID --argjson m $MAINT_ID '.+[{actor_id:$id,actor_type:"Team",bypass_mode:"pull_request"},{actor_id:$m,actor_type:"Team",bypass_mode:"pull_request"}]' <<<"$b")
   jq -n --argjson b "$b" --arg en "$MERGERS_ENFORCEMENT" '{name:"default branch: mergers only (Core, Omarchy Mac)",target:"branch",enforcement:$en,
   conditions:{ref_name:{include:["~DEFAULT_BRANCH"],exclude:[]}}, bypass_actors:$b, rules:[{type:"update"}]}'; }
 tag_rules() { jq -n '{name:"release tags: v* aurora-* (owners only)",target:"tag",enforcement:"active",
@@ -78,7 +79,8 @@ for r in $PRODUCT; do
   [ "$vis" = "public false" ] || { log "$r: SKIP ($vis)"; continue; }
   team_perm $r core admin
   team_perm $r aurora-dev push
-  inlist $r $OMARCHY && team_perm $r omarchy-m maintain
+  inlist $r $OMARCHY && team_perm $r omarchy-mac maintain
+  inlist $r $OMARCHY && team_perm $r aurora-maintainers maintain  # same repos and role as Omarchy Mac
   om=0; inlist $r $OMARCHY && om=1
   if [ $r = linux ]; then
     # add Core team (PR-only) to the hand-made trunk ruleset's bypass list
